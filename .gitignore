@@ -55,6 +55,7 @@ styles/
 __pycache__/
 /.coverage
 
+# Rust
 debug/
 target/
 /build/

@@ -1,7 +1,0 @@
-[package]
-name = "_placeholder_tests"
-version.workspace = true
-edition.workspace = true
-
-[dependencies]
-_placeholder.workspace = true

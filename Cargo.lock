@@ -3,19 +3,5 @@
 version = 4
 
 [[package]]
-name = "_placeholder"
+name = "log"
 version = "0.0.1"
-
-[[package]]
-name = "_placeholder_example"
-version = "0.0.1"
-dependencies = [
- "_placeholder",
-]
-
-[[package]]
-name = "_placeholder_tests"
-version = "0.0.1"
-dependencies = [
- "_placeholder",
-]

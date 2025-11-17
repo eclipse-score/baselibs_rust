@@ -1,12 +1,11 @@
 [package]
-name = "_placeholder_example"
+name = "log"
 version.workspace = true
 edition.workspace = true
 license-file.workspace = true
 authors.workspace = true
 
 [dependencies]
-_placeholder.workspace = true
 
 [lints]
 workspace = true

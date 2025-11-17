@@ -2,13 +2,9 @@
 resolver = "2"
 # Split to default members without tests and examples.
 # Used when executing cargo from project root.
-default-members = ["src/mw/_placeholder"]
+default-members = ["src/log"]
 # Include tests and examples as a member for IDE support and Bazel builds.
-members = [
-    "src/mw/_placeholder",
-    "examples/mw/_placeholder_example",
-    "tests/mw/_placeholder",
-]
+members = ["src/log"]
 
 
 [workspace.package]
@@ -19,7 +15,6 @@ authors = ["S-CORE Contributors"]
 
 
 [workspace.dependencies]
-_placeholder = { path = "src/mw/_placeholder" }
 
 
 [workspace.lints.clippy]

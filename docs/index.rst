@@ -24,8 +24,7 @@ This documentation describes the Rust base libraries.
 Overview
 --------
 
-This repository provides a standardized setup for projects using **C++** or **Rust** and **Bazel** as a build system.
-It integrates best practices for build, test, CI/CD and documentation.
+Foundational Rust libraries providing common functionality for S-CORE modules.
 
 Requirements
 ------------
@@ -35,13 +34,21 @@ Requirements
 Project Layout
 --------------
 
-The module template includes the following top-level structure:
+Project is structured in following manner:
 
-- `src/`: Main C++/Rust sources
-- `tests/`: Unit and integration tests
+- `README.md`: Short description and build instructions
+- `src/`: Source files
+- `tests/`: Unit tests (UT) and integration tests (IT)
 - `examples/`: Usage examples
 - `docs/`: Documentation using `docs-as-code`
 - `.github/workflows/`: CI/CD pipelines
+- `.vscode`: Recommended VS Code settings
+- `.bazelrc`, `.bazelversion`, `MODULE.bazel`, `BUILD`: Bazel configuration and settings
+- `Cargo.toml`, `rust-toolchain.toml`, `rustfmt.toml`: Cargo configuration and settings
+- `project_config.bzl`: Project-specific metadata for Bazel macros
+- `LICENSE`, `LICENSE.md`: Licensing information
+- `CONTRIBUTION.md`: Contribution guidelines
+- `NOTICE`: Notices for Eclipse Safe Open Vehicle Core
 
 Quick Start
 -----------
@@ -57,19 +64,3 @@ To run tests:
 .. code-block:: bash
 
    bazel test //tests/...
-
-Configuration
--------------
-
-The `project_config.bzl` file defines metadata used by Bazel macros.
-
-Example:
-
-.. code-block:: python
-
-   PROJECT_CONFIG = {
-       "asil_level": "QM",
-       "source_code": ["cpp", "rust"]
-   }
-
-This enables conditional behavior (e.g., choosing `clang-tidy` for C++ or `clippy` for Rust).

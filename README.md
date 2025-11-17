@@ -2,32 +2,25 @@
 
 Foundational Rust libraries providing common functionality for S-CORE modules.
 
-This repository serves as a **template** for setting up **C++ and Rust projects** using **Bazel**.
-It provides a **standardized project structure**, ensuring best practices for:
-
-- **Build configuration** with Bazel.
-- **Testing** (unit and integration tests).
-- **Documentation** setup.
-- **CI/CD workflows**.
-- **Development environment** configuration.
-
 ---
 
 ## 📂 Project Structure
 
-| File/Folder                         | Description                                       |
-| ----------------------------------- | ------------------------------------------------- |
-| `README.md`                         | Short description & build instructions            |
-| `src/`                              | Source files for the module                       |
-| `tests/`                            | Unit tests (UT) and integration tests (IT)        |
-| `examples/`                         | Example files used for guidance                   |
-| `docs/`                             | Documentation (Doxygen for C++ / mdBook for Rust) |
-| `.github/workflows/`                | CI/CD pipelines                                   |
-| `.vscode/`                          | Recommended VS Code settings                      |
-| `.bazelrc`, `MODULE.bazel`, `BUILD` | Bazel configuration & settings                    |
-| `project_config.bzl`                | Project-specific metadata for Bazel macros        |
-| `LICENSE.md`                        | Licensing information                             |
-| `CONTRIBUTION.md`                   | Contribution guidelines                           |
+| File/Folder                                          | Description                                |
+| ---------------------------------------------------- | ------------------------------------------ |
+| `README.md`                                          | Short description and build instructions   |
+| `src/`                                               | Source files                               |
+| `tests/`                                             | Unit tests (UT) and integration tests (IT) |
+| `examples/`                                          | Usage examples                             |
+| `docs/`                                              | Documentation using `docs-as-code`         |
+| `.github/workflows/`                                 | CI/CD pipelines                            |
+| `.vscode`                                            | Recommended VS Code settings               |
+| `.bazelrc`, `.bazelversion`, `MODULE.bazel`, `BUILD` | Bazel configuration and settings           |
+| `Cargo.toml`, `rust-toolchain.toml`, `rustfmt.toml`  | Cargo configuration and settings           |
+| `project_config.bzl`                                 | Project-specific metadata for Bazel macros |
+| `LICENSE`, `LICENSE.md`                              | Licensing information                      |
+| `CONTRIBUTION.md`                                    | Contribution guidelines                    |
+| `NOTICE`                                             | Notices for Eclipse Safe Open Vehicle Core |
 
 ---
 
@@ -36,8 +29,8 @@ It provides a **standardized project structure**, ensuring best practices for:
 ### 1️⃣ Clone the Repository
 
 ```sh
-git clone https://github.com/eclipse-score/YOUR_PROJECT.git
-cd YOUR_PROJECT
+git clone https://github.com/eclipse-score/baselibs_rust.git
+cd baselibs_rust
 ```
 
 ### 2️⃣ Build the Examples of module
@@ -75,9 +68,8 @@ bazel test //tests/...
 
 ## 🛠 Tools & Linters
 
-The template integrates **tools and linters** from **centralized repositories** to ensure consistency across projects.
+**Tools and linters** from **centralized repositories** are integrated to ensure consistency across projects.
 
-- **C++:** `clang-tidy`, `cppcheck`, `Google Test`
 - **Rust:** `clippy`, `rustfmt`, `Rust Unit Tests`
 - **CI/CD:** GitHub Actions for automated builds and tests
 
@@ -86,30 +78,3 @@ The template integrates **tools and linters** from **centralized repositories** 
 ## 📖 Documentation
 
 - A **centralized docs structure** is planned.
-
----
-
-## ⚙️ `project_config.bzl`
-
-This file defines project-specific metadata used by Bazel macros, such as `dash_license_checker`.
-
-### 📌 Purpose
-
-It provides structured configuration that helps determine behavior such as:
-
-- Source language type (used to determine license check file format)
-- Safety level or other compliance info (e.g. ASIL level)
-
-### 📄 Example Content
-
-```python
-PROJECT_CONFIG = {
-    "asil_level": "QM",  # or "ASIL-A", "ASIL-B", etc.
-    "source_code": ["cpp", "rust"]  # Languages used in the module
-}
-```
-
-### 🔧 Use Case
-
-When used with macros like `dash_license_checker`, it allows dynamic selection of file types
- (e.g., `cargo`, `requirements`) based on the languages declared in `source_code`.
