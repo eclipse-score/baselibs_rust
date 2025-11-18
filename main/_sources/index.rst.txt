@@ -1,6 +1,6 @@
 ..
    # *******************************************************************************
-   # Copyright (c) 2024 Contributors to the Eclipse Foundation
+   # Copyright (c) 2025 Contributors to the Eclipse Foundation
    #
    # See the NOTICE file(s) distributed with this work for additional
    # information regarding copyright ownership.
@@ -12,10 +12,10 @@
    # SPDX-License-Identifier: Apache-2.0
    # *******************************************************************************
 
-Module Template Documentation
+Base Libraries - Rust
 =============================
 
-This documentation describes the structure, usage and configuration of the Bazel-based C++/Rust module template.
+This documentation describes the Rust base libraries.
 
 .. contents:: Table of Contents
    :depth: 2
@@ -24,36 +24,36 @@ This documentation describes the structure, usage and configuration of the Bazel
 Overview
 --------
 
-This repository provides a standardized setup for projects using **C++** or **Rust** and **Bazel** as a build system.
-It integrates best practices for build, test, CI/CD and documentation.
+Foundational Rust libraries providing common functionality for S-CORE modules.
 
 Requirements
 ------------
 
-.. stkh_req:: Example Functional Requirement
-   :id: stkh_req__docgen_enabled__example
-   :status: valid
-   :safety: QM
-   :security: YES
-   :reqtype: Functional
-   :rationale: Ensure documentation builds are possible for all modules
-
+- TODO: add requirements once available.
 
 Project Layout
 --------------
 
-The module template includes the following top-level structure:
+Project is structured in following manner:
 
-- `src/`: Main C++/Rust sources
-- `tests/`: Unit and integration tests
+- `README.md`: Short description and build instructions
+- `src/`: Source files
+- `tests/`: Unit tests (UT) and integration tests (IT)
 - `examples/`: Usage examples
 - `docs/`: Documentation using `docs-as-code`
 - `.github/workflows/`: CI/CD pipelines
+- `.vscode`: Recommended VS Code settings
+- `.bazelrc`, `.bazelversion`, `MODULE.bazel`, `BUILD`: Bazel configuration and settings
+- `Cargo.toml`, `rust-toolchain.toml`, `rustfmt.toml`: Cargo configuration and settings
+- `project_config.bzl`: Project-specific metadata for Bazel macros
+- `LICENSE`, `LICENSE.md`: Licensing information
+- `CONTRIBUTION.md`: Contribution guidelines
+- `NOTICE`: Notices for Eclipse Safe Open Vehicle Core
 
 Quick Start
 -----------
 
-To build the module:
+To build the module for host platform:
 
 .. code-block:: bash
 
@@ -64,19 +64,3 @@ To run tests:
 .. code-block:: bash
 
    bazel test //tests/...
-
-Configuration
--------------
-
-The `project_config.bzl` file defines metadata used by Bazel macros.
-
-Example:
-
-.. code-block:: python
-
-   PROJECT_CONFIG = {
-       "asil_level": "QM",
-       "source_code": ["cpp", "rust"]
-   }
-
-This enables conditional behavior (e.g., choosing `clang-tidy` for C++ or `clippy` for Rust).
