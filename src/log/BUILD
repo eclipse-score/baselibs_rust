@@ -21,7 +21,4 @@ rust_library(
 rust_test(
     name = "log_tests",
     crate = ":log",
-    deps = [
-        "//src/log",
-    ],
 )
