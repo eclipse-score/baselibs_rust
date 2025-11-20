@@ -2,5 +2,9 @@
   {
     "version": "main",
     "url": "https://eclipse-score.github.io/baselibs_rust/main/"
+  },
+  {
+    "version": "pr-3",
+    "url": "https://eclipse-score.github.io/baselibs_rust/pr-3/"
   }
 ]
