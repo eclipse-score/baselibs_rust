@@ -12,24 +12,21 @@
    # SPDX-License-Identifier: Apache-2.0
    # *******************************************************************************
 
-Base Libraries - Rust
-=============================
+Rust Base Libraries
+===================
 
-This documentation describes the Rust base libraries.
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :titlesonly:
 
-.. contents:: Table of Contents
-   :depth: 2
-   :local:
+   module_docs/index
+   module/*/index
 
 Overview
 --------
 
 Foundational Rust libraries providing common functionality for S-CORE modules.
-
-Requirements
-------------
-
-- TODO: add requirements once available.
 
 Project Layout
 --------------
