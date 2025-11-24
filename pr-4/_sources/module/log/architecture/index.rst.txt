@@ -20,7 +20,7 @@ Component Architecture
 .. document:: Log Architecture
    :id: doc__log_architecture
    :status: draft
-   :safety: QM
+   :safety: ASIL_B
    :security: NO
    :realizes: wp__component_arch
    :tags: log
@@ -56,8 +56,8 @@ Static Architecture
 
 .. comp_arc_sta:: Log (Static View)
    :id: comp_arc_sta__log__static_view
-   :security: YES
-   :safety: QM
+   :security: NO
+   :safety: ASIL_B
    :status: valid
    :implements:
    :fulfils:
@@ -72,25 +72,25 @@ Dynamic Architecture
 .. comp_arc_dyn:: Register global logger
    :id: comp_arc_dyn__log__register_global_logger
    :security: NO
-   :safety: QM
+   :safety: ASIL_B
    :status: valid
    :fulfils:
 
    .. uml:: _assets/register_global_logger.puml
 
-.. comp_arc_dyn:: Log with global logger
+.. comp_arc_dyn:: Log with global logger instance
    :id: comp_arc_dyn__log__log_with_global_logger
    :security: NO
-   :safety: QM
+   :safety: ASIL_B
    :status: valid
    :fulfils:
 
    .. uml:: _assets/log_with_global_logger.puml
 
-.. comp_arc_dyn:: Log with local logger
+.. comp_arc_dyn:: Log with local logger instance
    :id: comp_arc_dyn__log__log_with_local_logger
    :security: NO
-   :safety: QM
+   :safety: ASIL_B
    :status: valid
    :fulfils:
 
@@ -103,7 +103,7 @@ Interfaces
 .. real_arc_int:: Log interface
    :id: real_arc_int__log__interface
    :security: NO
-   :safety: QM
+   :safety: ASIL_B
    :status: valid
    :fulfils:
    :language: rust

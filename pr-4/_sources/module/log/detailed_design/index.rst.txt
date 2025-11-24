@@ -20,7 +20,7 @@ Detailed Design
 .. document:: Log Detailed Design
    :id: doc__log_detailed_design
    :status: draft
-   :safety: QM
+   :safety: ASIL_B
    :security: NO
    :realizes: wp__sw_implementation
    :tags: log
@@ -56,40 +56,35 @@ Such frontend shall remain transparent replacement to common functionalities pro
 Static Diagrams for Unit Interactions
 -------------------------------------
 
-.. TODO: remove 'code-block' once :implements: and :satisfied: can be filled
-.. code-block:: rst
+.. dd_sta:: Log class diagram
+   :id: dd_sta__log__class_diagram
+   :security: NO
+   :safety: ASIL_B
+   :status: valid
+   :implements: comp_req__log__placeholder
+   :satisfies: comp_arc_sta__log__static_view
 
-   .. dd_sta:: Log class diagram
-      :id: dd_sta__log__class_diagram
-      :security: NO
-      :safety: QM
-      :status: valid
-      :implements:
-      :satisfies:
-
-      .. uml:: _assets/class_diagram.puml
+   .. uml:: _assets/class_diagram.puml
 
 Dynamic Diagrams for Unit Interactions
 --------------------------------------
-.. TODO: remove 'code-block' once :implements: and :satisfied: can be filled
-.. code-block:: rst
 
-   .. dd_dyn:: Log operation
-      :id: dd_dyn__log__log_op
-      :security: NO
-      :safety: QM
-      :status: valid
-      :implements:
-      :satisfies:
+.. dd_dyn:: Log operation
+   :id: dd_dyn__log__log_op
+   :security: NO
+   :safety: ASIL_B
+   :status: valid
+   :implements: comp_req__log__placeholder
+   :satisfies: comp_arc_sta__log__static_view
 
-      .. uml:: _assets/log_op.puml
+   .. uml:: _assets/log_op.puml
 
-   .. dd_dyn:: Log to level
-      :id: dd_dyn__log__log_to_level
-      :security: NO
-      :safety: QM
-      :status: valid
-      :implements:
-      :satisfies:
+.. dd_dyn:: Log to level
+   :id: dd_dyn__log__log_to_level
+   :security: NO
+   :safety: ASIL_B
+   :status: valid
+   :implements: comp_req__log__placeholder
+   :satisfies: comp_arc_sta__log__static_view
 
-      .. uml:: _assets/log_to_level.puml
+   .. uml:: _assets/log_to_level.puml
