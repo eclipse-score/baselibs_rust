@@ -161,8 +161,7 @@ package "mw_log_fmt crate" {
         -spec: FormatSpec
         -_lifetime: PhantomData<&'a ()>
 
-        +new_debug(value: &ScoreDebug, spec: FormatSpec) : Self
-        +new_display(value: &ScoreDisplay, spec: FormatSpec) : Self
+        +new(value: &ScoreDebug, spec: FormatSpec) : Self
 
         +fmt(&self, f: &mut dyn ScoreWrite, spec: &FormatSpec) : Result
     }
@@ -186,17 +185,11 @@ package "mw_log_fmt crate" {
         +fmt(&self, f: &mut dyn ScoreWrite, spec: &FormatSpec) : Result
     }
 
-    +interface ScoreDisplay <<trait>> {
-        +fmt(&self, f: &mut dyn ScoreWrite, spec: &FormatSpec) : Result
-    }
-
-    ' Placeholders are dependent on implementations provided by "Score*" traits.
+    ' Placeholders are dependent on "ScoreDebug" trait implementations.
     Placeholder --> ScoreDebug
-    Placeholder --> ScoreDisplay
 
-    ' All trait implementations rely on "ScoreWrite".
+    ' Trait implementations rely on "ScoreWrite".
     ScoreDebug --> ScoreWrite
-    ScoreDisplay --> ScoreWrite
 
     class mw_log_fmt <<module>> {
         +write(output: &mut dyn ScoreWrite, args: Arguments<'_>) : Result

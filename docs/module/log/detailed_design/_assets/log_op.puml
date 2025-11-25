@@ -17,7 +17,6 @@ end box
 
 box #LightYellow
 participant "mw_log_fmt\n<<module>>" as mw_log_fmt
-participant "ConcreteType\n<<ScoreDisplay implementation>>" as score_display
 participant "ConcreteType\n<<ScoreDebug implementation>>" as score_debug
 end box
 
@@ -54,13 +53,9 @@ else log-level-check-passed
                 mw_log_fmt -> writer : write_str()
                 writer --> mw_log_fmt
             else is-placeholder
-                alt display-requested
-                    mw_log_fmt -> score_display : fmt()
-                    score_display --> mw_log_fmt
-                else debug-requested
-                    mw_log_fmt -> score_debug : fmt()
-                    score_debug --> mw_log_fmt
-                end
+                mw_log_fmt -> score_debug : fmt()
+                score_debug --> mw_log_fmt
+
                 mw_log_fmt -> writer : write_<type>()
                 writer --> mw_log_fmt
             end

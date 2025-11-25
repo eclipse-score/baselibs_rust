@@ -104,6 +104,9 @@
             150
         ]
     },
+    "rust-analyzer.cargo.features": [
+        "qm"
+    ],
     "rust-analyzer.cargo.cfgs": [
         "!miri"
     ],
