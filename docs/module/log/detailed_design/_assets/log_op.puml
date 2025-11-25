@@ -7,7 +7,7 @@ participant "mw_log <<module>>" as mw_log
 end box
 
 box #LightGreen
-participant "mw_log_macro <<module>>" as mw_log_macro
+participant "mw_log_fmt_macro <<module>>" as mw_log_fmt_macro
 end box
 
 box #LightPink
@@ -36,8 +36,8 @@ alt log-level-check-failed
     mw_log --> actor
 
 else log-level-check-passed
-    mw_log -> mw_log_macro : mw_log_format_args!()
-    mw_log_macro --> mw_log
+    mw_log -> mw_log_fmt_macro : mw_log_format_args!()
+    mw_log_fmt_macro --> mw_log
 
     mw_log -> logger : log()
 

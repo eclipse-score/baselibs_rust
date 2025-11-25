@@ -37,7 +37,7 @@ package log <<component>> {
         +trace!(...) : ()
     }
 
-    class mw_log_macro <<module>> {
+    class mw_log_fmt_macro <<module>> {
         +mw_log_format_args!(format_string: &str, args...) : Arguments<'_>
         +mw_log_format_args_nl!(format_string: &str, args...) : Arguments<'_>
     }
@@ -57,7 +57,7 @@ package log <<component>> {
 
     mw_log -- Level
     mw_log -- LevelFilter
-    mw_log -- mw_log_macro
+    mw_log -- mw_log_fmt_macro
     mw_log -right- mw_log_fmt
 }
 

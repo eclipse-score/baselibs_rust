@@ -36,7 +36,9 @@ Log component consists of three units:
 
 - `mw_log` - modelled after `log` Rust library.
 - `mw_log_fmt` - replacement for `core::fmt` provided by Rust core library.
-- `mw_log_macro` - replacement for `format_args` macro provided by Rust compiler.
+- `mw_log_fmt_macro` - replacement for macros provided by Rust compiler:
+  - `mw_log_format_args!` - replacement for `format_args!`
+  - `ScoreDebug` - replacement for `Debug`
 
 Most common approach in Rust is that formatting always results in a string.
 This means that the `log` library always receives a pre-formatted string.
