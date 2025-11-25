@@ -2,85 +2,74 @@
 
 participant "User" as actor
 
-box "mw_log" #LightBlue
-participant "log!" as log_macro
-participant "logger()" as logger_fn
-participant "__private_api::module_path()" as module_path_fn
-participant "max_level()" as max_level_fn
+box #LightBlue
+participant "mw_log <<module>>" as mw_log
 end box
 
-box "mw_log_macro" #LightGreen
-participant "mw_log_format_args!" as mw_log_format_args
+box #LightGreen
+participant "mw_log_macro <<module>>" as mw_log_macro
 end box
 
-box "mw_log_subscriber" #LightPink
-participant "Log impl" as logger
-participant "ScoreWrite impl" as writer
+box #LightPink
+participant "Logger\n<<Log implementation>>" as logger
+participant "Writer\n<<ScoreWrite implementation>>" as writer
 end box
 
-box "mw_log_fmt" #LightYellow
-participant "write" as write_fn
-participant "ScoreDisplay::fmt" as fmt_display
-participant "ScoreDebug::fmt" as fmt_debug
+box #LightYellow
+participant "mw_log_fmt\n<<module>>" as mw_log_fmt
+participant "ConcreteType\n<<ScoreDisplay implementation>>" as score_display
+participant "ConcreteType\n<<ScoreDebug implementation>>" as score_debug
 end box
 
-actor -> log_macro : Log message with log level
+actor -> mw_log : log!()
 
 alt no-user-provided-logger
-    log_macro -> logger_fn : Get global logger
-    logger_fn --> log_macro : Logger
+    mw_log -> mw_log : logger()
 end
 
 alt no-user-provided-context
-    log_macro -> module_path_fn : Get module path as context
-    module_path_fn --> log_macro : Module path
+    mw_log -> mw_log : module_path()
 end
 
-log_macro -> max_level_fn : Get max log level
-max_level_fn --> log_macro : Max log level
+mw_log -> mw_log : max_level()
 
 alt log-level-check-failed
-    log_macro --> actor : Do not log, return control to caller
+    mw_log --> actor
 
 else log-level-check-passed
-    log_macro -> mw_log_format_args : Process format string and arguments
-    mw_log_format_args --> log_macro : Processed arguments
+    mw_log -> mw_log_macro : mw_log_format_args!()
+    mw_log_macro --> mw_log
 
-    log_macro -> logger : Log processed arguments
+    mw_log -> logger : log()
 
-    logger -> logger : Check if logger enabled
+    logger -> logger : enabled()
 
     alt logger-not-enabled
-        logger --> log_macro
+        logger --> mw_log
 
     else logger-enabled
-        logger -> writer : Get writer instance
-        writer --> logger : Writer instance
-
-        logger -> write_fn : Write arguments to given writer
-
+        logger -> mw_log_fmt : write(writer: ScoreWrite, args: Arguments)
         loop process-format-string-fragments
             alt is-literal
-                write_fn -> writer : Write string
-                writer --> write_fn
+                mw_log_fmt -> writer : write_str()
+                writer --> mw_log_fmt
             else is-placeholder
                 alt display-requested
-                    write_fn -> fmt_display : Process Display placeholder
-                    fmt_display --> write_fn : Processed placeholder
+                    mw_log_fmt -> score_display : fmt()
+                    score_display --> mw_log_fmt
                 else debug-requested
-                    write_fn -> fmt_debug : Processed Debug placeholder
-                    fmt_debug --> write_fn : Processed placeholder
+                    mw_log_fmt -> score_debug : fmt()
+                    score_debug --> mw_log_fmt
                 end
-                write_fn -> writer : Write placeholder data
-                writer --> write_fn
+                mw_log_fmt -> writer : write_<type>()
+                writer --> mw_log_fmt
             end
         end
 
-        write_fn --> logger
-        logger --> log_macro
+        mw_log_fmt --> logger
+        logger --> mw_log
     end
+    mw_log --> actor
 end
-
-log_macro --> actor
 
 @enduml
