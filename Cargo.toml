@@ -2,9 +2,15 @@
 resolver = "2"
 # Split to default members without tests and examples.
 # Used when executing cargo from project root.
-default-members = ["src/log"]
+default-members = [
+    "src/containers",
+    "src/log"
+]
 # Include tests and examples as a member for IDE support and Bazel builds.
-members = ["src/log"]
+members = [
+    "src/containers",
+    "src/log"
+]
 
 
 [workspace.package]

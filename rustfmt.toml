@@ -2,5 +2,7 @@
 # check configuration fields here: https://rust-lang.github.io/rustfmt/?version=v1.6.0&search=
 
 
-tab_spaces = 4
+match_block_trailing_comma = true
 max_width = 150
+tab_spaces = 4
+use_field_init_shorthand = true

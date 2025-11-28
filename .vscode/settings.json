@@ -100,8 +100,12 @@
     "[rust]": {
         "editor.defaultFormatter": "rust-lang.rust-analyzer",
         "editor.formatOnSave": true,
+        "editor.rulers": [
+            150
+        ]
     },
     "rust-analyzer.cargo.cfgs": [
         "!miri"
     ],
+    "rust-analyzer.check.command": "clippy"
 }

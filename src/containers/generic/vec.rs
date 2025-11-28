@@ -1,0 +1,143 @@
+// *******************************************************************************
+// Copyright (c) 2025 Contributors to the Eclipse Foundation
+//
+// See the NOTICE file(s) distributed with this work for additional
+// information regarding copyright ownership.
+//
+// This program and the accompanying materials are made available under the
+// terms of the Apache License Version 2.0 which is available at
+// https://www.apache.org/licenses/LICENSE-2.0
+//
+// SPDX-License-Identifier: Apache-2.0
+// *******************************************************************************
+
+use core::fmt;
+use core::marker::PhantomData;
+use core::mem::needs_drop;
+use core::ops;
+use core::ptr;
+
+use crate::storage::Storage;
+
+#[repr(C)]
+pub struct GenericVec<T, S: Storage<T>> {
+    len: u32,
+    storage: S,
+    _marker: PhantomData<T>,
+}
+
+impl<T, S: Storage<T>> GenericVec<T, S> {
+    /// Creates an empty vector.
+    pub fn new(capacity: u32) -> Self {
+        Self {
+            len: 0,
+            storage: S::new(capacity),
+            _marker: PhantomData,
+        }
+    }
+
+    /// Extracts a slice containing the entire vector.
+    ///
+    /// Equivalent to `&v[..]`.
+    pub fn as_slice(&self) -> &[T] {
+        unsafe { &*self.storage.subslice(0, self.len) }
+    }
+
+    /// Extracts a mutable slice of the entire vector.
+    ///
+    /// Equivalent to `&mut v[..]`.
+    pub fn as_mut_slice(&mut self) -> &mut [T] {
+        unsafe { &mut *self.storage.subslice_mut(0, self.len) }
+    }
+
+    /// Returns the maximum number of elements the vector can hold.
+    pub fn capacity(&self) -> usize {
+        self.storage.capacity() as usize
+    }
+
+    /// Returns the current number of elements in the vector.
+    pub fn len(&self) -> usize {
+        self.len as usize
+    }
+
+    /// Returns `true` if and only if the vector doesn't contain any elements.
+    pub fn is_empty(&self) -> bool {
+        self.len == 0
+    }
+
+    /// Returns `true` if and only if the vector has reached its capacity.
+    pub fn is_full(&self) -> bool {
+        self.len() == self.capacity()
+    }
+
+    /// Tries to push an element to the back of the vector.
+    ///
+    /// If the vector has spare capacity, the push succeeds and a reference to that element
+    /// is returned; otherwise, `Err(VectorFull)` is returned.
+    pub fn push(&mut self, value: T) -> Result<&mut T, VectorFull> {
+        if self.len < self.storage.capacity() {
+            let element = unsafe { self.storage.element_mut(self.len) }.write(value);
+            self.len += 1;
+            Ok(element)
+        } else {
+            Err(VectorFull)
+        }
+    }
+
+    /// Tries to pop an element from the back of the vector.
+    ///
+    /// If the vector has at least one element, the pop succeeds; otherwise, `None` is returned.
+    pub fn pop(&mut self) -> Option<T> {
+        if self.len > 0 {
+            let element = unsafe { self.storage.element(self.len - 1).assume_init_read() };
+            self.len -= 1;
+            Some(element)
+        } else {
+            None
+        }
+    }
+
+    /// Clears the vector, removing all values.
+    pub fn clear(&mut self) {
+        let len = self.len;
+        // Mark vector as empty before dropping elements, to prevent double-drop in case there's a panic in drop_in_place
+        self.len = 0;
+        if needs_drop::<T>() {
+            unsafe {
+                ptr::drop_in_place(self.storage.subslice_mut(0, len));
+            }
+        }
+    }
+}
+
+impl<T, S: Storage<T>> ops::Deref for GenericVec<T, S> {
+    type Target = [T];
+
+    fn deref(&self) -> &Self::Target {
+        self.as_slice()
+    }
+}
+
+impl<T, S: Storage<T>> ops::DerefMut for GenericVec<T, S> {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        self.as_mut_slice()
+    }
+}
+
+impl<T: fmt::Debug, S: Storage<T>> fmt::Debug for GenericVec<T, S> {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        fmt::Debug::fmt(self.as_slice(), f)
+    }
+}
+
+/// Indicates that an operation failed because the vector would exceed its maximum capacity.
+#[derive(Clone, Copy, Default, Debug)]
+pub struct VectorFull;
+
+impl fmt::Display for VectorFull {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "vector is full")
+    }
+}
+
+impl core::error::Error for VectorFull {}
