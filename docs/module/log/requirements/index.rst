@@ -20,10 +20,21 @@ Requirements
 .. document:: Log Requirements
    :id: doc__log_requirements
    :status: draft
-   :safety: QM
+   :safety: ASIL_B
    :security: NO
    :realizes: wp__requirements_comp
    :tags: log
+
+.. comp_req:: Log requirements placeholder
+   :id: comp_req__log__placeholder
+   :reqtype: Functional
+   :security: NO
+   :safety: ASIL_B
+   :satisfies: feat_req__baselibs__core_utilities
+   :status: invalid
+
+   Requirement placeholder for diagram rendering.
+   To be replaced with actual requirements.
 
 .. needextend:: "log" in id
    :+tags: log

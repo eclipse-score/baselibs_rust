@@ -20,7 +20,7 @@ Component Architecture
 .. document:: Log Architecture
    :id: doc__log_architecture
    :status: draft
-   :safety: QM
+   :safety: ASIL_B
    :security: NO
    :realizes: wp__component_arch
    :tags: log
@@ -35,63 +35,77 @@ Document describes Log component architecture.
 Description
 -----------
 
-TODO: description
+Log component is modelled after the `log` library, which is ubiquitous in Rust ecosystem.
+This provides familiar APIs and syntax - provided APIs can be replaced at compile time with `log`.
+
+Component provides new formatting functionality (replacement to `core::fmt`) to ensure improved flexibility in formatting on backend side.
+E.g., numeric types are formatted by the backend, and not by the core library.
+
+Even though design is similar - existing `log` implementations are not compatible.
 
 
 Rationale Behind Architecture Decomposition
 *******************************************
 
-TODO: decomposition rationale
+Architecture is not decomposed.
+Log component is a monolithic frontend.
+
 
 Static Architecture
 -------------------
 
-TODO: static architecture
+.. comp_arc_sta:: Log (Static View)
+   :id: comp_arc_sta__log__static_view
+   :security: NO
+   :safety: ASIL_B
+   :status: valid
+   :implements:
+   :fulfils:
+   :includes:
 
-.. .. comp_arc_sta:: Log (Static View)
-..    :id: comp_arc_sta__log__static_view
-..    :security: YES
-..    :safety: QM
-..    :status: invalid
-..    :implements: logic_arc_int__log__interface_name
-..    :fulfils:
-..    :includes:
-
-..    .. uml:: _assets/TODO.puml
+   .. uml:: _assets/static_view.puml
 
 
 Dynamic Architecture
 --------------------
 
-TODO: dynamic architecture
+.. comp_arc_dyn:: Register global logger
+   :id: comp_arc_dyn__log__register_global_logger
+   :security: NO
+   :safety: ASIL_B
+   :status: valid
+   :fulfils:
 
-.. .. comp_arc_dyn:: Dynamic View
-..    :id: comp_arc_dyn__log__dynamic_view
-..    :security: YES
-..    :safety: QM
-..    :status: invalid
-..    :fulfils: comp_req__log__some_title
+   .. uml:: _assets/register_global_logger.puml
 
-.. .. uml:: _assets/TODO.puml
+.. comp_arc_dyn:: Log with global logger instance
+   :id: comp_arc_dyn__log__log_with_global_logger
+   :security: NO
+   :safety: ASIL_B
+   :status: valid
+   :fulfils:
+
+   .. uml:: _assets/log_with_global_logger.puml
+
+.. comp_arc_dyn:: Log with local logger instance
+   :id: comp_arc_dyn__log__log_with_local_logger
+   :security: NO
+   :safety: ASIL_B
+   :status: valid
+   :fulfils:
+
+   .. uml:: _assets/log_with_local_logger.puml
 
 
 Interfaces
 ----------
 
-TODO: put log interfaces.
+.. real_arc_int:: Log interface
+   :id: real_arc_int__log__interface
+   :security: NO
+   :safety: ASIL_B
+   :status: valid
+   :fulfils:
+   :language: rust
 
-.. .. code-block:: rst
-
-..    .. real_arc_int:: mw_log
-..       :id: real_arc_int__log__interface
-..       :security: NO
-..       :safety: QM
-..       :fulfils:
-..       :language: rust
-
-..    .. uml:: _assets/TODO.puml
-
-Lower Level Components
-----------------------
-
-TODO: remove section if unused
+   .. uml:: _assets/interface.puml

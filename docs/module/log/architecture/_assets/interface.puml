@@ -1,0 +1,74 @@
+@startuml log_interface
+
+package log <<component>> {
+    +enum Level <<enum>> {
+        Fatal
+        Error
+        Warn
+        Info
+        Debug
+        Trace
+    }
+
+    +enum LevelFilter <<enum>> {
+        Off
+        Fatal
+        Error
+        Warn
+        Info
+        Debug
+        Trace
+    }
+
+    class mw_log <<module>> {
+        +set_logger(logger: &'static dyn Log) : Result<(), SetLoggerError>
+        +set_boxed_logger(logger: Box<dyn Log>) : Result<(), SetLoggerError>
+        +set_max_level(level: LevelFilter) : ()
+        +max_level() : LevelFilter
+        +logger() : &'static dyn Log
+
+        +log!(context: &str, level: Level, ...) : ()
+        +log_enabled!(context: &str, level: Level) : bool
+        +fatal!(...) : ()
+        +error!(...) : ()
+        +warn!(...) : ()
+        +info!(...) : ()
+        +debug!(...) : ()
+        +trace!(...) : ()
+    }
+
+    class mw_log_macro <<module>> {
+        +mw_log_format_args!(format_string: &str, args...) : Arguments<'_>
+        +mw_log_format_args_nl!(format_string: &str, args...) : Arguments<'_>
+    }
+
+    package mw_log_fmt {
+        +interface ScoreDebug <<trait>> {
+            +fmt(&self, f: &mut dyn ScoreWrite, spec: &FormatSpec) : Result
+        }
+
+        +interface ScoreDisplay <<trait>> {
+            +fmt(&self, f: &mut dyn ScoreWrite, spec: &FormatSpec) : Result
+        }
+
+        class mw_log_fmt <<module>> {
+            +write(output: &mut dyn ScoreWrite, args: Arguments<'_>) : Result
+
+            +score_write!(format_string: &str, args...) : Result
+            +score_writeln!(format_string: &str, args...) : Result
+        }
+
+        ScoreDebug -[hidden]down- ScoreDisplay
+        ScoreDisplay -[hidden]down- mw_log_fmt
+
+    }
+
+    mw_log -- Level
+    mw_log -- LevelFilter
+    mw_log -- mw_log_macro
+    mw_log -right- mw_log_fmt
+}
+
+
+
+@enduml

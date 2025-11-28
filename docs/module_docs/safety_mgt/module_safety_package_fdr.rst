@@ -18,7 +18,7 @@ Safety Package Formal Review Report
 .. document:: Rust Base Libraries Safety Package Formal Review
    :id: doc__baselibs_rust_safety_package_fdr
    :status: draft
-   :safety: QM
+   :safety: ASIL_B
    :security: NO
    :realizes: wp__fdr_reports
    :tags: baselibs_rust

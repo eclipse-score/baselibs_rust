@@ -18,7 +18,7 @@ Verification Report
 .. document:: Rust Base Libraries Verification Report
    :id: doc__baselibs_rust_verification_report
    :status: draft
-   :safety: QM
+   :safety: ASIL_B
    :security: NO
    :realizes: wp__verification_module_ver_report
    :tags: baselibs_rust

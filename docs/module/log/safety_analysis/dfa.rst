@@ -19,7 +19,7 @@ DFA (Dependent Failure Analysis)
 .. document:: Log DFA
    :id: doc__log_dfa
    :status: draft
-   :safety: QM
+   :safety: ASIL_B
    :security: NO
    :realizes: wp__sw_component_dfa
    :tags: log

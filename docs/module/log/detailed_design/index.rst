@@ -20,7 +20,7 @@ Detailed Design
 .. document:: Log Detailed Design
    :id: doc__log_detailed_design
    :status: draft
-   :safety: QM
+   :safety: ASIL_B
    :security: NO
    :realizes: wp__sw_implementation
    :tags: log
@@ -32,41 +32,59 @@ Detailed Design for Component: Log
 Description
 -----------
 
-| Design Decisions - For the documentation of the decision the :need:`gd_temp__change_decision_record` can be used.
-| Design Constraints
+Log component consists of three units:
+
+- `mw_log` - modelled after `log` Rust library.
+- `mw_log_fmt` - replacement for `core::fmt` provided by Rust core library.
+- `mw_log_macro` - replacement for `format_args` macro provided by Rust compiler.
+
+Most common approach in Rust is that formatting always results in a string.
+This means that the `log` library always receives a pre-formatted string.
+
+Such approach is incompatible with the expectation that log sink is not always text-based.
+Log component design is no longer string-based, and data frames can consist of multiple types.
+Value is passed along with formatting options to the backend.
 
 Rationale Behind Decomposition into Units
 ******************************************
-| mandatory: a motivation for the decomposition into one or more units.
 
-.. note:: Reason for split into multiple units could be-
-	    - Based on design principles like SOLID,DRY etc
-	    - Based on design pattern's etc.
+All units provide an interface or an implementation to a well defined functionality.
+Those units are not described in architecture, as they all form a monolithic logging frontend.
+
+Such frontend shall remain transparent replacement to common functionalities provided by Rust.
 
 Static Diagrams for Unit Interactions
 -------------------------------------
-.. code-block:: rst
 
-   .. dd_sta:: <Title>
-      :id: dd_sta__<Feature>__<Title>
-      :security: <YES|NO>
-      :safety: QM
-      :status: <valid|invalid>
-      :implements: <link to component requirement id>
-      :satisfies: <link to component architecture id>
+.. dd_sta:: Log class diagram
+   :id: dd_sta__log__class_diagram
+   :security: NO
+   :safety: ASIL_B
+   :status: valid
+   :implements: comp_req__log__placeholder
+   :satisfies: comp_arc_sta__log__static_view
 
-        .. image:: <link to drawio image> or .. uml:: <link to plantuml>
+   .. uml:: _assets/class_diagram.puml
 
 Dynamic Diagrams for Unit Interactions
 --------------------------------------
-.. code-block:: rst
 
-   .. dd_dyn:: <Title>
-      :id: dd_dyn__<Feature>__<Title>
-      :security: <YES|NO>
-      :safety: QM
-      :status: <valid|invalid>
-      :implements: <link to component requirement id>
-      :satisfies: <link to component architecture id>
+.. dd_dyn:: Log operation
+   :id: dd_dyn__log__log_op
+   :security: NO
+   :safety: ASIL_B
+   :status: valid
+   :implements: comp_req__log__placeholder
+   :satisfies: comp_arc_sta__log__static_view
 
-        .. image:: <link to drawio image> or .. uml:: <link to plantuml>
+   .. uml:: _assets/log_op.puml
+
+.. dd_dyn:: Log to level
+   :id: dd_dyn__log__log_to_level
+   :security: NO
+   :safety: ASIL_B
+   :status: valid
+   :implements: comp_req__log__placeholder
+   :satisfies: comp_arc_sta__log__static_view
+
+   .. uml:: _assets/log_to_level.puml

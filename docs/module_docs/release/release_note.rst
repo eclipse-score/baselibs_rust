@@ -18,7 +18,7 @@ Release Note
 .. document:: Rust Base Libraries Release Note
    :id: doc__baselibs_rust_release_note
    :status: draft
-   :safety: QM
+   :safety: ASIL_B
    :security: NO
    :realizes: wp__module_sw_release_note
    :tags: baselibs_rust

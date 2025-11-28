@@ -18,7 +18,7 @@ Safety Manual
 .. document:: Rust Base Libraries Safety Manual
    :id: doc__baselibs_rust_safety_manual
    :status: draft
-   :safety: QM
+   :safety: ASIL_B
    :security: NO
    :realizes: wp__module_safety_manual
    :tags: baselibs_rust

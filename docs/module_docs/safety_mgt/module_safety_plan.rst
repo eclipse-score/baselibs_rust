@@ -18,7 +18,7 @@ Module Safety Plan
 .. document:: Rust Base Libraries Safety Plan
    :id: doc__baselibs_rust_safety_plan
    :status: draft
-   :safety: QM
+   :safety: ASIL_B
    :security: NO
    :realizes: wp__module_safety_plan
    :tags: baselibs_rust

@@ -21,7 +21,7 @@ Log
 .. document:: Log
    :id: doc__log
    :status: draft
-   :safety: QM
+   :safety: ASIL_B
    :security: NO
    :realizes: wp__cmpt_request
    :tags: log
