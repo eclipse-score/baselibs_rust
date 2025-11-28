@@ -38,8 +38,8 @@ Log component consists of three units:
 - `mw_log_fmt` - replacement for `core::fmt` provided by Rust core library.
 - `mw_log_macro` - replacement for `format_args` macro provided by Rust compiler.
 
-Most common approach in Rust is that formatting always result in a string.
-This leads to a `log` library to always receive a pre-formatted string.
+Most common approach in Rust is that formatting always results in a string.
+This means that the `log` library always receives a pre-formatted string.
 
 Such approach is incompatible with the expectation that log sink is not always text-based.
 Log component design is no longer string-based, and data frames can consist of multiple types.

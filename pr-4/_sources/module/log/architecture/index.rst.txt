@@ -35,7 +35,7 @@ Document describes Log component architecture.
 Description
 -----------
 
-Log component is modelled after `log` library, which is ubiquitous in Rust ecosystem.
+Log component is modelled after the `log` library, which is ubiquitous in Rust ecosystem.
 This provides familiar APIs and syntax - provided APIs can be replaced at compile time with `log`.
 
 Component provides new formatting functionality (replacement to `core::fmt`) to ensure improved flexibility in formatting on backend side.
