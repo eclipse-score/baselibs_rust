@@ -14,5 +14,9 @@
   {
     "version": "pr-13",
     "url": "https://eclipse-score.github.io/baselibs_rust/pr-13/"
+  },
+  {
+    "version": "pr-14",
+    "url": "https://eclipse-score.github.io/baselibs_rust/pr-14/"
   }
 ]
