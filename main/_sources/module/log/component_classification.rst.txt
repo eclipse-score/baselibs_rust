@@ -19,7 +19,7 @@ Component Classification
 .. document:: Log Component Classification
    :id: doc__log_comp_class
    :status: draft
-   :safety: QM
+   :safety: ASIL_B
    :security: NO
    :realizes: wp__sw_component_class
    :tags: log
