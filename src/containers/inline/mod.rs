@@ -11,6 +11,8 @@
 // SPDX-License-Identifier: Apache-2.0
 // *******************************************************************************
 
+mod queue;
 mod vec;
 
+pub use self::queue::InlineQueue;
 pub use self::vec::InlineVec;

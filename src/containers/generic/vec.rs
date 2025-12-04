@@ -141,3 +141,73 @@ impl fmt::Display for VectorFull {
 }
 
 impl core::error::Error for VectorFull {}
+
+#[cfg(test)]
+mod tests {
+    use std::mem::MaybeUninit;
+
+    use super::*;
+
+    #[test]
+    fn push_and_pop() {
+        fn run_test(n: usize) {
+            let mut vector = GenericVec::<i64, Vec<MaybeUninit<i64>>>::new(n as u32);
+            let mut control = vec![];
+
+            let result = vector.pop();
+            assert_eq!(result, None);
+
+            for i in 0..n {
+                let value = i as i64 * 123 + 456;
+                let result = vector.push(value);
+                assert_eq!(*result.unwrap(), value);
+                control.push(value);
+                assert_eq!(vector.as_slice(), control.as_slice());
+            }
+
+            let result = vector.push(123456);
+            assert!(result.is_err());
+
+            for _ in 0..n {
+                let expected = control.pop().unwrap();
+                let actual = vector.pop();
+                assert_eq!(actual, Some(expected));
+            }
+
+            let result = vector.pop();
+            assert_eq!(result, None);
+        }
+
+        for i in 0..6 {
+            run_test(i);
+        }
+    }
+
+    #[test]
+    fn is_full_and_is_empty() {
+        fn run_test(n: usize) {
+            let mut vector = GenericVec::<i64, Vec<MaybeUninit<i64>>>::new(n as u32);
+            assert!(vector.is_empty());
+
+            for i in 0..n {
+                assert!(!vector.is_full());
+                vector.push(i as i64 * 123 + 456).unwrap();
+                assert!(!vector.is_empty());
+            }
+
+            assert!(vector.is_full());
+
+            for _ in 0..n {
+                assert!(!vector.is_empty());
+                vector.pop();
+                assert!(!vector.is_full());
+            }
+
+            assert!(vector.is_empty());
+        }
+
+        for i in 0..6 {
+            run_test(i);
+        }
+    }
+}

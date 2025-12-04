@@ -55,3 +55,36 @@ pub trait Storage<T> {
     /// `start <= end <= self.capacity()` must hold.
     unsafe fn subslice_mut(&mut self, start: u32, end: u32) -> *mut [T];
 }
+
+#[cfg(test)]
+mod test_utils {
+    //! A simple impl of [`Storage`] for [`Vec`], to be used for tests of generic containers.
+
+    use super::*;
+
+    impl<T> Storage<T> for Vec<MaybeUninit<T>> {
+        fn new(capacity: u32) -> Self {
+            (0..capacity).map(|_| MaybeUninit::zeroed()).collect()
+        }
+
+        fn capacity(&self) -> u32 {
+            self.capacity() as u32
+        }
+
+        unsafe fn element(&self, index: u32) -> &MaybeUninit<T> {
+            &self[index as usize]
+        }
+
+        unsafe fn element_mut(&mut self, index: u32) -> &mut MaybeUninit<T> {
+            &mut self[index as usize]
+        }
+
+        unsafe fn subslice(&self, start: u32, end: u32) -> *const [T] {
+            &self[start as usize..end as usize] as *const [MaybeUninit<T>] as *const [T]
+        }
+
+        unsafe fn subslice_mut(&mut self, start: u32, end: u32) -> *mut [T] {
+            &mut self[start as usize..end as usize] as *mut [MaybeUninit<T>] as *mut [T]
+        }
+    }
+}

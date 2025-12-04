@@ -21,8 +21,19 @@ use crate::storage::Inline;
 ///
 /// The vector can hold between 0 and `CAPACITY` elements, and behaves similarly to Rust's `Vec`,
 /// except that it stores the elements inline and doesn't allocate.
-///
 /// `CAPACITY` must be `>= 1` and `<= u32::MAX`.
+///
+/// This data structure has a stable, well-defined memory layout and satisfies the requirements for
+/// [ABI-compatible types](https://eclipse-score.github.io/score/main/features/communication/abi_compatible_data_types/index.html).
+/// Its layout is structurally equivalent to:
+///
+/// ```ignore
+/// #[repr(C)]
+/// struct Vec<T, const N: usize> {
+///     len: u32,
+///     elements: [T; N],
+/// }
+/// ```
 #[repr(transparent)]
 pub struct InlineVec<T: Copy, const CAPACITY: usize> {
     inner: GenericVec<T, Inline<T, CAPACITY>>,
