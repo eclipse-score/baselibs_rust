@@ -20,8 +20,9 @@ Rust Base Libraries
    :glob:
    :titlesonly:
 
+   features/baselibs_rust/*/index
+   baselibs_rust/*/index
    module_docs/index
-   module/*/index
 
 Overview
 --------
