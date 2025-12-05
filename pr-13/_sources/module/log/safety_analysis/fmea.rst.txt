@@ -19,7 +19,7 @@ FMEA (Failure Modes and Effects Analysis)
 .. document:: Log FMEA
    :id: doc__log_fmea
    :status: draft
-   :safety: QM
+   :safety: ASIL_B
    :security: NO
    :realizes: wp__sw_component_fmea
    :tags: log

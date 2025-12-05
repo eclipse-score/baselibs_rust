@@ -420,7 +420,7 @@
                   
   <section id="detailed-design">
 <span id="component-detailed-design-log"></span><h1>Detailed Design<a class="headerlink" href="#detailed-design" title="Link to this heading">#</a></h1>
-<div class="need_container docutils container" id="SNCB-03443eae">
+<div class="need_container docutils container" id="SNCB-a2864b47">
 <div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_document table" id="doc__log_detailed_design">
 <tbody>
 <tr class="head row-odd"><td class="head_left" colspan="2"><div class="needs_head_left line-block">
@@ -430,7 +430,7 @@
 <td class="head_center" colspan="2"><div class="needs_head line-block">
 <div class="line"><span><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">draft</span></span></span></div>
 <div class="line"><span><span class="needs_security"><span class="needs_label">security: </span><span class="needs_data">NO</span></span></span></div>
-<div class="line"><span><span class="needs_safety"><span class="needs_label">safety: </span><span class="needs_data">QM</span></span></span></div>
+<div class="line"><span><span class="needs_safety"><span class="needs_label">safety: </span><span class="needs_data">ASIL_B</span></span></span></div>
 </div>
 </td>
 <td class="head_right" colspan="2"><div class="needs_head_right line-block">
@@ -467,49 +467,166 @@
 <h2>Detailed Design for Component: Log<a class="headerlink" href="#detailed-design-for-component-log" title="Link to this heading">#</a></h2>
 <section id="description">
 <h3>Description<a class="headerlink" href="#description" title="Link to this heading">#</a></h3>
-<div class="line-block">
-<div class="line">Design Decisions - For the documentation of the decision the <a class="external_link reference external" href="https://eclipse-score.github.io/process_description//main/process_areas/change_management/guidance/change_management_decision_record_template.html#gd_temp__change_decision_record">gd_temp__change_decision_record</a> can be used.</div>
-<div class="line">Design Constraints</div>
-</div>
+<p>Log component consists of three units:</p>
+<ul class="simple">
+<li><p><cite>mw_log</cite> - modelled after <cite>log</cite> Rust library.</p></li>
+<li><p><cite>mw_log_fmt</cite> - replacement for <cite>core::fmt</cite> provided by Rust core library.</p></li>
+<li><p><cite>mw_log_macro</cite> - replacement for <cite>format_args</cite> macro provided by Rust compiler.</p></li>
+</ul>
+<p>Most common approach in Rust is that formatting always results in a string.
+This means that the <cite>log</cite> library always receives a pre-formatted string.</p>
+<p>Such approach is incompatible with the expectation that log sink is not always text-based.
+Log component design is no longer string-based, and data frames can consist of multiple types.
+Value is passed along with formatting options to the backend.</p>
 <section id="rationale-behind-decomposition-into-units">
 <h4>Rationale Behind Decomposition into Units<a class="headerlink" href="#rationale-behind-decomposition-into-units" title="Link to this heading">#</a></h4>
-<div class="line-block">
-<div class="line">mandatory: a motivation for the decomposition into one or more units.</div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Reason for split into multiple units could be-
-- Based on design principles like SOLID,DRY etc
-- Based on design pattern’s etc.</p>
-</div>
+<p>All units provide an interface or an implementation to a well defined functionality.
+Those units are not described in architecture, as they all form a monolithic logging frontend.</p>
+<p>Such frontend shall remain transparent replacement to common functionalities provided by Rust.</p>
 </section>
 </section>
 <section id="static-diagrams-for-unit-interactions">
 <h3>Static Diagrams for Unit Interactions<a class="headerlink" href="#static-diagrams-for-unit-interactions" title="Link to this heading">#</a></h3>
-<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">dd_sta</span><span class="p">::</span> <span class="nt">&lt;Title&gt;</span>
-   <span class="nc">:id:</span> dd_sta__&lt;Feature&gt;__&lt;Title&gt;
-   <span class="nc">:security:</span> <span class="nt">&lt;YES|NO&gt;</span>
-   <span class="nc">:safety:</span> QM
-   <span class="nc">:status:</span> <span class="nt">&lt;valid|invalid&gt;</span>
-   <span class="nc">:implements:</span> <span class="nt">&lt;link to component requirement id&gt;</span>
-   <span class="nc">:satisfies:</span> <span class="nt">&lt;link to component architecture id&gt;</span>
-
-<span class="p">     ..</span> <span class="ow">image</span><span class="p">::</span> <span class="nt">&lt;link to drawio image&gt;</span> or .. uml:: &lt;link to plantuml&gt;
-</pre></div>
+<div class="need_container docutils container" id="SNCB-c762d95f">
+<div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_dd_sta table" id="dd_sta__log__class_diagram">
+<tbody>
+<tr class="head row-odd"><td class="head_left" colspan="2"><div class="needs_head_left line-block">
+<div class="line"><span><span class="needs_title"><span class="needs_data">Log class diagram</span></span></span></div>
+</div>
+</td>
+<td class="head_center" colspan="2"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></span></div>
+<div class="line"><span><span class="needs_security"><span class="needs_label">security: </span><span class="needs_data">NO</span></span></span></div>
+<div class="line"><span><span class="needs_safety"><span class="needs_label">safety: </span><span class="needs_data">ASIL_B</span></span></span></div>
+</div>
+</td>
+<td class="head_right" colspan="2"><div class="needs_head_right line-block">
+<div class="line"><span><span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span></span></div>
+</div>
+</td>
+</tr>
+<tr class="meta row-even"><td class="meta" colspan="3"><div class="needs_meta_left line-block">
+<div class="line"><span><span><div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">log</span></span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">satisfies: <span class="satisfies"><span><a class="reference internal" href="../architecture/index.html#comp_arc_sta__log__static_view" title="dd_sta__log__class_diagram">comp_arc_sta__log__static_view</a></span></span></div>
+<div class="line">implements: <span class="implements"><span><a class="reference internal" href="../requirements/index.html#comp_req__log__placeholder" title="dd_sta__log__class_diagram">comp_req__log__placeholder</a></span></span></div>
+</span></div>
+</div>
+</td>
+<td class="meta" colspan="3"></td>
+</tr>
+<tr class="content row-odd"><td class="content" colspan="6"><p class="plantuml">
+<object data="../../../_images/plantuml-428b00382927c902c2c611e24c5a0635baf938b1.svg" type="image/svg+xml" style="width:2099px;height:2602px;background:#FFFFFF;"></object></p>
+</td>
+</tr>
+<tr class="footer row-even"><td class="footer_left" colspan="2"><div class="needs_footer_left line-block">
+<div class="line"><span><span class="needs-id"><a class="reference internal" href="#dd_sta__log__class_diagram" title="dd_sta__log__class_diagram">dd_sta__log__class_diagram</a></span></span></div>
+</div>
+</td>
+<td class="footer" colspan="2"><div class="needs_footer line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Static detailed design</span></span></span></div>
+</div>
+</td>
+<td class="footer_right" colspan="2"></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </section>
 <section id="dynamic-diagrams-for-unit-interactions">
 <h3>Dynamic Diagrams for Unit Interactions<a class="headerlink" href="#dynamic-diagrams-for-unit-interactions" title="Link to this heading">#</a></h3>
-<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">dd_dyn</span><span class="p">::</span> <span class="nt">&lt;Title&gt;</span>
-   <span class="nc">:id:</span> dd_dyn__&lt;Feature&gt;__&lt;Title&gt;
-   <span class="nc">:security:</span> <span class="nt">&lt;YES|NO&gt;</span>
-   <span class="nc">:safety:</span> QM
-   <span class="nc">:status:</span> <span class="nt">&lt;valid|invalid&gt;</span>
-   <span class="nc">:implements:</span> <span class="nt">&lt;link to component requirement id&gt;</span>
-   <span class="nc">:satisfies:</span> <span class="nt">&lt;link to component architecture id&gt;</span>
-
-<span class="p">     ..</span> <span class="ow">image</span><span class="p">::</span> <span class="nt">&lt;link to drawio image&gt;</span> or .. uml:: &lt;link to plantuml&gt;
-</pre></div>
+<div class="need_container docutils container" id="SNCB-abb9913d">
+<div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_dd_dyn table" id="dd_dyn__log__log_op">
+<tbody>
+<tr class="head row-odd"><td class="head_left" colspan="2"><div class="needs_head_left line-block">
+<div class="line"><span><span class="needs_title"><span class="needs_data">Log operation</span></span></span></div>
+</div>
+</td>
+<td class="head_center" colspan="2"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></span></div>
+<div class="line"><span><span class="needs_security"><span class="needs_label">security: </span><span class="needs_data">NO</span></span></span></div>
+<div class="line"><span><span class="needs_safety"><span class="needs_label">safety: </span><span class="needs_data">ASIL_B</span></span></span></div>
+</div>
+</td>
+<td class="head_right" colspan="2"><div class="needs_head_right line-block">
+<div class="line"><span><span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span></span></div>
+</div>
+</td>
+</tr>
+<tr class="meta row-even"><td class="meta" colspan="3"><div class="needs_meta_left line-block">
+<div class="line"><span><span><div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">log</span></span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">satisfies: <span class="satisfies"><span><a class="reference internal" href="../architecture/index.html#comp_arc_sta__log__static_view" title="dd_dyn__log__log_op">comp_arc_sta__log__static_view</a></span></span></div>
+<div class="line">implements: <span class="implements"><span><a class="reference internal" href="../requirements/index.html#comp_req__log__placeholder" title="dd_dyn__log__log_op">comp_req__log__placeholder</a></span></span></div>
+</span></div>
+</div>
+</td>
+<td class="meta" colspan="3"></td>
+</tr>
+<tr class="content row-odd"><td class="content" colspan="6"><p class="plantuml">
+<object data="../../../_images/plantuml-0e22847cd2b543a0fd61dd679ddcd4236c5af831.svg" type="image/svg+xml" style="width:1490px;height:952px;background:#FFFFFF;"></object></p>
+</td>
+</tr>
+<tr class="footer row-even"><td class="footer_left" colspan="2"><div class="needs_footer_left line-block">
+<div class="line"><span><span class="needs-id"><a class="reference internal" href="#dd_dyn__log__log_op" title="dd_dyn__log__log_op">dd_dyn__log__log_op</a></span></span></div>
+</div>
+</td>
+<td class="footer" colspan="2"><div class="needs_footer line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Dynamic detailed design</span></span></span></div>
+</div>
+</td>
+<td class="footer_right" colspan="2"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="need_container docutils container" id="SNCB-21db82cb">
+<div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_dd_dyn table" id="dd_dyn__log__log_to_level">
+<tbody>
+<tr class="head row-odd"><td class="head_left" colspan="2"><div class="needs_head_left line-block">
+<div class="line"><span><span class="needs_title"><span class="needs_data">Log to level</span></span></span></div>
+</div>
+</td>
+<td class="head_center" colspan="2"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></span></div>
+<div class="line"><span><span class="needs_security"><span class="needs_label">security: </span><span class="needs_data">NO</span></span></span></div>
+<div class="line"><span><span class="needs_safety"><span class="needs_label">safety: </span><span class="needs_data">ASIL_B</span></span></span></div>
+</div>
+</td>
+<td class="head_right" colspan="2"><div class="needs_head_right line-block">
+<div class="line"><span><span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span></span></div>
+</div>
+</td>
+</tr>
+<tr class="meta row-even"><td class="meta" colspan="3"><div class="needs_meta_left line-block">
+<div class="line"><span><span><div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">log</span></span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">satisfies: <span class="satisfies"><span><a class="reference internal" href="../architecture/index.html#comp_arc_sta__log__static_view" title="dd_dyn__log__log_to_level">comp_arc_sta__log__static_view</a></span></span></div>
+<div class="line">implements: <span class="implements"><span><a class="reference internal" href="../requirements/index.html#comp_req__log__placeholder" title="dd_dyn__log__log_to_level">comp_req__log__placeholder</a></span></span></div>
+</span></div>
+</div>
+</td>
+<td class="meta" colspan="3"></td>
+</tr>
+<tr class="content row-odd"><td class="content" colspan="6"><p class="plantuml">
+<object data="../../../_images/plantuml-7b8d16629037b55599eb54fbbc2e0c638879b48b.svg" type="image/svg+xml" style="width:579px;height:217px;background:#FFFFFF;"></object></p>
+</td>
+</tr>
+<tr class="footer row-even"><td class="footer_left" colspan="2"><div class="needs_footer_left line-block">
+<div class="line"><span><span class="needs-id"><a class="reference internal" href="#dd_dyn__log__log_to_level" title="dd_dyn__log__log_to_level">dd_dyn__log__log_to_level</a></span></span></div>
+</div>
+</td>
+<td class="footer" colspan="2"><div class="needs_footer line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Dynamic detailed design</span></span></span></div>
+</div>
+</td>
+<td class="footer_right" colspan="2"></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </section>
 </section>
