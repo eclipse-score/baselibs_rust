@@ -7,5 +7,5 @@ name = "containers"
 version = "0.1.0"
 
 [[package]]
-name = "log"
+name = "mw_log_fmt"
 version = "0.0.1"

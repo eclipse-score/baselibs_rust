@@ -2,15 +2,9 @@
 resolver = "2"
 # Split to default members without tests and examples.
 # Used when executing cargo from project root.
-default-members = [
-    "src/containers",
-    "src/log"
-]
+default-members = ["src/containers", "src/log/mw_log_fmt"]
 # Include tests and examples as a member for IDE support and Bazel builds.
-members = [
-    "src/containers",
-    "src/log"
-]
+members = ["src/containers", "src/log/mw_log_fmt"]
 
 
 [workspace.package]
@@ -21,6 +15,7 @@ authors = ["S-CORE Contributors"]
 
 
 [workspace.dependencies]
+mw_log_fmt = { path = "src/log/mw_log_fmt" }
 
 
 [workspace.lints.clippy]
@@ -30,3 +25,4 @@ alloc_instead_of_core = "warn"
 
 [workspace.lints.rust]
 unexpected_cfgs = { level = "warn", check-cfg = ['cfg(loom)'] }
+missing_docs = "warn"
