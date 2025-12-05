@@ -21,7 +21,7 @@ Rust Base Libraries
    :titlesonly:
 
    features/baselibs_rust/*/index
-   modules/baselibs_rust/*/index
+   baselibs_rust/*/index
    module_docs/index
 
 Overview
