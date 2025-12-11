@@ -23,7 +23,7 @@ end box
 actor -> mw_log : log!()
 
 alt no-user-provided-logger
-    mw_log -> mw_log : logger()
+    mw_log -> mw_log : global_logger()
 end
 
 alt no-user-provided-context

@@ -15,8 +15,14 @@ load("@rules_rust//rust:defs.bzl", "rust_library", "rust_test")
 rust_library(
     name = "mw_log_fmt",
     srcs = glob(["**/*.rs"]),
-    # TODO: expose required interface through `mw_log`.
-    visibility = ["//visibility:public"],
+    crate_features = select({
+        "//src/log:safety_level_qm": ["qm"],
+        "//src/log:safety_level_asil_b": [],
+    }),
+    visibility = [
+        "//src/log/mw_log:__pkg__",
+        "//src/log/mw_log_fmt_macro:__pkg__",
+    ],
 )
 
 rust_test(

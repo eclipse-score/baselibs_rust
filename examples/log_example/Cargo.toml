@@ -12,23 +12,12 @@
 # *******************************************************************************
 
 [package]
-name = "mw_log_fmt_macro"
+name = "log_example"
 version.workspace = true
 authors.workspace = true
-readme.workspace = true
 edition.workspace = true
 
-[lib]
-proc-macro = true
-path = "lib.rs"
-
 [dependencies]
-syn = { version = "2", features = ["full"] }
-quote = "1"
-proc-macro2 = "1"
-mw_log_fmt.workspace = true
-
-[dev-dependencies]
 mw_log.workspace = true
 
 [lints]

@@ -21,11 +21,10 @@ package log <<component>> {
     }
 
     class mw_log <<module>> {
-        +set_logger(logger: &'static dyn Log) : Result<(), SetLoggerError>
-        +set_boxed_logger(logger: Box<dyn Log>) : Result<(), SetLoggerError>
+        +set_global_logger(logger: Box<dyn Log>) : Result<(), SetLoggerError>
         +set_max_level(level: LevelFilter) : ()
         +max_level() : LevelFilter
-        +logger() : &'static dyn Log
+        +global_logger() : &'static dyn Log
 
         +log!(context: &str, level: Level, ...) : ()
         +log_enabled!(context: &str, level: Level) : bool
