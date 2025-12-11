@@ -1,0 +1,12 @@
+[package]
+name = "log_example"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+
+[dependencies]
+mw_log.workspace = true
+mw_log_fmt.workspace = true
+
+[lints]
+workspace = true

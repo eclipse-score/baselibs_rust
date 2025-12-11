@@ -45,9 +45,9 @@ pub(crate) fn expand(input: proc_macro::TokenStream) -> proc_macro::TokenStream 
                 let struct_name = ident.to_string();
                 quote! {
                     #[automatically_derived]
-                    impl #impl_generics mw_log_fmt::ScoreDebug for #ident #ty_generics {
-                        fn fmt(&self, f: mw_log_fmt::Writer, spec: &mw_log_fmt::FormatSpec) -> mw_log_fmt::Result {
-                            mw_log_fmt::DebugStruct::new(f, spec, #struct_name)
+                    impl #impl_generics mw_log::fmt::ScoreDebug for #ident #ty_generics {
+                        fn fmt(&self, f: mw_log::fmt::Writer, spec: &mw_log::fmt::FormatSpec) -> mw_log::fmt::Result {
+                            mw_log::fmt::DebugStruct::new(f, spec, #struct_name)
                                 #(#field_methods)*
                                 .finish()
                         }
@@ -68,9 +68,9 @@ pub(crate) fn expand(input: proc_macro::TokenStream) -> proc_macro::TokenStream 
                 let struct_name = ident.to_string();
                 quote! {
                     #[automatically_derived]
-                    impl #impl_generics mw_log_fmt::ScoreDebug for #ident #ty_generics {
-                        fn fmt(&self, f: mw_log_fmt::Writer, spec: &mw_log_fmt::FormatSpec) -> mw_log_fmt::Result {
-                            mw_log_fmt::DebugTuple::new(f, spec, #struct_name)
+                    impl #impl_generics mw_log::fmt::ScoreDebug for #ident #ty_generics {
+                        fn fmt(&self, f: mw_log::fmt::Writer, spec: &mw_log::fmt::FormatSpec) -> mw_log::fmt::Result {
+                            mw_log::fmt::DebugTuple::new(f, spec, #struct_name)
                                 #(#field_methods)*
                                 .finish()
                         }
@@ -84,9 +84,9 @@ pub(crate) fn expand(input: proc_macro::TokenStream) -> proc_macro::TokenStream 
                 let struct_name = ident.to_string();
                 quote! {
                     #[automatically_derived]
-                    impl mw_log_fmt::ScoreDebug for #ident {
-                        fn fmt(&self, f: mw_log_fmt::Writer, spec: &mw_log_fmt::FormatSpec) -> mw_log_fmt::Result {
-                            mw_log_fmt::DebugStruct::new(f, spec, #struct_name).finish()
+                    impl mw_log::fmt::ScoreDebug for #ident {
+                        fn fmt(&self, f: mw_log::fmt::Writer, spec: &mw_log::fmt::FormatSpec) -> mw_log::fmt::Result {
+                            mw_log::fmt::DebugStruct::new(f, spec, #struct_name).finish()
                         }
                     }
                 }
@@ -105,8 +105,8 @@ pub(crate) fn expand(input: proc_macro::TokenStream) -> proc_macro::TokenStream 
             // Generate `ScoreDebug` implementation for provided enum.
             quote! {
                 #[automatically_derived]
-                impl #impl_generics mw_log_fmt::ScoreDebug for #ident #ty_generics {
-                    fn fmt(&self, f: mw_log_fmt::Writer, spec: &mw_log_fmt::FormatSpec) -> mw_log_fmt::Result {
+                impl #impl_generics mw_log::fmt::ScoreDebug for #ident #ty_generics {
+                    fn fmt(&self, f: mw_log::fmt::Writer, spec: &mw_log::fmt::FormatSpec) -> mw_log::fmt::Result {
                         let v = match self {
                             #(#matches)*
                         };

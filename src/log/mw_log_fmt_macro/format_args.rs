@@ -221,24 +221,24 @@ fn tokenize_spec(spec: &FormatSpec) -> proc_macro2::TokenStream {
     // Additional helpers are required to properly tokenize enums and options.
     fn tokenize_display_hint(display_hint: DisplayHint) -> proc_macro2::TokenStream {
         match display_hint {
-            DisplayHint::NoHint => quote! { mw_log_fmt::DisplayHint::NoHint },
-            DisplayHint::Debug => quote! { mw_log_fmt::DisplayHint::Debug },
-            DisplayHint::Octal => quote! { mw_log_fmt::DisplayHint::Octal },
-            DisplayHint::LowerHex => quote! { mw_log_fmt::DisplayHint::LowerHex },
-            DisplayHint::UpperHex => quote! { mw_log_fmt::DisplayHint::UpperHex },
-            DisplayHint::Pointer => quote! { mw_log_fmt::DisplayHint::Pointer },
-            DisplayHint::Binary => quote! { mw_log_fmt::DisplayHint::Binary },
-            DisplayHint::LowerExp => quote! { mw_log_fmt::DisplayHint::LowerExp },
-            DisplayHint::UpperExp => quote! { mw_log_fmt::DisplayHint::UpperExp },
+            DisplayHint::NoHint => quote! { mw_log::fmt::DisplayHint::NoHint },
+            DisplayHint::Debug => quote! { mw_log::fmt::DisplayHint::Debug },
+            DisplayHint::Octal => quote! { mw_log::fmt::DisplayHint::Octal },
+            DisplayHint::LowerHex => quote! { mw_log::fmt::DisplayHint::LowerHex },
+            DisplayHint::UpperHex => quote! { mw_log::fmt::DisplayHint::UpperHex },
+            DisplayHint::Pointer => quote! { mw_log::fmt::DisplayHint::Pointer },
+            DisplayHint::Binary => quote! { mw_log::fmt::DisplayHint::Binary },
+            DisplayHint::LowerExp => quote! { mw_log::fmt::DisplayHint::LowerExp },
+            DisplayHint::UpperExp => quote! { mw_log::fmt::DisplayHint::UpperExp },
         }
     }
 
     fn tokenize_alignment(align: Option<Alignment>) -> proc_macro2::TokenStream {
         match align {
             Some(v) => match v {
-                Alignment::Left => quote! { Some(mw_log_fmt::Alignment::Left) },
-                Alignment::Right => quote! { Some(mw_log_fmt::Alignment::Right) },
-                Alignment::Center => quote! { Some(mw_log_fmt::Alignment::Center) },
+                Alignment::Left => quote! { Some(mw_log::fmt::Alignment::Left) },
+                Alignment::Right => quote! { Some(mw_log::fmt::Alignment::Right) },
+                Alignment::Center => quote! { Some(mw_log::fmt::Alignment::Center) },
             },
             None => quote! { None },
         }
@@ -247,8 +247,8 @@ fn tokenize_spec(spec: &FormatSpec) -> proc_macro2::TokenStream {
     fn tokenize_sign(sign: Option<Sign>) -> proc_macro2::TokenStream {
         match sign {
             Some(v) => match v {
-                Sign::Plus => quote! { Some(mw_log_fmt::Sign::Plus) },
-                Sign::Minus => quote! { Some(mw_log_fmt::Sign::Minus) },
+                Sign::Plus => quote! { Some(mw_log::fmt::Sign::Plus) },
+                Sign::Minus => quote! { Some(mw_log::fmt::Sign::Minus) },
             },
             None => quote! { None },
         }
@@ -257,8 +257,8 @@ fn tokenize_spec(spec: &FormatSpec) -> proc_macro2::TokenStream {
     fn tokenize_debug_as_hex(debug_as_hex: Option<DebugAsHex>) -> proc_macro2::TokenStream {
         match debug_as_hex {
             Some(v) => match v {
-                DebugAsHex::Lower => quote! { Some(mw_log_fmt::DebugAsHex::Lower) },
-                DebugAsHex::Upper => quote! { Some(mw_log_fmt::DebugAsHex::Upper) },
+                DebugAsHex::Lower => quote! { Some(mw_log::fmt::DebugAsHex::Lower) },
+                DebugAsHex::Upper => quote! { Some(mw_log::fmt::DebugAsHex::Upper) },
             },
             None => quote! { None },
         }
@@ -282,7 +282,7 @@ fn tokenize_spec(spec: &FormatSpec) -> proc_macro2::TokenStream {
     let precision = tokenize_option_u16(spec.get_precision());
 
     quote! {{
-        mw_log_fmt::FormatSpec::from_params(
+        mw_log::fmt::FormatSpec::from_params(
             #display_hint,
             #fill,
             #align,
@@ -467,7 +467,30 @@ fn validate_args(args: &[Expr]) -> Result<(), Error> {
         match arg {
             Expr::Assign(_) => named_found = true,
             // NOTE: the list of allowed expression types may not be complete.
-            Expr::Lit(_) | Expr::Field(_) | Expr::If(_) | Expr::Path(_) | Expr::Unary(_) => {
+            Expr::Array(_)
+            | Expr::Await(_)
+            | Expr::Binary(_)
+            | Expr::Block(_)
+            | Expr::Call(_)
+            | Expr::Cast(_)
+            | Expr::Field(_)
+            | Expr::If(_)
+            | Expr::Index(_)
+            | Expr::Lit(_)
+            | Expr::Macro(_)
+            | Expr::Match(_)
+            | Expr::MethodCall(_)
+            | Expr::Paren(_)
+            | Expr::Path(_)
+            | Expr::Range(_)
+            | Expr::RawAddr(_)
+            | Expr::Reference(_)
+            | Expr::Repeat(_)
+            | Expr::Struct(_)
+            | Expr::Try(_)
+            | Expr::Tuple(_)
+            | Expr::Unary(_)
+            | Expr::Unsafe(_) => {
                 if named_found {
                     return Err(Error::new_spanned(
                         arg,
@@ -502,9 +525,30 @@ fn select_arg_with_name(args: &[Expr], name: &str) -> Result<Expr, Error> {
                 expr_assign.left.as_ref().clone(),
                 Some(expr_assign.right.as_ref().clone()),
             ),
-            Expr::Lit(_) | Expr::Field(_) | Expr::If(_) | Expr::Path(_) | Expr::Unary(_) => {
-                (arg.clone(), None)
-            }
+            Expr::Array(_)
+            | Expr::Await(_)
+            | Expr::Binary(_)
+            | Expr::Block(_)
+            | Expr::Call(_)
+            | Expr::Cast(_)
+            | Expr::Field(_)
+            | Expr::If(_)
+            | Expr::Index(_)
+            | Expr::Lit(_)
+            | Expr::Macro(_)
+            | Expr::Match(_)
+            | Expr::MethodCall(_)
+            | Expr::Paren(_)
+            | Expr::Path(_)
+            | Expr::Range(_)
+            | Expr::RawAddr(_)
+            | Expr::Reference(_)
+            | Expr::Repeat(_)
+            | Expr::Struct(_)
+            | Expr::Try(_)
+            | Expr::Tuple(_)
+            | Expr::Unary(_)
+            | Expr::Unsafe(_) => (arg.clone(), None),
             _ => return Err(Error::new_spanned(arg, "invalid expression type")),
         };
 
@@ -570,7 +614,7 @@ fn parse_fragments(
     for spec in specs.into_iter() {
         match spec {
             Spec::Literal(s) => fragments.push(quote! {{
-                mw_log_fmt::Fragment::Literal(#s)
+                mw_log::fmt::Fragment::Literal(#s)
             }}),
             Spec::Placeholder(placeholder) => {
                 // Select argument based on provided argument.
@@ -591,7 +635,7 @@ fn parse_fragments(
                 let spec_ctor = tokenize_spec(&placeholder.spec);
 
                 fragments.push(quote! {{
-                    mw_log_fmt::Fragment::Placeholder(mw_log_fmt::Placeholder::new(&#arg, #spec_ctor))
+                    mw_log::fmt::Fragment::Placeholder(mw_log::fmt::Placeholder::new(&#arg, #spec_ctor))
                 }});
             }
         }
@@ -613,7 +657,7 @@ pub(crate) fn expand(input: proc_macro::TokenStream) -> proc_macro::TokenStream 
         Err(e) => return e.to_compile_error().into(),
     };
 
-    quote! { mw_log_fmt::Arguments(&[#(#fragments),*]) }.into()
+    quote! { mw_log::fmt::Arguments(&[#(#fragments),*]) }.into()
 }
 
 pub(crate) fn expand_nl(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
@@ -631,8 +675,8 @@ pub(crate) fn expand_nl(input: proc_macro::TokenStream) -> proc_macro::TokenStre
 
     // Add newline at the end.
     fragments.push(quote! {{
-        mw_log_fmt::Fragment::Literal("\n")
+        mw_log::fmt::Fragment::Literal("\n")
     }});
 
-    quote! { mw_log_fmt::Arguments(&[#(#fragments),*]) }.into()
+    quote! { mw_log::fmt::Arguments(&[#(#fragments),*]) }.into()
 }
