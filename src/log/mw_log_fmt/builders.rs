@@ -484,7 +484,7 @@ impl<'a> DebugMap<'a> {
 mod tests {
     use crate::builders::{DebugList, DebugMap, DebugSet, DebugStruct, DebugTuple};
     use crate::test_utils::StringWriter;
-    use crate::FormatSpec;
+    use crate::{DisplayHint, FormatSpec};
 
     #[test]
     fn test_struct_finish_non_exhaustive() {
@@ -734,13 +734,29 @@ mod tests {
         let v = std::collections::BTreeMap::from([("first", 123), ("second", 456), ("third", 789)]);
 
         let mut writer = StringWriter::new();
-        let spec = FormatSpec::new();
+        let mut spec = FormatSpec::new();
+        spec.display_hint(DisplayHint::Debug);
         let _ = DebugMap::new(&mut writer, &spec)
             .entries(v.clone())
             .finish_non_exhaustive()
             .map_err(|_| panic!("failed to finish"));
 
         assert_eq!(writer.get(), "{\"first\": 123, \"second\": 456, \"third\": 789, ..}");
+    }
+
+    #[test]
+    fn test_map_finish() {
+        let v = std::collections::BTreeMap::from([("first", 123), ("second", 456), ("third", 789)]);
+
+        let mut writer = StringWriter::new();
+        let mut spec = FormatSpec::new();
+        spec.display_hint(DisplayHint::Debug);
+        let _ = DebugMap::new(&mut writer, &spec)
+            .entries(v.clone())
+            .finish()
+            .map_err(|_| panic!("failed to finish"));
+
+        assert_eq!(writer.get(), format!("{:?}", v));
     }
 
     #[test]
