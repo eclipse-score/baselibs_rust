@@ -153,7 +153,10 @@ mod tests {
             Fragment::Placeholder(Placeholder::new(&-100i8, FormatSpec::new())),
             Fragment::Placeholder(Placeholder::new(&-1234i16, FormatSpec::new())),
             Fragment::Placeholder(Placeholder::new(&-123456i32, FormatSpec::new())),
-            Fragment::Placeholder(Placeholder::new(&-1200000000000000000i64, FormatSpec::new())),
+            Fragment::Placeholder(Placeholder::new(
+                &-1200000000000000000i64,
+                FormatSpec::new(),
+            )),
             Fragment::Placeholder(Placeholder::new(&123u8, FormatSpec::new())),
             Fragment::Placeholder(Placeholder::new(&1234u16, FormatSpec::new())),
             Fragment::Placeholder(Placeholder::new(&123456u32, FormatSpec::new())),
@@ -192,7 +195,10 @@ mod tests {
             Fragment::Placeholder(Placeholder::new(&-100i8, FormatSpec::new())),
             Fragment::Placeholder(Placeholder::new(&-1234i16, FormatSpec::new())),
             Fragment::Placeholder(Placeholder::new(&-123456i32, FormatSpec::new())),
-            Fragment::Placeholder(Placeholder::new(&-1200000000000000000i64, FormatSpec::new())),
+            Fragment::Placeholder(Placeholder::new(
+                &-1200000000000000000i64,
+                FormatSpec::new(),
+            )),
             Fragment::Placeholder(Placeholder::new(&123u8, FormatSpec::new())),
             Fragment::Placeholder(Placeholder::new(&1234u16, FormatSpec::new())),
             Fragment::Placeholder(Placeholder::new(&123456u32, FormatSpec::new())),

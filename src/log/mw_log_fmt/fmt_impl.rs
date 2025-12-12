@@ -13,7 +13,7 @@
 
 //! `ScoreDebug` implementations for common types.
 
-use crate::builders::DebugList;
+use crate::builders::{DebugList, DebugStruct, DebugTuple};
 use crate::fmt::{Error, Result, ScoreDebug, Writer};
 use crate::fmt_spec::FormatSpec;
 
@@ -39,6 +39,12 @@ impl_debug_for_t!(u16, write_u16);
 impl_debug_for_t!(u32, write_u32);
 impl_debug_for_t!(u64, write_u64);
 
+impl ScoreDebug for () {
+    fn fmt(&self, f: Writer, spec: &FormatSpec) -> Result {
+        f.write_str("()", spec)
+    }
+}
+
 impl ScoreDebug for str {
     fn fmt(&self, f: Writer, spec: &FormatSpec) -> Result {
         let empty_spec = FormatSpec::new();
@@ -51,6 +57,26 @@ impl ScoreDebug for str {
 impl ScoreDebug for String {
     fn fmt(&self, f: Writer, spec: &FormatSpec) -> Result {
         ScoreDebug::fmt(&self.as_str(), f, spec)
+    }
+}
+
+impl ScoreDebug for core::str::Utf8Error {
+    fn fmt(&self, f: Writer, spec: &FormatSpec) -> Result {
+        let mut debug_struct = DebugStruct::new(f, spec, "Utf8Error");
+        debug_struct
+            .field("valid_up_to", &self.valid_up_to())
+            .field("error_len", &self.error_len())
+            .finish()
+    }
+}
+
+impl ScoreDebug for std::string::FromUtf8Error {
+    fn fmt(&self, f: Writer, spec: &FormatSpec) -> Result {
+        let mut debug_struct = DebugStruct::new(f, spec, "FromUtf8Error");
+        debug_struct
+            .field("bytes", &self.as_bytes())
+            .field("error", &self.utf8_error())
+            .finish()
     }
 }
 
@@ -99,6 +125,13 @@ impl<T: ScoreDebug, const N: usize> ScoreDebug for [T; N] {
     }
 }
 
+impl ScoreDebug for core::array::TryFromSliceError {
+    fn fmt(&self, f: Writer, spec: &FormatSpec) -> Result {
+        let mut debug_tuple = DebugTuple::new(f, spec, "TryFromSliceError");
+        debug_tuple.field(&()).finish()
+    }
+}
+
 impl<T: ScoreDebug> ScoreDebug for Vec<T> {
     fn fmt(&self, f: Writer, spec: &FormatSpec) -> Result {
         ScoreDebug::fmt(&**self, f, spec)
@@ -114,6 +147,20 @@ impl<T: ScoreDebug> ScoreDebug for std::rc::Rc<T> {
 impl<T: ScoreDebug> ScoreDebug for std::sync::Arc<T> {
     fn fmt(&self, f: Writer, spec: &FormatSpec) -> Result {
         ScoreDebug::fmt(&**self, f, spec)
+    }
+}
+
+impl<T: ScoreDebug> ScoreDebug for Option<T> {
+    fn fmt(&self, f: Writer, spec: &FormatSpec) -> Result {
+        match self {
+            Some(v) => {
+                let empty_spec = FormatSpec::new();
+                f.write_str("Some(", &empty_spec)?;
+                ScoreDebug::fmt(v, f, spec)?;
+                f.write_str(")", &empty_spec)
+            }
+            None => f.write_str("None", spec),
+        }
     }
 }
 
@@ -187,6 +234,13 @@ mod tests {
     }
 
     #[test]
+    fn test_from_utf8_error_debug() {
+        let a1 = vec![0xa0, 0xa1];
+        let a2: Result<String, std::string::FromUtf8Error> = a1.try_into();
+        common_test_debug(a2.unwrap_err());
+    }
+
+    #[test]
     fn test_isize_debug() {
         common_test_debug(-1200000000000000000isize);
     }
@@ -207,6 +261,13 @@ mod tests {
     }
 
     #[test]
+    fn test_try_from_slice_error_debug() {
+        let a1 = vec![123, 456];
+        let a2: Result<[i32; 3], core::array::TryFromSliceError> = a1.as_slice().try_into();
+        common_test_debug(a2.unwrap_err());
+    }
+
+    #[test]
     fn test_vec_debug() {
         common_test_debug(vec![987, 654, 321, 159]);
     }
@@ -221,5 +282,11 @@ mod tests {
     fn test_arc_debug() {
         let arc = std::sync::Arc::new(654);
         common_test_debug(arc);
+    }
+
+    #[test]
+    fn test_option_debug() {
+        common_test_debug(Some(123));
+        common_test_debug(Option::<i32>::None);
     }
 }

@@ -35,7 +35,10 @@ impl ScoreDebug for Path {
             }
 
             f.write_str(valid, spec)?;
-            f.write_str(core::char::REPLACEMENT_CHARACTER.encode_utf8(&mut [0; MAX_LEN_UTF8]), spec)?;
+            f.write_str(
+                core::char::REPLACEMENT_CHARACTER.encode_utf8(&mut [0; MAX_LEN_UTF8]),
+                spec,
+            )?;
         }
 
         Ok(())

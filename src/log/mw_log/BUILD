@@ -13,17 +13,21 @@
 load("@rules_rust//rust:defs.bzl", "rust_library", "rust_test")
 
 rust_library(
-    name = "mw_log_fmt",
+    name = "mw_log",
     srcs = glob(["**/*.rs"]),
-    visibility = [
-        "//src/log/mw_log:__pkg__",
-        "//src/log/mw_log_fmt_macro:__pkg__",
+    crate_features = ["std"],
+    proc_macro_deps = [
+        "//src/log/mw_log_fmt_macro",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/log/mw_log_fmt",
     ],
 )
 
 rust_test(
     name = "tests",
-    crate = "mw_log_fmt",
+    crate = "mw_log",
     tags = [
         "unit_tests",
         "ut",

@@ -1,0 +1,33 @@
+[package]
+name = "mw_log"
+version.workspace = true
+authors.workspace = true
+readme.workspace = true
+edition.workspace = true
+
+[lib]
+path = "lib.rs"
+
+[features]
+max_level_off = []
+max_level_fatal = []
+max_level_error = []
+max_level_warn = []
+max_level_info = []
+max_level_debug = []
+max_level_trace = []
+
+release_max_level_off = []
+release_max_level_fatal = []
+release_max_level_error = []
+release_max_level_warn = []
+release_max_level_info = []
+release_max_level_debug = []
+release_max_level_trace = []
+
+[dependencies]
+mw_log_fmt.workspace = true
+mw_log_fmt_macro.workspace = true
+
+[lints]
+workspace = true

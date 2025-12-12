@@ -18,7 +18,6 @@
 #[macro_export]
 macro_rules! score_write {
     ($dst:expr, $($arg:tt)*) => {
-        // TODO: `mw_log::__private_api` will become available in future PRs.
         $crate::write($dst, mw_log::__private_api::format_args!($($arg)*))
     };
 }
@@ -32,7 +31,6 @@ macro_rules! score_writeln {
         $crate::score_write!($dst, "\n")
     };
     ($dst:expr, $($arg:tt)*) => {
-        // TODO: `mw_log::__private_api` will become available in future PRs.
         $crate::write($dst, mw_log::__private_api::format_args_nl!($($arg)*))
     };
 }
