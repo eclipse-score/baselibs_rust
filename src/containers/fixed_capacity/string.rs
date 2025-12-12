@@ -38,7 +38,10 @@ impl FixedCapacityString {
     /// - Panics if the memory allocation fails.
     #[must_use]
     pub fn new(capacity: usize) -> Self {
-        assert!(capacity <= u32::MAX as usize, "FixedCapacityString can hold at most u32::MAX bytes");
+        assert!(
+            capacity <= u32::MAX as usize,
+            "FixedCapacityString can hold at most u32::MAX bytes"
+        );
         Self {
             inner: GenericString::new(capacity as u32),
         }

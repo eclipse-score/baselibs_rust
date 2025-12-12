@@ -80,7 +80,8 @@ mod test_utils {
 
     impl<T> Storage<T> for Vec<MaybeUninit<T>> {
         fn new(capacity: u32) -> Self {
-            Self::try_new(capacity).unwrap_or_else(|| panic!("failed to allocate for {capacity} elements"))
+            Self::try_new(capacity)
+                .unwrap_or_else(|| panic!("failed to allocate for {capacity} elements"))
         }
 
         fn try_new(capacity: u32) -> Option<Self>

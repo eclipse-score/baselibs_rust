@@ -17,8 +17,8 @@ use core::mem::needs_drop;
 use core::ops;
 use core::ptr;
 
-use crate::InsufficientCapacity;
 use crate::storage::Storage;
+use crate::InsufficientCapacity;
 
 #[repr(C)]
 pub struct GenericVec<T, S: Storage<T>> {
@@ -143,12 +143,14 @@ impl<T: Copy, S: Storage<T>> GenericVec<T, S> {
     /// If the vector has sufficient spare capacity, the operation succeeds and a reference to those elements is returned;
     /// otherwise, `Err(InsufficientCapacity)` is returned.
     pub fn extend_from_slice(&mut self, other: &[T]) -> Result<&mut [T], InsufficientCapacity> {
-        let new_len = (self.len as usize).checked_add(other.len()).ok_or(InsufficientCapacity)?;
+        let new_len = (self.len as usize)
+            .checked_add(other.len())
+            .ok_or(InsufficientCapacity)?;
         if new_len <= self.capacity() {
             let new_len = new_len as u32; // No overflow, because new_len <= capacity <= u32::MAX
-            // SAFETY:
-            // - `self.len <= new_len``, because the addition didn't overflow
-            // - `new_len <= self.capacity()` as per check above
+                                          // SAFETY:
+                                          // - `self.len <= new_len``, because the addition didn't overflow
+                                          // - `new_len <= self.capacity()` as per check above
             let target = unsafe { self.storage.subslice_mut(self.len, new_len) };
             // SAFETY:
             // - `other.as_ptr()` is valid for reads of `other.len()` elements, because it's a valid slice reference

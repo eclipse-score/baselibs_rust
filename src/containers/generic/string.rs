@@ -16,8 +16,8 @@ use core::ops;
 use core::str;
 
 use super::vec::GenericVec;
-use crate::InsufficientCapacity;
 use crate::storage::Storage;
+use crate::InsufficientCapacity;
 
 /// A UTF-8 encoded string which is generic over its storage method.
 #[repr(transparent)]

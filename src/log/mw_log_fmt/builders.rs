@@ -80,7 +80,9 @@ impl<'a> DebugStruct<'a> {
     pub fn finish(&mut self) -> Result {
         if self.has_fields {
             let empty_spec = FormatSpec::new();
-            self.result = self.result.and_then(|_| self.writer.write_str(" }", &empty_spec));
+            self.result = self
+                .result
+                .and_then(|_| self.writer.write_str(" }", &empty_spec));
         }
         self.result
     }
@@ -253,7 +255,10 @@ impl<'a> DebugSet<'a> {
 
     /// Finishes output and returns any error encountered.
     pub fn finish(&mut self) -> Result {
-        self.inner.result = self.inner.result.and_then(|_| self.inner.writer.write_str("}", &FormatSpec::new()));
+        self.inner.result = self
+            .inner
+            .result
+            .and_then(|_| self.inner.writer.write_str("}", &FormatSpec::new()));
         self.inner.result
     }
 }
@@ -323,7 +328,10 @@ impl<'a> DebugList<'a> {
 
     /// Finishes output and returns any error encountered.
     pub fn finish(&mut self) -> Result {
-        self.inner.result = self.inner.result.and_then(|_| self.inner.writer.write_str("]", &FormatSpec::new()));
+        self.inner.result = self
+            .inner
+            .result
+            .and_then(|_| self.inner.writer.write_str("]", &FormatSpec::new()));
         self.inner.result
     }
 }
@@ -420,7 +428,10 @@ impl<'a> DebugMap<'a> {
         F: FnOnce(Writer) -> Result,
     {
         self.result = self.result.and_then(|_| {
-            assert!(self.has_key, "attempted to format a map value before its key");
+            assert!(
+                self.has_key,
+                "attempted to format a map value before its key"
+            );
             value_fmt(self.writer)?;
             self.has_key = false;
             Ok(())
@@ -446,7 +457,10 @@ impl<'a> DebugMap<'a> {
     /// Marks the map as non-exhaustive, indicating to the reader that there are some other entries that are not shown in the debug representation.
     pub fn finish_non_exhaustive(&mut self) -> Result {
         self.result = self.result.and_then(|_| {
-            assert!(!self.has_key, "attempted to finish a map with a partial entry");
+            assert!(
+                !self.has_key,
+                "attempted to finish a map with a partial entry"
+            );
 
             let empty_spec = FormatSpec::new();
             if self.has_fields {
@@ -466,7 +480,10 @@ impl<'a> DebugMap<'a> {
     /// Otherwise this method will panic.
     pub fn finish(&mut self) -> Result {
         self.result = self.result.and_then(|_| {
-            assert!(!self.has_key, "attempted to finish a map with a partial entry");
+            assert!(
+                !self.has_key,
+                "attempted to finish a map with a partial entry"
+            );
             let empty_spec = FormatSpec::new();
             self.writer.write_str("}", &empty_spec)
         });
@@ -542,7 +559,9 @@ mod tests {
 
         let mut writer = StringWriter::new();
         let spec = FormatSpec::new();
-        let _ = DebugStruct::new(&mut writer, &spec, "X").finish().map_err(|_| panic!("failed to finish"));
+        let _ = DebugStruct::new(&mut writer, &spec, "X")
+            .finish()
+            .map_err(|_| panic!("failed to finish"));
 
         assert_eq!(writer.get(), format!("{:?}", v));
     }
@@ -594,7 +613,9 @@ mod tests {
     fn test_tuple_empty_finish() {
         let mut writer = StringWriter::new();
         let spec = FormatSpec::new();
-        let _ = DebugTuple::new(&mut writer, &spec, "").finish().map_err(|_| panic!("failed to finish"));
+        let _ = DebugTuple::new(&mut writer, &spec, "")
+            .finish()
+            .map_err(|_| panic!("failed to finish"));
 
         assert_eq!(writer.get(), "");
     }
@@ -730,7 +751,10 @@ mod tests {
             .finish_non_exhaustive()
             .map_err(|_| panic!("failed to finish"));
 
-        assert_eq!(writer.get(), "{\"first\": 123, \"second\": 456, \"third\": 789, ..}");
+        assert_eq!(
+            writer.get(),
+            "{\"first\": 123, \"second\": 456, \"third\": 789, ..}"
+        );
     }
 
     #[test]

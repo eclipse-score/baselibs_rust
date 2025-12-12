@@ -16,8 +16,8 @@ use core::mem::needs_drop;
 use core::ops::Range;
 use core::ptr;
 
-use crate::InsufficientCapacity;
 use crate::storage::Storage;
+use crate::InsufficientCapacity;
 
 #[repr(C)]
 pub struct GenericQueue<T, S: Storage<T>> {
