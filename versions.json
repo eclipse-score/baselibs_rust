@@ -4,10 +4,6 @@
     "url": "https://eclipse-score.github.io/baselibs_rust/main/"
   },
   {
-    "version": "pr-13",
-    "url": "https://eclipse-score.github.io/baselibs_rust/pr-13/"
-  },
-  {
     "version": "pr-14",
     "url": "https://eclipse-score.github.io/baselibs_rust/pr-14/"
   },
@@ -18,10 +14,6 @@
   {
     "version": "pr-28",
     "url": "https://eclipse-score.github.io/baselibs_rust/pr-28/"
-  },
-  {
-    "version": "pr-29",
-    "url": "https://eclipse-score.github.io/baselibs_rust/pr-29/"
   },
   {
     "version": "pr-32",
