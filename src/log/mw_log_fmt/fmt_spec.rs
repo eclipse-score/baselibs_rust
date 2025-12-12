@@ -291,7 +291,17 @@ mod tests {
         let width = Some(1234);
         let precision = Some(5);
 
-        let format_spec = FormatSpec::from_params(display_hint, fill, align, sign, alternate, zero_pad, debug_as_hex, width, precision);
+        let format_spec = FormatSpec::from_params(
+            display_hint,
+            fill,
+            align,
+            sign,
+            alternate,
+            zero_pad,
+            debug_as_hex,
+            width,
+            precision,
+        );
 
         assert!(format_spec.get_display_hint() == display_hint);
         assert!(format_spec.get_fill() == fill);

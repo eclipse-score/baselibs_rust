@@ -217,8 +217,8 @@ package "mw_log_fmt crate" {
     mw_log_fmt -- Arguments
 }
 
-package "mw_log_macro crate" {
-    +class mw_log_macro <<module>> {
+package "mw_log_fmt_macro crate" {
+    +class mw_log_fmt_macro <<module>> {
         +mw_log_format_args!(format_string: &str, args...) : Arguments<'_>
         +mw_log_format_args_nl!(format_string: &str, args...) : Arguments<'_>
     }
@@ -262,7 +262,7 @@ package "mw_log_subscriber crate" {
 }
 
 "mw_log crate" -[hidden]down-> "mw_log_fmt crate"
-"mw_log crate" -[hidden]up-> "mw_log_macro crate"
+"mw_log crate" -[hidden]up-> "mw_log_fmt_macro crate"
 
 "mw_log crate" -[hidden]down------> "mw_log_subscriber crate"
 "mw_log_fmt crate" -[hidden]down------> "mw_log_subscriber crate"
