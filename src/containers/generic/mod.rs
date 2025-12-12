@@ -12,4 +12,5 @@
 // *******************************************************************************
 
 pub(crate) mod queue;
+pub(crate) mod string;
 pub(crate) mod vec;

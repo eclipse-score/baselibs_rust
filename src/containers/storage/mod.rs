@@ -20,9 +20,25 @@ pub use self::inline::Inline;
 use core::mem::MaybeUninit;
 
 /// Interface to abstract over element storage kinds.
+///
+/// # Panics
+///
+/// With the exception of [`new`](Storage::new), the methods in this trait are *not* allowed to panic when `cfg(debug_assertions)` is not enabled.
+/// Implementors should use `debug_assert!` to check that preconditions are fulfilled.
 pub trait Storage<T> {
     /// Creates a new instance with enough capacity for the given number of elements.
+    ///
+    /// # Panics
+    ///
+    /// This method is allowed to panic when `capacity` is invalid, or when not enough memory could be allocated.
     fn new(capacity: u32) -> Self;
+
+    /// Tries to create a new instance with enough capacity for the given number of elements.
+    ///
+    /// Returns `None` if the allocation failed for any reason.
+    fn try_new(capacity: u32) -> Option<Self>
+    where
+        Self: Sized;
 
     /// Returns the allocated capacity.
     fn capacity(&self) -> u32;
@@ -64,7 +80,17 @@ mod test_utils {
 
     impl<T> Storage<T> for Vec<MaybeUninit<T>> {
         fn new(capacity: u32) -> Self {
-            (0..capacity).map(|_| MaybeUninit::zeroed()).collect()
+            Self::try_new(capacity).unwrap_or_else(|| panic!("failed to allocate for {capacity} elements"))
+        }
+
+        fn try_new(capacity: u32) -> Option<Self>
+        where
+            Self: Sized,
+        {
+            let mut instance = vec![];
+            instance.try_reserve_exact(capacity as usize).ok()?;
+            instance.extend((0..capacity).map(|_| MaybeUninit::zeroed()));
+            Some(instance)
         }
 
         fn capacity(&self) -> u32 {

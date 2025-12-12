@@ -31,12 +31,32 @@ impl<T, const CAPACITY: usize> Inline<T, CAPACITY> {
 }
 
 impl<T, const CAPACITY: usize> Storage<T> for Inline<T, CAPACITY> {
+    /// Creates a new instance.
+    ///
+    /// # Panics
+    ///
+    /// Panics if and only if `capacity != CAPACITY`.
     fn new(capacity: u32) -> Self {
         let () = Self::CHECK_CAPACITY;
 
         assert_eq!(capacity as usize, CAPACITY);
         Self {
             elements: [const { MaybeUninit::uninit() }; CAPACITY],
+        }
+    }
+
+    /// Tries to create a new instance.
+    ///
+    /// Returns `None` if and only if `capacity != CAPACITY`.
+    fn try_new(capacity: u32) -> Option<Self> {
+        let () = Self::CHECK_CAPACITY;
+
+        if capacity as usize == CAPACITY {
+            Some(Self {
+                elements: [const { MaybeUninit::uninit() }; CAPACITY],
+            })
+        } else {
+            None
         }
     }
 

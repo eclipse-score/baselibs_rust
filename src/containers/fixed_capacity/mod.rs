@@ -12,7 +12,9 @@
 // *******************************************************************************
 
 mod queue;
+mod string;
 mod vec;
 
 pub use self::queue::FixedCapacityQueue;
+pub use self::string::FixedCapacityString;
 pub use self::vec::FixedCapacityVec;

@@ -42,6 +42,20 @@ impl<T> FixedCapacityVec<T> {
             inner: GenericVec::new(capacity as u32),
         }
     }
+
+    /// Tries to create an empty vector for up to `capacity` elements, where `capacity <= u32::MAX`.
+    ///
+    /// Returns `None` if `capacity > u32::MAX`, or if the memory allocation fails.
+    #[must_use]
+    pub fn try_new(capacity: usize) -> Option<Self> {
+        if capacity <= u32::MAX as usize {
+            Some(Self {
+                inner: GenericVec::try_new(capacity as u32)?,
+            })
+        } else {
+            None
+        }
+    }
 }
 
 impl<T> Drop for FixedCapacityVec<T> {

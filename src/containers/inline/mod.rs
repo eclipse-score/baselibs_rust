@@ -12,7 +12,9 @@
 // *******************************************************************************
 
 mod queue;
+mod string;
 mod vec;
 
 pub use self::queue::InlineQueue;
+pub use self::string::InlineString;
 pub use self::vec::InlineVec;

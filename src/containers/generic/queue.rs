@@ -11,12 +11,12 @@
 // SPDX-License-Identifier: Apache-2.0
 // *******************************************************************************
 
-use core::fmt;
 use core::marker::PhantomData;
 use core::mem::needs_drop;
 use core::ops::Range;
 use core::ptr;
 
+use crate::InsufficientCapacity;
 use crate::storage::Storage;
 
 #[repr(C)]
@@ -104,8 +104,8 @@ impl<T, S: Storage<T>> GenericQueue<T, S> {
     /// Tries to push an element to the back of the queue.
     ///
     /// If the queue has spare capacity, the push succeeds and a reference to that element
-    /// is returned; otherwise, `Err(QueueFull)` is returned.
-    pub fn push_back(&mut self, value: T) -> Result<&mut T, QueueFull> {
+    /// is returned; otherwise, `Err(InsufficientCapacity)` is returned.
+    pub fn push_back(&mut self, value: T) -> Result<&mut T, InsufficientCapacity> {
         let capacity = self.storage.capacity();
         if self.len < capacity {
             let write_pos = self.front_index as u64 + self.len as u64;
@@ -117,15 +117,15 @@ impl<T, S: Storage<T>> GenericQueue<T, S> {
             self.len += 1;
             Ok(unsafe { self.storage.element_mut(write_pos).write(value) })
         } else {
-            Err(QueueFull)
+            Err(InsufficientCapacity)
         }
     }
 
     /// Tries to push an element to the front of the queue.
     ///
     /// If the queue has spare capacity, the push succeeds and a reference to that element
-    /// is returned; otherwise, `Err(QueueFull)` is returned.
-    pub fn push_front(&mut self, value: T) -> Result<&mut T, QueueFull> {
+    /// is returned; otherwise, `Err(InsufficientCapacity)` is returned.
+    pub fn push_front(&mut self, value: T) -> Result<&mut T, InsufficientCapacity> {
         let capacity = self.storage.capacity();
         if self.len < capacity {
             let write_pos = if self.front_index > 0 {
@@ -138,7 +138,7 @@ impl<T, S: Storage<T>> GenericQueue<T, S> {
             self.front_index = write_pos;
             Ok(element)
         } else {
-            Err(QueueFull)
+            Err(InsufficientCapacity)
         }
     }
 
@@ -206,18 +206,6 @@ impl<T, S: Storage<T>> GenericQueue<T, S> {
         }
     }
 }
-
-/// Indicates that an operation failed because the queue would exceed its maximum capacity.
-#[derive(Clone, Copy, Default, Debug)]
-pub struct QueueFull;
-
-impl fmt::Display for QueueFull {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "queue is full")
-    }
-}
-
-impl core::error::Error for QueueFull {}
 
 #[cfg(test)]
 mod tests {

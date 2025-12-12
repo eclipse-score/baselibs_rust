@@ -19,3 +19,19 @@ pub mod fixed_capacity;
 pub(crate) mod generic;
 pub mod inline;
 pub(crate) mod storage;
+
+use core::fmt;
+
+/// Indicates that an operation failed because the container doesn't have enough remaining capacity.
+///
+/// Note that this doesn't necessarily mean that the container is full.
+#[derive(Clone, Copy, Default, Debug)]
+pub struct InsufficientCapacity;
+
+impl fmt::Display for InsufficientCapacity {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "insufficient capacity for this operation")
+    }
+}
+
+impl core::error::Error for InsufficientCapacity {}
