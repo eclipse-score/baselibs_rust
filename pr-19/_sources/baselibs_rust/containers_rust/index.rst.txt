@@ -12,18 +12,18 @@
    # SPDX-License-Identifier: Apache-2.0
    # *******************************************************************************
 
-.. _component_containers:
+.. _component_containers_rust:
 
-containers
-##########
+containers_rust
+###############
 
-.. document:: Containers Library
-   :id: doc__rust_containers
+.. document:: Rust Containers Library
+   :id: doc__containers_rust
    :status: draft
    :safety: ASIL_B
    :security: NO
    :realizes: wp__cmpt_request
-   :tags: baselibs_rust_containers
+   :tags: baselibs_rust_containers_rust
 
 
 Abstract

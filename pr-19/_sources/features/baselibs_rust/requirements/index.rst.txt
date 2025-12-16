@@ -82,8 +82,8 @@ Requirements
    The Rust base libraries shall provide error handling mechanisms that enable development without relying on Rust panics.
    Where an idiomatic interface requires panics, an additional non-panicking option shall be provided as well.
 
-.. feat_req:: Container Library
-   :id: feat_req__baselibs_rust__containers_library
+.. feat_req:: Rust Container Library
+   :id: feat_req__baselibs_rust__containers_rust_lib
    :reqtype: Functional
    :security: NO
    :safety: ASIL_B

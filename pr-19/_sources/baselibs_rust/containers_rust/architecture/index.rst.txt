@@ -12,16 +12,16 @@
    # SPDX-License-Identifier: Apache-2.0
    # *******************************************************************************
 
-Containers Architecture
-=======================
+Rust Containers Architecture
+============================
 
-.. document:: Containers Architecture
-   :id: doc__containers_architecture
+.. document:: Rust Containers Architecture
+   :id: doc__containers_rust_architecture
    :status: draft
    :safety: ASIL_B
    :security: NO
    :realizes: wp__component_arch
-   :tags: baselibs_rust_containers
+   :tags: baselibs_rust_containers_rust
 
 
 Overview
@@ -37,12 +37,12 @@ The implementation of the containers library comprises two main parts:
 Static Architecture
 -------------------
 
-.. comp_arc_sta:: Containers
-   :id: comp_arc_sta__baselibs_rust__containers
+.. comp_arc_sta:: Rust Containers
+   :id: comp_arc_sta__baselibs_rust__containers_rust
    :security: YES
    :safety: ASIL_B
    :status: valid
-   :tags: baselibs_rust_containers
+   :tags: baselibs_rust_containers_rust
    :implements: logic_arc_int__b_r__fixvec, logic_arc_int__b_r__inlinevec, logic_arc_int__b_r__fixqueue, logic_arc_int__b_r__inlqueue
 
    .. needarch::
