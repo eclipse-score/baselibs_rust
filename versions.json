@@ -26,5 +26,9 @@
   {
     "version": "pr-39",
     "url": "https://eclipse-score.github.io/baselibs_rust/pr-39/"
+  },
+  {
+    "version": "pr-41",
+    "url": "https://eclipse-score.github.io/baselibs_rust/pr-41/"
   }
 ]
