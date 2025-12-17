@@ -76,6 +76,49 @@ mod tests {
     }
 
     #[test]
+    fn front_and_back() {
+        fn check_front_and_back(queue: &mut FixedCapacityQueue<i64>, control: &mut VecDeque<i64>) {
+            assert_eq!(queue.front(), control.front());
+            assert_eq!(queue.front_mut(), control.front_mut());
+            assert_eq!(queue.back(), control.back());
+            assert_eq!(queue.back_mut(), control.back_mut());
+        }
+
+        fn run_test(n: usize) {
+            let mut queue = FixedCapacityQueue::<i64>::new(n);
+            let mut control = VecDeque::new();
+
+            // Completely fill and empty the queue n times, but move the internal start point
+            // ahead by one each time
+            for _ in 0..n {
+                check_front_and_back(&mut queue, &mut control);
+
+                for i in 0..n {
+                    let value = i as i64 * 123 + 456;
+                    queue.push_back(value).unwrap();
+                    control.push_back(value);
+                    check_front_and_back(&mut queue, &mut control);
+                }
+
+                for _ in 0..n {
+                    control.pop_front().unwrap();
+                    queue.pop_front().unwrap();
+                    check_front_and_back(&mut queue, &mut control);
+                }
+
+                // One push and one pop to move the internal start point ahead
+                queue.push_back(987).unwrap();
+                queue.pop_front().unwrap();
+                check_front_and_back(&mut queue, &mut control);
+            }
+        }
+
+        for i in 0..6 {
+            run_test(i);
+        }
+    }
+
+    #[test]
     fn push_back_and_pop_front() {
         fn run_test(n: usize) {
             let mut queue = FixedCapacityQueue::<i64>::new(n);

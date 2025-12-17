@@ -77,6 +77,7 @@ mod test_utils {
     //! A simple impl of [`Storage`] for [`Vec`], to be used for tests of generic containers.
 
     use super::*;
+    use core::ptr;
 
     impl<T> Storage<T> for Vec<MaybeUninit<T>> {
         fn new(capacity: u32) -> Self {
@@ -106,11 +107,21 @@ mod test_utils {
         }
 
         unsafe fn subslice(&self, start: u32, end: u32) -> *const [T] {
-            &self[start as usize..end as usize] as *const [MaybeUninit<T>] as *const [T]
+            debug_assert!(start <= end);
+            debug_assert!(end <= Storage::capacity(self));
+            // SAFETY: `start` is in-bounds of the array, as per the pre-condition on the trait method.
+            let ptr = unsafe { self.as_ptr().add(start as usize).cast() };
+            let len = end - start;
+            ptr::slice_from_raw_parts(ptr, len as usize)
         }
 
         unsafe fn subslice_mut(&mut self, start: u32, end: u32) -> *mut [T] {
-            &mut self[start as usize..end as usize] as *mut [MaybeUninit<T>] as *mut [T]
+            debug_assert!(start <= end);
+            debug_assert!(end <= Storage::capacity(self));
+            // SAFETY: `start` is in-bounds of the array, as per the pre-condition on the trait method.
+            let ptr = unsafe { self.as_mut_ptr().add(start as usize).cast() };
+            let len = end - start;
+            ptr::slice_from_raw_parts_mut(ptr, len as usize)
         }
     }
 }

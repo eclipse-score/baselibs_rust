@@ -86,6 +86,51 @@ mod tests {
     }
 
     #[test]
+    fn front_and_back() {
+        fn check_front_and_back<const N: usize>(queue: &mut InlineQueue<i64, N>, control: &mut VecDeque<i64>) {
+            assert_eq!(queue.front(), control.front());
+            assert_eq!(queue.front_mut(), control.front_mut());
+            assert_eq!(queue.back(), control.back());
+            assert_eq!(queue.back_mut(), control.back_mut());
+        }
+
+        fn run_test<const N: usize>() {
+            let mut queue = InlineQueue::<i64, N>::new();
+            let mut control = VecDeque::new();
+
+            // Completely fill and empty the queue n times, but move the internal start point
+            // ahead by one each time
+            for _ in 0..N {
+                check_front_and_back(&mut queue, &mut control);
+
+                for i in 0..N {
+                    let value = i as i64 * 123 + 456;
+                    queue.push_back(value).unwrap();
+                    control.push_back(value);
+                    check_front_and_back(&mut queue, &mut control);
+                }
+
+                for _ in 0..N {
+                    control.pop_front().unwrap();
+                    queue.pop_front().unwrap();
+                    check_front_and_back(&mut queue, &mut control);
+                }
+
+                // One push and one pop to move the internal start point ahead
+                queue.push_back(987).unwrap();
+                queue.pop_front().unwrap();
+                check_front_and_back(&mut queue, &mut control);
+            }
+        }
+
+        run_test::<1>();
+        run_test::<2>();
+        run_test::<3>();
+        run_test::<4>();
+        run_test::<5>();
+    }
+
+    #[test]
     fn push_back_and_pop_front() {
         fn run_test<const N: usize>() {
             let mut queue = InlineQueue::<i64, N>::new();

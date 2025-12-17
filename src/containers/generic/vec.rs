@@ -147,10 +147,11 @@ impl<T: Copy, S: Storage<T>> GenericVec<T, S> {
             .checked_add(other.len())
             .ok_or(InsufficientCapacity)?;
         if new_len <= self.capacity() {
-            let new_len = new_len as u32; // No overflow, because new_len <= capacity <= u32::MAX
-                                          // SAFETY:
-                                          // - `self.len <= new_len``, because the addition didn't overflow
-                                          // - `new_len <= self.capacity()` as per check above
+            // No overflow, because new_len <= capacity <= u32::MAX
+            let new_len = new_len as u32;
+            // SAFETY:
+            // - `self.len <= new_len``, because the addition didn't overflow
+            // - `new_len <= self.capacity()` as per check above
             let target = unsafe { self.storage.subslice_mut(self.len, new_len) };
             // SAFETY:
             // - `other.as_ptr()` is valid for reads of `other.len()` elements, because it's a valid slice reference

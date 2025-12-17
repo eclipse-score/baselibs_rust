@@ -16,7 +16,7 @@ load("@rules_rust//rust:defs.bzl", "rust_library", "rust_test")
 rust_library(
     name = "containers",
     srcs = glob(["**/*.rs"]),
-    edition = "2024",
+    edition = "2021",
     visibility = ["//visibility:public"],
 )
 

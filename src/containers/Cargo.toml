@@ -16,7 +16,7 @@ name = "containers"
 description = "Fixed-capacity and inline-storage containers"
 version = "0.1.0"
 authors = ["Contributors to the Eclipse Foundation"]
-edition = "2024"
+edition = "2021"
 license-file = "../../LICENSE.md"
 
 [lib]
