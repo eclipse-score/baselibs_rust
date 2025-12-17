@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>FMEA (Failure Modes and Effects Analysis) &#8212; Base Libraries - Rust  documentation</title>
+    <title>DFA (Dependent Failure Analysis) &#8212; Base Libraries - Rust  documentation</title>
   
   
   
@@ -62,7 +62,7 @@
     <script src="../../../_static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
     <script src="../../../_static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
     <script src="../../../_static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'module/log/safety_analysis/fmea';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'baselibs_rust/log/safety_analysis/dfa';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://eclipse-score.github.io/baselibs_rust/versions.json';
@@ -72,8 +72,8 @@
         </script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="DFA (Dependent Failure Analysis)" href="dfa.html" />
-    <link rel="prev" title="Detailed Design" href="../detailed_design/index.html" />
+    <link rel="next" title="Component Classification" href="../component_classification.html" />
+    <link rel="prev" title="FMEA (Failure Modes and Effects Analysis)" href="fmea.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="0.0.1" />
@@ -153,8 +153,15 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../module_docs/index.html">
-    Module Documents
+  <a class="nav-link nav-internal" href="../../../features/baselibs_rust/requirements/index.html">
+    Requirements
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../containers_rust/index.html">
+    containers_rust
   </a>
 </li>
 
@@ -162,6 +169,13 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../index.html">
     Log
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../module_docs/index.html">
+    Module Documents
   </a>
 </li>
 
@@ -275,8 +289,15 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../module_docs/index.html">
-    Module Documents
+  <a class="nav-link nav-internal" href="../../../features/baselibs_rust/requirements/index.html">
+    Requirements
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../containers_rust/index.html">
+    containers_rust
   </a>
 </li>
 
@@ -284,6 +305,13 @@
 <li class="nav-item current active">
   <a class="nav-link nav-internal" href="../index.html">
     Log
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../module_docs/index.html">
+    Module Documents
   </a>
 </li>
 
@@ -355,8 +383,8 @@
 
 <li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">Component Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../detailed_design/index.html">Detailed Design</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">FMEA (Failure Modes and Effects Analysis)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dfa.html">DFA (Dependent Failure Analysis)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmea.html">FMEA (Failure Modes and Effects Analysis)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">DFA (Dependent Failure Analysis)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../component_classification.html">Component Classification</a></li>
 </ul>
 </div>
@@ -401,7 +429,7 @@
     
     <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Log</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">FMEA (Failure Modes and Effects Analysis)</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">DFA (Dependent Failure Analysis)</span></li>
   </ul>
 </nav>
 </div>
@@ -418,13 +446,13 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="fmea-failure-modes-and-effects-analysis">
-<h1>FMEA (Failure Modes and Effects Analysis)<a class="headerlink" href="#fmea-failure-modes-and-effects-analysis" title="Link to this heading">#</a></h1>
-<div class="need_container docutils container" id="SNCB-c1ee219e">
-<div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_document table" id="doc__log_fmea">
+  <section id="dfa-dependent-failure-analysis">
+<h1>DFA (Dependent Failure Analysis)<a class="headerlink" href="#dfa-dependent-failure-analysis" title="Link to this heading">#</a></h1>
+<div class="need_container docutils container" id="SNCB-1be610e2">
+<div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_document table" id="doc__log_dfa">
 <tbody>
 <tr class="head row-odd"><td class="head_left" colspan="2"><div class="needs_head_left line-block">
-<div class="line"><span><span class="needs_title"><span class="needs_data">Log FMEA</span></span></span></div>
+<div class="line"><span><span class="needs_title"><span class="needs_data">Log DFA</span></span></span></div>
 </div>
 </td>
 <td class="head_center" colspan="2"><div class="needs_head line-block">
@@ -441,7 +469,7 @@
 <tr class="meta row-even"><td class="meta" colspan="3"><div class="needs_meta_left line-block">
 <div class="line"><span><span><div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">log</span></span></span></div>
 </span></span></div>
-<div class="line"><span><div class="line">realizes: <span class="realizes"><span><a class="external_link reference external" href="https://eclipse-score.github.io/process_description//main/process_areas/safety_analysis/safety_analysis_workproducts.html#wp__sw_component_fmea">wp__sw_component_fmea</a></span></span></div>
+<div class="line"><span><div class="line">realizes: <span class="realizes"><span><a class="external_link reference external" href="https://eclipse-score.github.io/process_description//main/process_areas/safety_analysis/safety_analysis_workproducts.html#wp__sw_component_dfa">wp__sw_component_dfa</a></span></span></div>
 </span></div>
 </div>
 </td>
@@ -450,7 +478,7 @@
 <tr class="content row-odd"><td class="content" colspan="6"></td>
 </tr>
 <tr class="footer row-even"><td class="footer_left" colspan="2"><div class="needs_footer_left line-block">
-<div class="line"><span><span class="needs-id"><a class="reference internal" href="#doc__log_fmea" title="doc__log_fmea">doc__log_fmea</a></span></span></div>
+<div class="line"><span><span class="needs-id"><a class="reference internal" href="#doc__log_dfa" title="doc__log_dfa">doc__log_dfa</a></span></span></div>
 </div>
 </td>
 <td class="footer" colspan="2"><div class="needs_footer line-block">
@@ -467,13 +495,13 @@
 <p class="admonition-title">Note</p>
 <p>Use the content of the document to describe e.g. why a fault model is not applicable for the diagram.</p>
 </div>
-<section id="failure-mode-list">
-<h2>Failure Mode List<a class="headerlink" href="#failure-mode-list" title="Link to this heading">#</a></h2>
-<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">comp_saf_fmea</span><span class="p">::</span> <span class="nt">&lt;Title&gt;</span>
+<section id="dependent-failure-initiators">
+<h2>Dependent Failure Initiators<a class="headerlink" href="#dependent-failure-initiators" title="Link to this heading">#</a></h2>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">comp_saf_dfa</span><span class="p">::</span> <span class="nt">&lt;Title&gt;</span>
    <span class="nc">:violates:</span> <span class="nt">&lt;Component architecture&gt;</span>
-   <span class="nc">:id:</span> comp_saf_fmea__&lt;Component&gt;__&lt;Element descriptor&gt;
-   <span class="nc">:fault_id:</span> <span class="nt">&lt;ID from fault model :need:`gd_guidl__fault_models`&gt;</span>
-   <span class="nc">:failure_effect:</span> &quot;description of failure effect of the fault model on the element&quot;
+   <span class="nc">:id:</span> comp_saf_dfa__&lt;Component&gt;__&lt;Element descriptor&gt;
+   <span class="nc">:failure_id:</span> <span class="nt">&lt;ID from DFA failure initiators :need:`gd_guidl__dfa_failure_initiators`&gt;</span>
+   <span class="nc">:failure_effect:</span> &quot;description of failure effect of the failure initiator on the element&quot;
    <span class="nc">:mitigated_by:</span> <span class="nt">&lt;ID from Component Requirement | ID from AoU Component Requirement&gt;</span>
    <span class="nc">:mitigation_issue:</span> <span class="nt">&lt;ID from Issue Tracker&gt;</span>
    <span class="nc">:sufficient:</span> <span class="nt">&lt;yes|no&gt;</span>
@@ -486,7 +514,7 @@
 </div>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
-<p>The above directive must be updated according to your component FMEA.</p>
+<p>The above directive must be updated according to your component DFA.</p>
 <ul class="simple">
 <li><p>The above “code-block” directive must be updated</p></li>
 <li><p>Fill in all the needed information in the &lt;brackets&gt;</p></li>
@@ -506,20 +534,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../detailed_design/index.html"
+       href="fmea.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Detailed Design</p>
+        <p class="prev-next-title">FMEA (Failure Modes and Effects Analysis)</p>
       </div>
     </a>
     <a class="right-next"
-       href="dfa.html"
+       href="../component_classification.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">DFA (Dependent Failure Analysis)</p>
+        <p class="prev-next-title">Component Classification</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -542,7 +570,7 @@
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#failure-mode-list">Failure Mode List</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependent-failure-initiators">Dependent Failure Initiators</a></li>
 </ul>
   </nav></div>
 
@@ -550,7 +578,7 @@
 
   
   <div class="tocsection editthispage">
-    <a href="https://github.com/eclipse-score/baselibs_rust/edit/main/docs/module/log/safety_analysis/fmea.rst">
+    <a href="https://github.com/eclipse-score/baselibs_rust/edit/main/docs/baselibs_rust/log/safety_analysis/dfa.rst">
       <i class="fa-solid fa-pencil"></i>
       
       
@@ -566,7 +594,7 @@
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../../_sources/module/log/safety_analysis/fmea.rst.txt"
+      <li><a href="../../../_sources/baselibs_rust/log/safety_analysis/dfa.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div></div>
