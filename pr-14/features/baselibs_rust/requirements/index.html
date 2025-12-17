@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Component Architecture &#8212; Base Libraries - Rust  documentation</title>
+    <title>Requirements &#8212; Base Libraries - Rust  documentation</title>
   
   
   
@@ -62,7 +62,7 @@
     <script src="../../../_static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
     <script src="../../../_static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
     <script src="../../../_static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'module/log/architecture/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'features/baselibs_rust/requirements/index';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://eclipse-score.github.io/baselibs_rust/versions.json';
@@ -72,8 +72,8 @@
         </script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Detailed Design" href="../detailed_design/index.html" />
-    <link rel="prev" title="Requirements" href="../requirements/index.html" />
+    <link rel="next" title="containers_rust" href="../../../baselibs_rust/containers_rust/index.html" />
+    <link rel="prev" title="Rust Base Libraries" href="../../../index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="0.0.1" />
@@ -152,16 +152,30 @@
 <nav>
   <ul class="bd-navbar-elements navbar-nav">
     
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../module_docs/index.html">
-    Module Documents
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Requirements
   </a>
 </li>
 
 
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../index.html">
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../baselibs_rust/containers_rust/index.html">
+    containers_rust
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../baselibs_rust/log/index.html">
     Log
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../module_docs/index.html">
+    Module Documents
   </a>
 </li>
 
@@ -274,16 +288,30 @@
 <nav>
   <ul class="bd-navbar-elements navbar-nav">
     
-<li class="nav-item ">
-  <a class="nav-link nav-internal" href="../../../module_docs/index.html">
-    Module Documents
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Requirements
   </a>
 </li>
 
 
-<li class="nav-item current active">
-  <a class="nav-link nav-internal" href="../index.html">
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../baselibs_rust/containers_rust/index.html">
+    containers_rust
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../baselibs_rust/log/index.html">
     Log
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../module_docs/index.html">
+    Module Documents
   </a>
 </li>
 
@@ -350,16 +378,7 @@
 <nav class="bd-docs-nav bd-links"
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
-  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../requirements/index.html">Requirements</a></li>
-
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Component Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../detailed_design/index.html">Detailed Design</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../safety_analysis/fmea.html">FMEA (Failure Modes and Effects Analysis)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../safety_analysis/dfa.html">DFA (Dependent Failure Analysis)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../component_classification.html">Component Classification</a></li>
-</ul>
-</div>
+  <div class="bd-toc-item navbar-nav"></div>
 </nav></div>
     </div>
   
@@ -398,10 +417,7 @@
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    
-    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Log</a></li>
-    
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Component Architecture</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Requirements</span></li>
   </ul>
 </nav>
 </div>
@@ -418,18 +434,18 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="component-architecture">
-<span id="component-architecture-log"></span><h1>Component Architecture<a class="headerlink" href="#component-architecture" title="Link to this heading">#</a></h1>
-<div class="need_container docutils container" id="SNCB-92480dcf">
-<div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_document table" id="doc__log_architecture">
+  <section id="requirements">
+<h1>Requirements<a class="headerlink" href="#requirements" title="Link to this heading">#</a></h1>
+<div class="need_container docutils container" id="SNCB-decb6933">
+<div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_document table" id="doc__baselibs_rust_requirements">
 <tbody>
 <tr class="head row-odd"><td class="head_left" colspan="2"><div class="needs_head_left line-block">
-<div class="line"><span><span class="needs_title"><span class="needs_data">Log Architecture</span></span></span></div>
+<div class="line"><span><span class="needs_title"><span class="needs_data">Baselibs_rust Requirements</span></span></span></div>
 </div>
 </td>
 <td class="head_center" colspan="2"><div class="needs_head line-block">
 <div class="line"><span><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">draft</span></span></span></div>
-<div class="line"><span><span class="needs_security"><span class="needs_label">security: </span><span class="needs_data">NO</span></span></span></div>
+<div class="line"><span></span></div>
 <div class="line"><span><span class="needs_safety"><span class="needs_label">safety: </span><span class="needs_data">ASIL_B</span></span></span></div>
 </div>
 </td>
@@ -439,9 +455,8 @@
 </td>
 </tr>
 <tr class="meta row-even"><td class="meta" colspan="3"><div class="needs_meta_left line-block">
-<div class="line"><span><span><div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">log</span></span></span></div>
-</span></span></div>
-<div class="line"><span><div class="line">realizes: <span class="realizes"><span><a class="external_link reference external" href="https://eclipse-score.github.io/process_description//main/process_areas/architecture_design/architecture_workproducts.html#wp__component_arch">wp__component_arch</a></span></span></div>
+<div class="line"><span><span></span></span></div>
+<div class="line"><span><div class="line">realizes: <span class="realizes"><span><a class="external_link reference external" href="https://eclipse-score.github.io/process_description//main/process_areas/requirements_engineering/requirements_workproducts.html#wp__requirements_feat">wp__requirements_feat</a></span></span></div>
 </span></div>
 </div>
 </td>
@@ -450,7 +465,7 @@
 <tr class="content row-odd"><td class="content" colspan="6"></td>
 </tr>
 <tr class="footer row-even"><td class="footer_left" colspan="2"><div class="needs_footer_left line-block">
-<div class="line"><span><span class="needs-id"><a class="reference internal" href="#doc__log_architecture" title="doc__log_architecture">doc__log_architecture</a></span></span></div>
+<div class="line"><span><span class="needs-id"><a class="reference internal" href="#doc__baselibs_rust_requirements" title="doc__baselibs_rust_requirements">doc__baselibs_rust_requirements</a></span></span></div>
 </div>
 </td>
 <td class="footer" colspan="2"><div class="needs_footer line-block">
@@ -463,36 +478,17 @@
 </table>
 </div>
 </div>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
-<p>Document describes Log component architecture.</p>
-</section>
-<section id="description">
-<h2>Description<a class="headerlink" href="#description" title="Link to this heading">#</a></h2>
-<p>Log component is modelled after the <cite>log</cite> library, which is ubiquitous in Rust ecosystem.
-This provides familiar APIs and syntax - provided APIs can be replaced at compile time with <cite>log</cite>.</p>
-<p>Component provides new formatting functionality (replacement to <cite>core::fmt</cite>) to ensure improved flexibility in formatting on backend side.
-E.g., numeric types are formatted by the backend, and not by the core library.</p>
-<p>Even though design is similar - existing <cite>log</cite> implementations are not compatible.</p>
-<section id="rationale-behind-architecture-decomposition">
-<h3>Rationale Behind Architecture Decomposition<a class="headerlink" href="#rationale-behind-architecture-decomposition" title="Link to this heading">#</a></h3>
-<p>Architecture is not decomposed.
-Log component is a monolithic frontend.</p>
-</section>
-</section>
-<section id="static-architecture">
-<h2>Static Architecture<a class="headerlink" href="#static-architecture" title="Link to this heading">#</a></h2>
-<div class="need_container docutils container" id="SNCB-2d24c677">
-<div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_comp_arc_sta table" id="comp_arc_sta__log__static_view">
+<div class="need_container docutils container" id="SNCB-ce3f621a">
+<div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_feat_req table" id="feat_req__baselibs_rust__core_utilities">
 <tbody>
 <tr class="head row-odd"><td class="head_left" colspan="2"><div class="needs_head_left line-block">
-<div class="line"><span><span class="needs_title"><span class="needs_data">Log (Static View)</span></span></span></div>
+<div class="line"><span><span class="needs_title"><span class="needs_data">Core Software Utilities</span></span></span></div>
 </div>
 </td>
 <td class="head_center" colspan="2"><div class="needs_head line-block">
 <div class="line"><span><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></span></div>
 <div class="line"><span><span class="needs_security"><span class="needs_label">security: </span><span class="needs_data">NO</span></span></span></div>
-<div class="line"><span><span class="needs_safety"><span class="needs_label">safety: </span><span class="needs_data">ASIL_B</span></span></span></div>
+<div class="line"><span><span class="needs_safety"><span class="needs_label">safety: </span><span class="needs_data">QM</span></span></span></div>
 </div>
 </td>
 <td class="head_right" colspan="2"><div class="needs_head_right line-block">
@@ -501,24 +497,23 @@ Log component is a monolithic frontend.</p>
 </td>
 </tr>
 <tr class="meta row-even"><td class="meta" colspan="3"><div class="needs_meta_left line-block">
-<div class="line"><span><span><div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">log</span></span></span></div>
+<div class="line"><span><span><div class="line"><span class="needs_reqtype"><span class="needs_label">reqtype: </span><span class="needs_data">Functional</span></span></div>
 </span></span></div>
-<div class="line"><span><div class="line">satisfied by: <span class="satisfies"><span><a class="reference internal" href="../detailed_design/index.html#dd_sta__log__class_diagram" title="comp_arc_sta__log__static_view">dd_sta__log__class_diagram</a>, <a class="reference internal" href="../detailed_design/index.html#dd_dyn__log__log_op" title="comp_arc_sta__log__static_view">dd_dyn__log__log_op</a>, <a class="reference internal" href="../detailed_design/index.html#dd_dyn__log__log_to_level" title="comp_arc_sta__log__static_view">dd_dyn__log__log_to_level</a></span></span></div>
+<div class="line"><span><div class="line">satisfies: <span class="satisfies"><span><a class="external_link reference external" href="https://eclipse-score.github.io/score/main/requirements/stakeholder/index.html#stkh_req__functional_req__base_libraries">stkh_req__functional_req__base_libraries</a></span></span></div>
+<div class="line">satisfied by: <span class="satisfies"><span><a class="reference internal" href="../../../baselibs_rust/containers_rust/requirements/index.html#comp_req__containers_rust__det_behavior" title="feat_req__baselibs_rust__core_utilities">comp_req__containers_rust__det_behavior</a></span></span></div>
 </span></div>
 </div>
 </td>
 <td class="meta" colspan="3"></td>
 </tr>
-<tr class="content row-odd"><td class="content" colspan="6"><p class="plantuml">
-<object data="../../../_images/plantuml-f917d95675fb8d26f4ce373d6fcaadcc7d8f7071.svg" type="image/svg+xml" style="width:580px;height:353px;background:#FFFFFF;"></object></p>
-</td>
+<tr class="content row-odd"><td class="content" colspan="6"><p>The Rust base libraries shall include core software utilities and common infrastructure components needed by multiple platform modules.</p></td>
 </tr>
 <tr class="footer row-even"><td class="footer_left" colspan="2"><div class="needs_footer_left line-block">
-<div class="line"><span><span class="needs-id"><a class="reference internal" href="#comp_arc_sta__log__static_view" title="comp_arc_sta__log__static_view">comp_arc_sta__log__static_view</a></span></span></div>
+<div class="line"><span><span class="needs-id"><a class="reference internal" href="#feat_req__baselibs_rust__core_utilities" title="feat_req__baselibs_rust__core_utilities">feat_req__baselibs_rust__core_utilities</a></span></span></div>
 </div>
 </td>
 <td class="footer" colspan="2"><div class="needs_footer line-block">
-<div class="line"><span><span class="needs_type_name"><span class="needs_data">Component &amp; Component Package Diagram</span></span></span></div>
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Feature Requirement</span></span></span></div>
 </div>
 </td>
 <td class="footer_right" colspan="2"></td>
@@ -527,14 +522,11 @@ Log component is a monolithic frontend.</p>
 </table>
 </div>
 </div>
-</section>
-<section id="dynamic-architecture">
-<h2>Dynamic Architecture<a class="headerlink" href="#dynamic-architecture" title="Link to this heading">#</a></h2>
-<div class="need_container docutils container" id="SNCB-4e677222">
-<div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_comp_arc_dyn table" id="comp_arc_dyn__log__register_global_logger">
+<div class="need_container docutils container" id="SNCB-5ca211ff">
+<div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_feat_req table" id="feat_req__baselibs_rust__safety">
 <tbody>
 <tr class="head row-odd"><td class="head_left" colspan="2"><div class="needs_head_left line-block">
-<div class="line"><span><span class="needs_title"><span class="needs_data">Register global logger</span></span></span></div>
+<div class="line"><span><span class="needs_title"><span class="needs_data">Safety Relevance</span></span></span></div>
 </div>
 </td>
 <td class="head_center" colspan="2"><div class="needs_head line-block">
@@ -549,23 +541,23 @@ Log component is a monolithic frontend.</p>
 </td>
 </tr>
 <tr class="meta row-even"><td class="meta" colspan="3"><div class="needs_meta_left line-block">
-<div class="line"><span><span><div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">log</span></span></span></div>
+<div class="line"><span><span><div class="line"><span class="needs_reqtype"><span class="needs_label">reqtype: </span><span class="needs_data">Functional</span></span></div>
 </span></span></div>
-<div class="line"><span></span></div>
+<div class="line"><span><div class="line">satisfies: <span class="satisfies"><span><a class="external_link reference external" href="https://eclipse-score.github.io/score/main/requirements/stakeholder/index.html#stkh_req__functional_req__base_libraries">stkh_req__functional_req__base_libraries</a>, <a class="external_link reference external" href="https://eclipse-score.github.io/score/main/requirements/stakeholder/index.html#stkh_req__dependability__automotive_safety">stkh_req__dependability__automotive_safety</a></span></span></div>
+<div class="line">satisfied by: <span class="satisfies"><span><a class="reference internal" href="../../../baselibs_rust/containers_rust/requirements/index.html#comp_req__containers_rust__type_safety" title="feat_req__baselibs_rust__safety">comp_req__containers_rust__type_safety</a>, <a class="reference internal" href="../../../baselibs_rust/containers_rust/requirements/index.html#comp_req__containers_rust__det_behavior" title="feat_req__baselibs_rust__safety">comp_req__containers_rust__det_behavior</a></span></span></div>
+</span></div>
 </div>
 </td>
 <td class="meta" colspan="3"></td>
 </tr>
-<tr class="content row-odd"><td class="content" colspan="6"><p class="plantuml">
-<object data="../../../_images/plantuml-19755e93d69d7db5ae08db888c87350cdaa088ec.svg" type="image/svg+xml" style="width:563px;height:283px;background:#FFFFFF;"></object></p>
-</td>
+<tr class="content row-odd"><td class="content" colspan="6"><p>The Rust base libraries shall implement functionality necessary to support safety-relevant platform components up to ASIL-B for selected functionalities.</p></td>
 </tr>
 <tr class="footer row-even"><td class="footer_left" colspan="2"><div class="needs_footer_left line-block">
-<div class="line"><span><span class="needs-id"><a class="reference internal" href="#comp_arc_dyn__log__register_global_logger" title="comp_arc_dyn__log__register_global_logger">comp_arc_dyn__log__register_global_logger</a></span></span></div>
+<div class="line"><span><span class="needs-id"><a class="reference internal" href="#feat_req__baselibs_rust__safety" title="feat_req__baselibs_rust__safety">feat_req__baselibs_rust__safety</a></span></span></div>
 </div>
 </td>
 <td class="footer" colspan="2"><div class="needs_footer line-block">
-<div class="line"><span><span class="needs_type_name"><span class="needs_data">Component Sequence Diagram</span></span></span></div>
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Feature Requirement</span></span></span></div>
 </div>
 </td>
 <td class="footer_right" colspan="2"></td>
@@ -574,11 +566,141 @@ Log component is a monolithic frontend.</p>
 </table>
 </div>
 </div>
-<div class="need_container docutils container" id="SNCB-432212a1">
-<div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_comp_arc_dyn table" id="comp_arc_dyn__log__log_with_global_logger">
+<div class="need_container docutils container" id="SNCB-b8a1662b">
+<div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_feat_req table" id="feat_req__baselibs_rust__consistent_apis">
 <tbody>
 <tr class="head row-odd"><td class="head_left" colspan="2"><div class="needs_head_left line-block">
-<div class="line"><span><span class="needs_title"><span class="needs_data">Log with global logger instance</span></span></span></div>
+<div class="line"><span><span class="needs_title"><span class="needs_data">Consistent APIs</span></span></span></div>
+</div>
+</td>
+<td class="head_center" colspan="2"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></span></div>
+<div class="line"><span><span class="needs_security"><span class="needs_label">security: </span><span class="needs_data">NO</span></span></span></div>
+<div class="line"><span><span class="needs_safety"><span class="needs_label">safety: </span><span class="needs_data">QM</span></span></span></div>
+</div>
+</td>
+<td class="head_right" colspan="2"><div class="needs_head_right line-block">
+<div class="line"><span><span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span></span></div>
+</div>
+</td>
+</tr>
+<tr class="meta row-even"><td class="meta" colspan="3"><div class="needs_meta_left line-block">
+<div class="line"><span><span><div class="line"><span class="needs_reqtype"><span class="needs_label">reqtype: </span><span class="needs_data">Functional</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">satisfies: <span class="satisfies"><span><a class="external_link reference external" href="https://eclipse-score.github.io/score/main/requirements/stakeholder/index.html#stkh_req__functional_req__base_libraries">stkh_req__functional_req__base_libraries</a>, <a class="external_link reference external" href="https://eclipse-score.github.io/score/main/requirements/stakeholder/index.html#stkh_req__dev_experience__prog_languages">stkh_req__dev_experience__prog_languages</a>, <a class="external_link reference external" href="https://eclipse-score.github.io/score/main/requirements/stakeholder/index.html#stkh_req__overall_goals__reuse_of_app_soft">stkh_req__overall_goals__reuse_of_app_soft</a></span></span></div>
+<div class="line">satisfied by: <span class="satisfies"><span><a class="reference internal" href="../../../baselibs_rust/containers_rust/requirements/index.html#comp_req__containers_rust__type_safety" title="feat_req__baselibs_rust__consistent_apis">comp_req__containers_rust__type_safety</a></span></span></div>
+</span></div>
+</div>
+</td>
+<td class="meta" colspan="3"></td>
+</tr>
+<tr class="content row-odd"><td class="content" colspan="6"><p>The Rust base libraries shall provide consistent APIs while respecting language-specific idioms.</p></td>
+</tr>
+<tr class="footer row-even"><td class="footer_left" colspan="2"><div class="needs_footer_left line-block">
+<div class="line"><span><span class="needs-id"><a class="reference internal" href="#feat_req__baselibs_rust__consistent_apis" title="feat_req__baselibs_rust__consistent_apis">feat_req__baselibs_rust__consistent_apis</a></span></span></div>
+</div>
+</td>
+<td class="footer" colspan="2"><div class="needs_footer line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Feature Requirement</span></span></span></div>
+</div>
+</td>
+<td class="footer_right" colspan="2"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="need_container docutils container" id="SNCB-2cc73b40">
+<div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_feat_req table" id="feat_req__baselibs_rust__maintainable_design">
+<tbody>
+<tr class="head row-odd"><td class="head_left" colspan="2"><div class="needs_head_left line-block">
+<div class="line"><span><span class="needs_title"><span class="needs_data">Maintainable Design</span></span></span></div>
+</div>
+</td>
+<td class="head_center" colspan="2"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></span></div>
+<div class="line"><span><span class="needs_security"><span class="needs_label">security: </span><span class="needs_data">NO</span></span></span></div>
+<div class="line"><span><span class="needs_safety"><span class="needs_label">safety: </span><span class="needs_data">QM</span></span></span></div>
+</div>
+</td>
+<td class="head_right" colspan="2"><div class="needs_head_right line-block">
+<div class="line"><span><span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span></span></div>
+</div>
+</td>
+</tr>
+<tr class="meta row-even"><td class="meta" colspan="3"><div class="needs_meta_left line-block">
+<div class="line"><span><span><div class="line"><span class="needs_reqtype"><span class="needs_label">reqtype: </span><span class="needs_data">Non-Functional</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">satisfies: <span class="satisfies"><span><a class="external_link reference external" href="https://eclipse-score.github.io/score/main/requirements/stakeholder/index.html#stkh_req__functional_req__base_libraries">stkh_req__functional_req__base_libraries</a>, <a class="external_link reference external" href="https://eclipse-score.github.io/score/main/requirements/stakeholder/index.html#stkh_req__overall_goals__reuse_of_app_soft">stkh_req__overall_goals__reuse_of_app_soft</a></span></span></div>
+</span></div>
+</div>
+</td>
+<td class="meta" colspan="3"></td>
+</tr>
+<tr class="content row-odd"><td class="content" colspan="6"><p>The Rust base libraries shall be designed for maintainability and code reuse.</p></td>
+</tr>
+<tr class="footer row-even"><td class="footer_left" colspan="2"><div class="needs_footer_left line-block">
+<div class="line"><span><span class="needs-id"><a class="reference internal" href="#feat_req__baselibs_rust__maintainable_design" title="feat_req__baselibs_rust__maintainable_design">feat_req__baselibs_rust__maintainable_design</a></span></span></div>
+</div>
+</td>
+<td class="footer" colspan="2"><div class="needs_footer line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Feature Requirement</span></span></span></div>
+</div>
+</td>
+<td class="footer_right" colspan="2"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="need_container docutils container" id="SNCB-d6938ca6">
+<div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_feat_req table" id="feat_req__baselibs_rust__security">
+<tbody>
+<tr class="head row-odd"><td class="head_left" colspan="2"><div class="needs_head_left line-block">
+<div class="line"><span><span class="needs_title"><span class="needs_data">Security Robustness</span></span></span></div>
+</div>
+</td>
+<td class="head_center" colspan="2"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">valid</span></span></span></div>
+<div class="line"><span><span class="needs_security"><span class="needs_label">security: </span><span class="needs_data">YES</span></span></span></div>
+<div class="line"><span><span class="needs_safety"><span class="needs_label">safety: </span><span class="needs_data">QM</span></span></span></div>
+</div>
+</td>
+<td class="head_right" colspan="2"><div class="needs_head_right line-block">
+<div class="line"><span><span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span></span></div>
+</div>
+</td>
+</tr>
+<tr class="meta row-even"><td class="meta" colspan="3"><div class="needs_meta_left line-block">
+<div class="line"><span><span><div class="line"><span class="needs_reqtype"><span class="needs_label">reqtype: </span><span class="needs_data">Non-Functional</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">satisfies: <span class="satisfies"><span><a class="external_link reference external" href="https://eclipse-score.github.io/score/main/requirements/stakeholder/index.html#stkh_req__functional_req__base_libraries">stkh_req__functional_req__base_libraries</a></span></span></div>
+</span></div>
+</div>
+</td>
+<td class="meta" colspan="3"></td>
+</tr>
+<tr class="content row-odd"><td class="content" colspan="6"><p>The Rust base libraries shall adhere to secure coding standards to prevent vulnerabilities across platform components.</p></td>
+</tr>
+<tr class="footer row-even"><td class="footer_left" colspan="2"><div class="needs_footer_left line-block">
+<div class="line"><span><span class="needs-id"><a class="reference internal" href="#feat_req__baselibs_rust__security" title="feat_req__baselibs_rust__security">feat_req__baselibs_rust__security</a></span></span></div>
+</div>
+</td>
+<td class="footer" colspan="2"><div class="needs_footer line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Feature Requirement</span></span></span></div>
+</div>
+</td>
+<td class="footer_right" colspan="2"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="need_container docutils container" id="SNCB-3f1e6aad">
+<div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_feat_req table" id="feat_req__baselibs_rust__result_library">
+<tbody>
+<tr class="head row-odd"><td class="head_left" colspan="2"><div class="needs_head_left line-block">
+<div class="line"><span><span class="needs_title"><span class="needs_data">Panic-Free Development Support</span></span></span></div>
 </div>
 </td>
 <td class="head_center" colspan="2"><div class="needs_head line-block">
@@ -593,23 +715,24 @@ Log component is a monolithic frontend.</p>
 </td>
 </tr>
 <tr class="meta row-even"><td class="meta" colspan="3"><div class="needs_meta_left line-block">
-<div class="line"><span><span><div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">log</span></span></span></div>
+<div class="line"><span><span><div class="line"><span class="needs_reqtype"><span class="needs_label">reqtype: </span><span class="needs_data">Functional</span></span></div>
 </span></span></div>
-<div class="line"><span></span></div>
+<div class="line"><span><div class="line">satisfies: <span class="satisfies"><span><a class="external_link reference external" href="https://eclipse-score.github.io/score/main/requirements/stakeholder/index.html#stkh_req__functional_req__base_libraries">stkh_req__functional_req__base_libraries</a></span></span></div>
+<div class="line">satisfied by: <span class="satisfies"><span><a class="reference internal" href="../../../baselibs_rust/containers_rust/requirements/index.html#comp_req__containers_rust__fixed_no_realloc" title="feat_req__baselibs_rust__result_library">comp_req__containers_rust__fixed_no_realloc</a></span></span></div>
+</span></div>
 </div>
 </td>
 <td class="meta" colspan="3"></td>
 </tr>
-<tr class="content row-odd"><td class="content" colspan="6"><p class="plantuml">
-<object data="../../../_images/plantuml-210e96639b57577273a1da609e1790f58b0fb6c4.svg" type="image/svg+xml" style="width:594px;height:309px;background:#FFFFFF;"></object></p>
-</td>
+<tr class="content row-odd"><td class="content" colspan="6"><p>The Rust base libraries shall provide error handling mechanisms that enable development without relying on Rust panics.
+Where an idiomatic interface requires panics, an additional non-panicking option shall be provided as well.</p></td>
 </tr>
 <tr class="footer row-even"><td class="footer_left" colspan="2"><div class="needs_footer_left line-block">
-<div class="line"><span><span class="needs-id"><a class="reference internal" href="#comp_arc_dyn__log__log_with_global_logger" title="comp_arc_dyn__log__log_with_global_logger">comp_arc_dyn__log__log_with_global_logger</a></span></span></div>
+<div class="line"><span><span class="needs-id"><a class="reference internal" href="#feat_req__baselibs_rust__result_library" title="feat_req__baselibs_rust__result_library">feat_req__baselibs_rust__result_library</a></span></span></div>
 </div>
 </td>
 <td class="footer" colspan="2"><div class="needs_footer line-block">
-<div class="line"><span><span class="needs_type_name"><span class="needs_data">Component Sequence Diagram</span></span></span></div>
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Feature Requirement</span></span></span></div>
 </div>
 </td>
 <td class="footer_right" colspan="2"></td>
@@ -618,11 +741,11 @@ Log component is a monolithic frontend.</p>
 </table>
 </div>
 </div>
-<div class="need_container docutils container" id="SNCB-1466cb2f">
-<div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_comp_arc_dyn table" id="comp_arc_dyn__log__log_with_local_logger">
+<div class="need_container docutils container" id="SNCB-2d2b7d13">
+<div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_feat_req table" id="feat_req__baselibs_rust__containers_rust_lib">
 <tbody>
 <tr class="head row-odd"><td class="head_left" colspan="2"><div class="needs_head_left line-block">
-<div class="line"><span><span class="needs_title"><span class="needs_data">Log with local logger instance</span></span></span></div>
+<div class="line"><span><span class="needs_title"><span class="needs_data">Rust Container Library</span></span></span></div>
 </div>
 </td>
 <td class="head_center" colspan="2"><div class="needs_head line-block">
@@ -637,23 +760,23 @@ Log component is a monolithic frontend.</p>
 </td>
 </tr>
 <tr class="meta row-even"><td class="meta" colspan="3"><div class="needs_meta_left line-block">
-<div class="line"><span><span><div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">log</span></span></span></div>
+<div class="line"><span><span><div class="line"><span class="needs_reqtype"><span class="needs_label">reqtype: </span><span class="needs_data">Functional</span></span></div>
 </span></span></div>
-<div class="line"><span></span></div>
+<div class="line"><span><div class="line">satisfies: <span class="satisfies"><span><a class="external_link reference external" href="https://eclipse-score.github.io/score/main/requirements/stakeholder/index.html#stkh_req__functional_req__base_libraries">stkh_req__functional_req__base_libraries</a></span></span></div>
+<div class="line">satisfied by: <span class="satisfies"><span><a class="reference internal" href="../../../baselibs_rust/containers_rust/requirements/index.html#comp_req__containers_rust__fixed_vector" title="feat_req__baselibs_rust__containers_rust_lib">comp_req__containers_rust__fixed_vector</a>, <a class="reference internal" href="../../../baselibs_rust/containers_rust/requirements/index.html#comp_req__containers_rust__inline_vector" title="feat_req__baselibs_rust__containers_rust_lib">comp_req__containers_rust__inline_vector</a>, <a class="reference internal" href="../../../baselibs_rust/containers_rust/requirements/index.html#comp_req__containers_rust__fixed_string" title="feat_req__baselibs_rust__containers_rust_lib">comp_req__containers_rust__fixed_string</a>, <a class="reference internal" href="../../../baselibs_rust/containers_rust/requirements/index.html#comp_req__containers_rust__inline_string" title="feat_req__baselibs_rust__containers_rust_lib">comp_req__containers_rust__inline_string</a>, <a class="reference internal" href="../../../baselibs_rust/containers_rust/requirements/index.html#comp_req__containers_rust__fixed_queue" title="feat_req__baselibs_rust__containers_rust_lib">comp_req__containers_rust__fixed_queue</a>, <a class="reference internal" href="../../../baselibs_rust/containers_rust/requirements/index.html#comp_req__containers_rust__inline_queue" title="feat_req__baselibs_rust__containers_rust_lib">comp_req__containers_rust__inline_queue</a>, <a class="reference internal" href="../../../baselibs_rust/containers_rust/requirements/index.html#comp_req__containers_rust__fixed_hashmap" title="feat_req__baselibs_rust__containers_rust_lib">comp_req__containers_rust__fixed_hashmap</a>, <a class="reference internal" href="../../../baselibs_rust/containers_rust/requirements/index.html#comp_req__containers_rust__inline_hashmap" title="feat_req__baselibs_rust__containers_rust_lib">comp_req__containers_rust__inline_hashmap</a>, <a class="reference internal" href="../../../baselibs_rust/containers_rust/requirements/index.html#comp_req__containers_rust__fixed_hashset" title="feat_req__baselibs_rust__containers_rust_lib">comp_req__containers_rust__fixed_hashset</a>, <a class="reference internal" href="../../../baselibs_rust/containers_rust/requirements/index.html#comp_req__containers_rust__inline_hashset" title="feat_req__baselibs_rust__containers_rust_lib">comp_req__containers_rust__inline_hashset</a>, <a class="reference internal" href="../../../baselibs_rust/containers_rust/requirements/index.html#comp_req__containers_rust__fixed_btree" title="feat_req__baselibs_rust__containers_rust_lib">comp_req__containers_rust__fixed_btree</a>, <a class="reference internal" href="../../../baselibs_rust/containers_rust/requirements/index.html#comp_req__containers_rust__inline_btree" title="feat_req__baselibs_rust__containers_rust_lib">comp_req__containers_rust__inline_btree</a></span></span></div>
+</span></div>
 </div>
 </td>
 <td class="meta" colspan="3"></td>
 </tr>
-<tr class="content row-odd"><td class="content" colspan="6"><p class="plantuml">
-<object data="../../../_images/plantuml-de0b6d96f9c5a987906f42afb627fd37ce31ad4f.svg" type="image/svg+xml" style="width:606px;height:236px;background:#FFFFFF;"></object></p>
-</td>
+<tr class="content row-odd"><td class="content" colspan="6"><p>The Rust base libraries shall provide a library of container types that serve the specific needs of SW-platform components.</p></td>
 </tr>
 <tr class="footer row-even"><td class="footer_left" colspan="2"><div class="needs_footer_left line-block">
-<div class="line"><span><span class="needs-id"><a class="reference internal" href="#comp_arc_dyn__log__log_with_local_logger" title="comp_arc_dyn__log__log_with_local_logger">comp_arc_dyn__log__log_with_local_logger</a></span></span></div>
+<div class="line"><span><span class="needs-id"><a class="reference internal" href="#feat_req__baselibs_rust__containers_rust_lib" title="feat_req__baselibs_rust__containers_rust_lib">feat_req__baselibs_rust__containers_rust_lib</a></span></span></div>
 </div>
 </td>
 <td class="footer" colspan="2"><div class="needs_footer line-block">
-<div class="line"><span><span class="needs_type_name"><span class="needs_data">Component Sequence Diagram</span></span></span></div>
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Feature Requirement</span></span></span></div>
 </div>
 </td>
 <td class="footer_right" colspan="2"></td>
@@ -662,14 +785,11 @@ Log component is a monolithic frontend.</p>
 </table>
 </div>
 </div>
-</section>
-<section id="interfaces">
-<h2>Interfaces<a class="headerlink" href="#interfaces" title="Link to this heading">#</a></h2>
-<div class="need_container docutils container" id="SNCB-02880a02">
-<div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_real_arc_int table" id="real_arc_int__log__interface">
+<div class="need_container docutils container" id="SNCB-8615f4ef">
+<div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_feat_req table" id="feat_req__baselibs_rust__abi_containers">
 <tbody>
 <tr class="head row-odd"><td class="head_left" colspan="2"><div class="needs_head_left line-block">
-<div class="line"><span><span class="needs_title"><span class="needs_data">Log interface</span></span></span></div>
+<div class="line"><span><span class="needs_title"><span class="needs_data">ABI-Compatible Containers</span></span></span></div>
 </div>
 </td>
 <td class="head_center" colspan="2"><div class="needs_head line-block">
@@ -684,24 +804,23 @@ Log component is a monolithic frontend.</p>
 </td>
 </tr>
 <tr class="meta row-even"><td class="meta" colspan="3"><div class="needs_meta_left line-block">
-<div class="line"><span><span><div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">log</span></span></span></div>
-<div class="line"><span class="needs_language"><span class="needs_label">language: </span><span class="needs_data">rust</span></span></div>
+<div class="line"><span><span><div class="line"><span class="needs_reqtype"><span class="needs_label">reqtype: </span><span class="needs_data">Functional</span></span></div>
 </span></span></div>
-<div class="line"><span></span></div>
+<div class="line"><span><div class="line">satisfies: <span class="satisfies"><span><a class="external_link reference external" href="https://eclipse-score.github.io/score/main/requirements/stakeholder/index.html#stkh_req__functional_req__base_libraries">stkh_req__functional_req__base_libraries</a></span></span></div>
+<div class="line">satisfied by: <span class="satisfies"><span><a class="reference internal" href="../../../baselibs_rust/containers_rust/requirements/index.html#comp_req__containers_rust__inline_vector" title="feat_req__baselibs_rust__abi_containers">comp_req__containers_rust__inline_vector</a>, <a class="reference internal" href="../../../baselibs_rust/containers_rust/requirements/index.html#comp_req__containers_rust__inline_string" title="feat_req__baselibs_rust__abi_containers">comp_req__containers_rust__inline_string</a>, <a class="reference internal" href="../../../baselibs_rust/containers_rust/requirements/index.html#comp_req__containers_rust__inline_queue" title="feat_req__baselibs_rust__abi_containers">comp_req__containers_rust__inline_queue</a>, <a class="reference internal" href="../../../baselibs_rust/containers_rust/requirements/index.html#comp_req__containers_rust__inline_hashmap" title="feat_req__baselibs_rust__abi_containers">comp_req__containers_rust__inline_hashmap</a>, <a class="reference internal" href="../../../baselibs_rust/containers_rust/requirements/index.html#comp_req__containers_rust__inline_hashset" title="feat_req__baselibs_rust__abi_containers">comp_req__containers_rust__inline_hashset</a>, <a class="reference internal" href="../../../baselibs_rust/containers_rust/requirements/index.html#comp_req__containers_rust__inline_btree" title="feat_req__baselibs_rust__abi_containers">comp_req__containers_rust__inline_btree</a>, <a class="reference internal" href="../../../baselibs_rust/containers_rust/requirements/index.html#comp_req__containers_rust__inline_no_heap" title="feat_req__baselibs_rust__abi_containers">comp_req__containers_rust__inline_no_heap</a></span></span></div>
+</span></div>
 </div>
 </td>
 <td class="meta" colspan="3"></td>
 </tr>
-<tr class="content row-odd"><td class="content" colspan="6"><p class="plantuml">
-<object data="../../../_images/plantuml-4d155c7cd8803086989fa841a0e731bc8241936c.svg" type="image/svg+xml" style="width:1688px;height:594px;background:#FFFFFF;"></object></p>
-</td>
+<tr class="content row-odd"><td class="content" colspan="6"><p>The Rust base libraries shall provide a library of containers that can serve as the basis for ABI-compatible container data structures.</p></td>
 </tr>
 <tr class="footer row-even"><td class="footer_left" colspan="2"><div class="needs_footer_left line-block">
-<div class="line"><span><span class="needs-id"><a class="reference internal" href="#real_arc_int__log__interface" title="real_arc_int__log__interface">real_arc_int__log__interface</a></span></span></div>
+<div class="line"><span><span class="needs-id"><a class="reference internal" href="#feat_req__baselibs_rust__abi_containers" title="feat_req__baselibs_rust__abi_containers">feat_req__baselibs_rust__abi_containers</a></span></span></div>
 </div>
 </td>
 <td class="footer" colspan="2"><div class="needs_footer line-block">
-<div class="line"><span><span class="needs_type_name"><span class="needs_data">Interface &amp; Component Interface</span></span></span></div>
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Feature Requirement</span></span></span></div>
 </div>
 </td>
 <td class="footer_right" colspan="2"></td>
@@ -710,7 +829,6 @@ Log component is a monolithic frontend.</p>
 </table>
 </div>
 </div>
-</section>
 </section>
 
 
@@ -724,20 +842,20 @@ Log component is a monolithic frontend.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../requirements/index.html"
+       href="../../../index.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Requirements</p>
+        <p class="prev-next-title">Rust Base Libraries</p>
       </div>
     </a>
     <a class="right-next"
-       href="../detailed_design/index.html"
+       href="../../../baselibs_rust/containers_rust/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Detailed Design</p>
+        <p class="prev-next-title">containers_rust</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -753,29 +871,10 @@ Log component is a monolithic frontend.</p>
 
 
   <div class="sidebar-secondary-item">
-<div
-    id="pst-page-navigation-heading-2"
-    class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description">Description</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rationale-behind-architecture-decomposition">Rationale Behind Architecture Decomposition</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#static-architecture">Static Architecture</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-architecture">Dynamic Architecture</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interfaces">Interfaces</a></li>
-</ul>
-  </nav></div>
-
-  <div class="sidebar-secondary-item">
 
   
   <div class="tocsection editthispage">
-    <a href="https://github.com/eclipse-score/baselibs_rust/edit/main/docs/module/log/architecture/index.rst">
+    <a href="https://github.com/eclipse-score/baselibs_rust/edit/main/docs/features/baselibs_rust/requirements/index.rst">
       <i class="fa-solid fa-pencil"></i>
       
       
@@ -791,7 +890,7 @@ Log component is a monolithic frontend.</p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../../../_sources/module/log/architecture/index.rst.txt"
+      <li><a href="../../../_sources/features/baselibs_rust/requirements/index.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div></div>
