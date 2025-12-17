@@ -11,14 +11,13 @@
 # SPDX-License-Identifier: Apache-2.0
 # *******************************************************************************
 
-[package]
-name = "log_example"
-version.workspace = true
-authors.workspace = true
-edition.workspace = true
+load("@rules_rust//rust:defs.bzl", "rust_binary")
 
-[dependencies]
-mw_log.workspace = true
-
-[lints]
-workspace = true
+rust_binary(
+    name = "log_builtin",
+    srcs = glob(["src/**/*.rs"]),
+    deps = [
+        "//src/log/mw_log",
+        "//src/log/mw_log_subscriber",
+    ],
+)

@@ -7,7 +7,15 @@ name = "containers"
 version = "0.1.0"
 
 [[package]]
-name = "log_example"
+name = "log_builtin"
+version = "0.0.1"
+dependencies = [
+ "mw_log",
+ "mw_log_subscriber",
+]
+
+[[package]]
+name = "log_custom"
 version = "0.0.1"
 dependencies = [
  "mw_log",
@@ -34,6 +42,13 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn",
+]
+
+[[package]]
+name = "mw_log_subscriber"
+version = "0.0.1"
+dependencies = [
+ "mw_log",
 ]
 
 [[package]]
