@@ -19,6 +19,7 @@ Requirements
    :id: doc__baselibs_rust_requirements
    :status: draft
    :safety: ASIL_B
+   :security: NO
    :realizes: wp__requirements_feat
 
 .. feat_req:: Core Software Utilities
