@@ -11,10 +11,14 @@
 // SPDX-License-Identifier: Apache-2.0
 // *******************************************************************************
 
+mod option;
 mod queue;
+mod result;
 mod string;
 mod vec;
 
+pub use self::option::InlineOption;
 pub use self::queue::InlineQueue;
+pub use self::result::InlineResult;
 pub use self::string::InlineString;
 pub use self::vec::InlineVec;
