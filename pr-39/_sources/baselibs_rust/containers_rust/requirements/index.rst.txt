@@ -19,6 +19,7 @@ Requirements
    :id: doc__containers_rust_lib_requirements
    :status: draft
    :safety: ASIL_B
+   :security: NO
    :realizes: wp__requirements_comp
    :tags: requirements, containers_rust_library
 
