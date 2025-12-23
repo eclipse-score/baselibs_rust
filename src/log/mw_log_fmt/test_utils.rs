@@ -13,7 +13,7 @@
 
 //! Common testing utilities.
 
-use crate::{Error, FormatSpec, Result, ScoreDebug, ScoreWrite};
+use crate::{DisplayHint, Error, FormatSpec, Result, ScoreDebug, ScoreWrite};
 use core::fmt::{Error as CoreFmtError, Write};
 
 impl From<CoreFmtError> for Error {
@@ -90,6 +90,8 @@ impl ScoreWrite for StringWriter {
 /// This is useful for e.g., checking string primitives.
 pub(crate) fn common_test_debug<T: ScoreDebug + core::fmt::Debug>(v: T) {
     let mut w = StringWriter::new();
-    let _ = ScoreDebug::fmt(&v, &mut w, &FormatSpec::new());
+    let mut spec = FormatSpec::new();
+    spec.display_hint(DisplayHint::Debug);
+    let _ = ScoreDebug::fmt(&v, &mut w, &spec);
     assert_eq!(w.get(), format!("{v:?}"));
 }

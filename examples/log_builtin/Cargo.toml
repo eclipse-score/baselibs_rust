@@ -1,0 +1,14 @@
+[package]
+name = "log_builtin"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+
+
+[dependencies]
+mw_log.workspace = true
+mw_log_subscriber.workspace = true
+
+
+[lints]
+workspace = true

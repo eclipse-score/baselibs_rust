@@ -10,26 +10,22 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # *******************************************************************************
+load("@rules_rust//rust:defs.bzl", "rust_library", "rust_test")
 
-[package]
-name = "mw_log_fmt_macro"
-version.workspace = true
-authors.workspace = true
-readme.workspace = true
-edition.workspace = true
+rust_library(
+    name = "mw_log_subscriber",
+    srcs = glob(["**/*.rs"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/log/mw_log",
+    ],
+)
 
-[lib]
-proc-macro = true
-path = "lib.rs"
-
-[dependencies]
-syn = { version = "2", features = ["full"] }
-quote = "1"
-proc-macro2 = "1"
-mw_log_fmt.workspace = true
-
-[dev-dependencies]
-mw_log.workspace = true
-
-[lints]
-workspace = true
+rust_test(
+    name = "tests",
+    crate = "mw_log_subscriber",
+    tags = [
+        "unit_tests",
+        "ut",
+    ],
+)

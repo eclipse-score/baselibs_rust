@@ -12,24 +12,35 @@
 # *******************************************************************************
 
 [package]
-name = "mw_log_fmt_macro"
+name = "mw_log"
 version.workspace = true
 authors.workspace = true
 readme.workspace = true
 edition.workspace = true
 
 [lib]
-proc-macro = true
 path = "lib.rs"
 
-[dependencies]
-syn = { version = "2", features = ["full"] }
-quote = "1"
-proc-macro2 = "1"
-mw_log_fmt.workspace = true
+[features]
+max_level_off = []
+max_level_fatal = []
+max_level_error = []
+max_level_warn = []
+max_level_info = []
+max_level_debug = []
+max_level_trace = []
 
-[dev-dependencies]
-mw_log.workspace = true
+release_max_level_off = []
+release_max_level_fatal = []
+release_max_level_error = []
+release_max_level_warn = []
+release_max_level_info = []
+release_max_level_debug = []
+release_max_level_trace = []
+
+[dependencies]
+mw_log_fmt.workspace = true
+mw_log_fmt_macro.workspace = true
 
 [lints]
 workspace = true
