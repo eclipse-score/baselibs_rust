@@ -311,6 +311,11 @@ pub trait Log: Sync + Send {
     fn context(&self) -> &str;
 
     /// Logs the [`Record`].
+    ///
+    /// # For implementors
+    ///
+    /// Note that [`Log::enabled`] is *not* necessarily called before this method.
+    /// Implementations should perform all necessary filtering internally.
     fn log(&self, record: &Record);
 
     /// Flushes any buffered records.

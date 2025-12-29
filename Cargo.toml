@@ -20,6 +20,7 @@ default-members = [
     "src/log/mw_log",
     "src/log/mw_log_fmt",
     "src/log/mw_log_fmt_macro",
+    "src/log/stdout_logger",
 ]
 # Include tests and examples as a member for IDE support and Bazel builds.
 members = [
@@ -27,7 +28,9 @@ members = [
     "src/log/mw_log",
     "src/log/mw_log_fmt",
     "src/log/mw_log_fmt_macro",
-    "examples/log_example",
+    "src/log/stdout_logger",
+    "examples/log_builtin",
+    "examples/log_custom",
 ]
 
 [workspace.package]
@@ -40,6 +43,7 @@ authors = ["S-CORE Contributors"]
 mw_log = { path = "src/log/mw_log" }
 mw_log_fmt = { path = "src/log/mw_log_fmt" }
 mw_log_fmt_macro = { path = "src/log/mw_log_fmt_macro" }
+stdout_logger = { path = "src/log/stdout_logger" }
 
 [workspace.lints.clippy]
 std_instead_of_core = "warn"

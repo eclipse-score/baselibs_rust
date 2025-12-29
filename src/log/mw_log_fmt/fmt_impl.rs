@@ -50,10 +50,10 @@ impl ScoreDebug for str {
     fn fmt(&self, f: Writer, spec: &FormatSpec) -> Result {
         match spec.get_display_hint() {
             DisplayHint::Debug => {
-                let empty_spec = FormatSpec::new();
-                f.write_str("\"", &empty_spec)?;
+                let queue_spec = FormatSpec::new();
+                f.write_str("\"", &queue_spec)?;
                 f.write_str(self, spec)?;
-                f.write_str("\"", &empty_spec)
+                f.write_str("\"", &queue_spec)
             },
             _ => f.write_str(self, spec),
         }
@@ -160,10 +160,10 @@ impl<T: ScoreDebug> ScoreDebug for Option<T> {
     fn fmt(&self, f: Writer, spec: &FormatSpec) -> Result {
         match self {
             Some(v) => {
-                let empty_spec = FormatSpec::new();
-                f.write_str("Some(", &empty_spec)?;
+                let outer_spec = FormatSpec::new();
+                f.write_str("Some(", &outer_spec)?;
                 ScoreDebug::fmt(v, f, spec)?;
-                f.write_str(")", &empty_spec)
+                f.write_str(")", &outer_spec)
             },
             None => f.write_str("None", spec),
         }

@@ -7,7 +7,15 @@ name = "containers"
 version = "0.1.0"
 
 [[package]]
-name = "log_example"
+name = "log_builtin"
+version = "0.0.1"
+dependencies = [
+ "mw_log",
+ "stdout_logger",
+]
+
+[[package]]
+name = "log_custom"
 version = "0.0.1"
 dependencies = [
  "mw_log",
@@ -52,6 +60,13 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a338cc41d27e6cc6dce6cefc13a0729dfbb81c262b1f519331575dd80ef3067f"
 dependencies = [
  "proc-macro2",
+]
+
+[[package]]
+name = "stdout_logger"
+version = "0.0.1"
+dependencies = [
+ "mw_log",
 ]
 
 [[package]]

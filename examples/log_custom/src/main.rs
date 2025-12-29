@@ -21,9 +21,8 @@ use mw_log::{debug, error, fatal, info, trace, warn, LevelFilter};
 fn main() {
     // Initialize logger.
     mw_log::set_max_level(LevelFilter::Info);
-    let result = mw_log::set_global_logger(Box::new(ExampleLogger));
-    if result.is_err() {
-        panic!("unable to set logger")
+    if let Err(e) = mw_log::set_global_logger(Box::new(ExampleLogger)) {
+        panic!("unable to set logger: {e}");
     }
 
     // Example logs.

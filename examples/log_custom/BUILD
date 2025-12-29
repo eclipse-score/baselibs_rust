@@ -14,7 +14,7 @@
 load("@rules_rust//rust:defs.bzl", "rust_binary")
 
 rust_binary(
-    name = "log_example",
+    name = "log_custom",
     srcs = glob(["src/**/*.rs"]),
     deps = [
         "//src/log/mw_log",

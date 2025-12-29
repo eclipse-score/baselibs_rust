@@ -12,7 +12,7 @@
 # *******************************************************************************
 
 [package]
-name = "log_example"
+name = "log_custom"
 version.workspace = true
 authors.workspace = true
 edition.workspace = true
