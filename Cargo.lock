@@ -7,6 +7,21 @@ name = "containers"
 version = "0.1.0"
 
 [[package]]
+name = "log_example"
+version = "0.0.1"
+dependencies = [
+ "mw_log",
+]
+
+[[package]]
+name = "mw_log"
+version = "0.0.1"
+dependencies = [
+ "mw_log_fmt",
+ "mw_log_fmt_macro",
+]
+
+[[package]]
 name = "mw_log_fmt"
 version = "0.0.1"
 
@@ -14,6 +29,7 @@ version = "0.0.1"
 name = "mw_log_fmt_macro"
 version = "0.0.1"
 dependencies = [
+ "mw_log",
  "mw_log_fmt",
  "proc-macro2",
  "quote",

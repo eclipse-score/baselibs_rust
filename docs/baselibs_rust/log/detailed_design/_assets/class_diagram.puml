@@ -63,11 +63,10 @@ package "mw_log crate" {
     class mw_log <<module>> {
         {static} -LOGGER: &dyn Log
 
-        +set_logger(logger: &'static dyn Log) : Result<(), SetLoggerError>
-        +set_boxed_logger(logger: Box<dyn Log>) : Result<(), SetLoggerError>
+        +set_global_logger(logger: Box<dyn Log>) : Result<(), SetLoggerError>
         +set_max_level(level: LevelFilter) : ()
         +max_level() : LevelFilter
-        +logger() : &'static dyn Log
+        +global_logger() : &'static dyn Log
 
         +log!(context: &str, level: Level, ...) : ()
         +log_enabled!(context: &str, level: Level) : bool
@@ -83,8 +82,8 @@ package "mw_log crate" {
         Functions are used for global logger configuration.
 
         <code>
-        let logger = &ExampleLogger;
-        set_logger(logger).unwrap();
+        let logger = Box::new(ExampleLogger);
+        set_global_logger(logger).unwrap();
         set_max_level(LevelFilter::Fatal);
         </code>
 

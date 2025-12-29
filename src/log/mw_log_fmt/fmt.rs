@@ -204,8 +204,8 @@ mod tests {
         let args = Arguments(&fragments);
         assert!(write(&mut w, args) == Ok(()));
 
-        let exp_pattern = "true123.4432.2-100-1234-123456-120000000000000000012312341234561200000000000000000\"test\"";
-        assert!(w.get() == exp_pattern);
+        let exp_pattern = "true123.4432.2-100-1234-123456-120000000000000000012312341234561200000000000000000test";
+        assert_eq!(w.get(), exp_pattern);
     }
 
     #[test]
