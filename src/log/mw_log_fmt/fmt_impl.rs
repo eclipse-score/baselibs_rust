@@ -170,6 +170,12 @@ impl<T: ScoreDebug> ScoreDebug for Option<T> {
     }
 }
 
+impl<T: ScoreDebug + ?Sized> ScoreDebug for Box<T> {
+    fn fmt(&self, f: Writer, spec: &FormatSpec) -> Result {
+        ScoreDebug::fmt(&**self, f, spec)
+    }
+}
+
 impl<K, V, S> ScoreDebug for std::collections::HashMap<K, V, S>
 where
     K: ScoreDebug,
@@ -324,6 +330,11 @@ mod tests {
     fn test_option_debug() {
         common_test_debug(Some(123));
         common_test_debug(Option::<i32>::None);
+    }
+
+    #[test]
+    fn test_box_debug() {
+        common_test_debug(Box::new(432.1));
     }
 
     #[test]
