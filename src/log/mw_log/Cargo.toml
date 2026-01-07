@@ -25,5 +25,8 @@ path = "lib.rs"
 mw_log_fmt.workspace = true
 mw_log_fmt_macro.workspace = true
 
+[features]
+qm = ["mw_log_fmt/qm"]
+
 [lints]
 workspace = true
