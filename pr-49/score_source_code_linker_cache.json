@@ -1,0 +1,9 @@
+[
+  {
+    "file": "src/containers/fixed_capacity/vec.rs",
+    "line": 28,
+    "tag": "# req-Id:",
+    "need": "comp_req__containers_rust__fixed_vector",
+    "full_line": "/// # req-Id: comp_req__containers_rust__fixed_vector"
+  }
+]
