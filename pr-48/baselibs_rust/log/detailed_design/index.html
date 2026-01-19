@@ -448,7 +448,7 @@
                   
   <section id="detailed-design">
 <span id="component-detailed-design-log"></span><h1>Detailed Design<a class="headerlink" href="#detailed-design" title="Link to this heading">#</a></h1>
-<div class="need_container docutils container" id="SNCB-47a9201b">
+<div class="need_container docutils container" id="SNCB-69b5629d">
 <div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_document table" id="doc__log_detailed_design">
 <tbody>
 <tr class="head row-odd"><td class="head_left" colspan="2"><div class="needs_head_left line-block">
@@ -497,10 +497,10 @@
 <h3>Description<a class="headerlink" href="#description" title="Link to this heading">#</a></h3>
 <p>Log component consists of three units:</p>
 <ul class="simple">
-<li><p><cite>mw_log</cite> - modelled after <cite>log</cite> Rust library.</p></li>
-<li><p><cite>mw_log_fmt</cite> - replacement for <cite>core::fmt</cite> provided by Rust core library.</p></li>
-<li><p><cite>mw_log_fmt_macro</cite> - replacement for macros provided by Rust compiler:
-- <cite>mw_log_format_args!</cite> - replacement for <cite>format_args!</cite>
+<li><p><cite>score_log</cite> - modelled after <cite>log</cite> Rust library.</p></li>
+<li><p><cite>score_log_fmt</cite> - replacement for <cite>core::fmt</cite> provided by Rust core library.</p></li>
+<li><p><cite>score_log_fmt_macro</cite> - replacement for macros provided by Rust compiler:
+- <cite>score_log_format_args!</cite> - replacement for <cite>format_args!</cite>
 - <cite>ScoreDebug</cite> - replacement for <cite>Debug</cite></p></li>
 </ul>
 <p>Most common approach in Rust is that formatting always results in a string.
@@ -517,7 +517,7 @@ Those units are not described in architecture, as they all form a monolithic log
 </section>
 <section id="static-diagrams-for-unit-interactions">
 <h3>Static Diagrams for Unit Interactions<a class="headerlink" href="#static-diagrams-for-unit-interactions" title="Link to this heading">#</a></h3>
-<div class="need_container docutils container" id="SNCB-1f389462">
+<div class="need_container docutils container" id="SNCB-1a87b48d">
 <div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_dd_sta table" id="dd_sta__log__class_diagram">
 <tbody>
 <tr class="head row-odd"><td class="head_left" colspan="2"><div class="needs_head_left line-block">
@@ -546,7 +546,7 @@ Those units are not described in architecture, as they all form a monolithic log
 <td class="meta" colspan="3"></td>
 </tr>
 <tr class="content row-odd"><td class="content" colspan="6"><p class="plantuml">
-<object data="../../../_images/plantuml-eb037573ced548f970c5acd4928f04b01f08cfec.svg" type="image/svg+xml" style="width:2069px;height:2569px;background:#FFFFFF;"></object></p>
+<object data="../../../_images/plantuml-9dc2e500cdfe98ed8b0b2cce6dd7b88375adbe77.svg" type="image/svg+xml" style="width:2069px;height:2569px;background:#FFFFFF;"></object></p>
 </td>
 </tr>
 <tr class="footer row-even"><td class="footer_left" colspan="2"><div class="needs_footer_left line-block">
@@ -566,7 +566,7 @@ Those units are not described in architecture, as they all form a monolithic log
 </section>
 <section id="dynamic-diagrams-for-unit-interactions">
 <h3>Dynamic Diagrams for Unit Interactions<a class="headerlink" href="#dynamic-diagrams-for-unit-interactions" title="Link to this heading">#</a></h3>
-<div class="need_container docutils container" id="SNCB-3f93901b">
+<div class="need_container docutils container" id="SNCB-5083c7bb">
 <div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_dd_dyn table" id="dd_dyn__log__log_op">
 <tbody>
 <tr class="head row-odd"><td class="head_left" colspan="2"><div class="needs_head_left line-block">
@@ -595,7 +595,7 @@ Those units are not described in architecture, as they all form a monolithic log
 <td class="meta" colspan="3"></td>
 </tr>
 <tr class="content row-odd"><td class="content" colspan="6"><p class="plantuml">
-<object data="../../../_images/plantuml-cb4a9af8c1bd54c132407d09cedfd49dfba87dd9.svg" type="image/svg+xml" style="width:1264px;height:863px;background:#FFFFFF;"></object></p>
+<object data="../../../_images/plantuml-43f00160212307c4363bb1a2259f37c16a957e75.svg" type="image/svg+xml" style="width:1302px;height:863px;background:#FFFFFF;"></object></p>
 </td>
 </tr>
 <tr class="footer row-even"><td class="footer_left" colspan="2"><div class="needs_footer_left line-block">
@@ -612,7 +612,7 @@ Those units are not described in architecture, as they all form a monolithic log
 </table>
 </div>
 </div>
-<div class="need_container docutils container" id="SNCB-619a50ee">
+<div class="need_container docutils container" id="SNCB-50295579">
 <div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_dd_dyn table" id="dd_dyn__log__log_to_level">
 <tbody>
 <tr class="head row-odd"><td class="head_left" colspan="2"><div class="needs_head_left line-block">
