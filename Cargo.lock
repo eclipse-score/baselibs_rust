@@ -7,6 +7,10 @@ name = "containers"
 version = "0.1.0"
 
 [[package]]
+name = "elementary"
+version = "0.0.1"
+
+[[package]]
 name = "log_builtin"
 version = "0.0.1"
 dependencies = [
@@ -78,6 +82,13 @@ dependencies = [
  "proc-macro2",
  "quote",
  "unicode-ident",
+]
+
+[[package]]
+name = "sync"
+version = "0.0.1"
+dependencies = [
+ "elementary",
 ]
 
 [[package]]

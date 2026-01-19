@@ -17,14 +17,16 @@ resolver = "2"
 # Used when executing cargo from project root.
 default-members = [
     "src/containers",
-    "src/log/score_log",
-    "src/log/score_log_fmt",
+    "src/sync",
+    "src/elementary",
     "src/log/score_log_fmt_macro",
     "src/log/stdout_logger",
 ]
 # Include tests and examples as a member for IDE support and Bazel builds.
 members = [
     "src/containers",
+    "src/sync",
+    "src/elementary",
     "src/log/score_log",
     "src/log/score_log_fmt",
     "src/log/score_log_fmt_macro",
@@ -44,6 +46,7 @@ score_log = { path = "src/log/score_log" }
 score_log_fmt = { path = "src/log/score_log_fmt" }
 score_log_fmt_macro = { path = "src/log/score_log_fmt_macro" }
 stdout_logger = { path = "src/log/stdout_logger" }
+elementary = { path = "src/elementary" }
 
 [workspace.lints.clippy]
 std_instead_of_core = "warn"
