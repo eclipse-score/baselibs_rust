@@ -13,15 +13,15 @@
 
 #![allow(missing_docs)]
 
-use mw_log::{log, log_enabled, Level, Log, Metadata, Record};
+use score_log::{log, log_enabled, Level, Log, Metadata, Record};
 
 macro_rules! all_log_macros {
     ($($arg:tt)*) => ({
-        ::mw_log::trace!($($arg)*);
-        ::mw_log::debug!($($arg)*);
-        ::mw_log::info!($($arg)*);
-        ::mw_log::warn!($($arg)*);
-        ::mw_log::error!($($arg)*);
+        ::score_log::trace!($($arg)*);
+        ::score_log::debug!($($arg)*);
+        ::score_log::info!($($arg)*);
+        ::score_log::warn!($($arg)*);
+        ::score_log::error!($($arg)*);
     });
 }
 

@@ -12,8 +12,8 @@
 //
 
 use core::fmt::Write;
-use mw_log::fmt::{write, Error, FormatSpec, Result as FmtResult, ScoreWrite};
-use mw_log::{max_level, Log, Metadata, Record};
+use score_log::fmt::{write, Error, FormatSpec, Result as FmtResult, ScoreWrite};
+use score_log::{max_level, Log, Metadata, Record};
 
 struct StringWriter {
     buffer: String,

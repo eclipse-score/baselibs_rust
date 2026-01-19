@@ -21,8 +21,8 @@
 mod utils;
 
 use crate::utils::StringWriter;
-use mw_log_fmt::{write, ScoreDebug};
-use mw_log_fmt_macro::{mw_log_format_args, ScoreDebug};
+use score_log_fmt::{write, ScoreDebug};
+use score_log_fmt_macro::{score_log_format_args, ScoreDebug};
 
 #[test]
 fn test_struct_named() {
@@ -39,7 +39,7 @@ fn test_struct_named() {
         name: "example".to_string(),
     };
 
-    let args = mw_log_format_args!("{:?}", p);
+    let args = score_log_format_args!("{:?}", p);
     let mut w = StringWriter::new();
     let _ = write(&mut w, args).map_err(|_| panic!("write failed"));
 
@@ -55,7 +55,7 @@ fn test_struct_unnamed() {
 
     let p = Point(123, -123, "example".to_string());
 
-    let args = mw_log_format_args!("{:?}", p);
+    let args = score_log_format_args!("{:?}", p);
     let mut w = StringWriter::new();
     let _ = write(&mut w, args).map_err(|_| panic!("write failed"));
 
@@ -71,7 +71,7 @@ fn test_struct_unit() {
 
     let unit_struct = UnitStruct;
 
-    let args = mw_log_format_args!("{:?}", unit_struct);
+    let args = score_log_format_args!("{:?}", unit_struct);
     let mut w = StringWriter::new();
     let _ = write(&mut w, args).map_err(|_| panic!("write failed"));
 
@@ -94,7 +94,7 @@ fn test_struct_generics() {
         generic: [123; 10],
     };
 
-    let args = mw_log_format_args!("{:?}", p);
+    let args = score_log_format_args!("{:?}", p);
     let mut w = StringWriter::new();
     let _ = write(&mut w, args).map_err(|_| panic!("write failed"));
 
@@ -115,7 +115,7 @@ fn test_enum_plain() {
 
     let flag = Flag::Optional;
 
-    let args = mw_log_format_args!("{:?}", flag);
+    let args = score_log_format_args!("{:?}", flag);
     let mut w = StringWriter::new();
     let _ = write(&mut w, args).map_err(|_| panic!("write failed"));
 
@@ -148,7 +148,7 @@ fn test_enum_nested() {
     ];
 
     for case in cases {
-        let args = mw_log_format_args!("{:?}", case);
+        let args = score_log_format_args!("{:?}", case);
         let mut w = StringWriter::new();
         let _ = write(&mut w, args).map_err(|_| panic!("write failed"));
 

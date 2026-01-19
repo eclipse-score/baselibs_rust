@@ -13,11 +13,11 @@
 load("@rules_rust//rust:defs.bzl", "rust_proc_macro", "rust_test")
 
 rust_proc_macro(
-    name = "mw_log_fmt_macro",
+    name = "score_log_fmt_macro",
     srcs = glob(["*.rs"]),
-    visibility = ["//src/log/mw_log:__pkg__"],
+    visibility = ["//src/log/score_log:__pkg__"],
     deps = [
-        "//src/log/mw_log_fmt",
+        "//src/log/score_log_fmt",
         "@score_crates//:proc_macro2",
         "@score_crates//:quote",
         "@score_crates//:syn",
@@ -28,14 +28,14 @@ rust_test(
     name = "tests",
     srcs = glob(["tests/**/*.rs"]),
     proc_macro_deps = [
-        "//src/log/mw_log_fmt_macro",
+        "//src/log/score_log_fmt_macro",
     ],
     tags = [
         "unit_tests",
         "ut",
     ],
     deps = [
-        "//src/log/mw_log",
-        "//src/log/mw_log_fmt",
+        "//src/log/score_log",
+        "//src/log/score_log_fmt",
     ],
 )

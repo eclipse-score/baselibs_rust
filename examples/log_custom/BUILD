@@ -17,6 +17,6 @@ rust_binary(
     name = "log_custom",
     srcs = glob(["src/**/*.rs"]),
     deps = [
-        "//src/log/mw_log",
+        "//src/log/score_log",
     ],
 )

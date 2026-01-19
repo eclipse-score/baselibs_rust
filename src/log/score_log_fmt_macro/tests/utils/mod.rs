@@ -12,7 +12,7 @@
 //
 
 use core::fmt::Write;
-use mw_log_fmt::{Error, FormatSpec, Result, ScoreWrite};
+use score_log_fmt::{Error, FormatSpec, Result, ScoreWrite};
 
 /// Writer implementation.
 /// Writes everything to a string, so it can be compared with `format` macro.

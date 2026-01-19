@@ -3,11 +3,11 @@
 participant "User" as actor
 
 box #LightBlue
-participant "mw_log <<module>>" as mw_log
+participant "score_log <<module>>" as score_log
 end box
 
 box #LightGreen
-participant "mw_log_fmt_macro <<module>>" as mw_log_fmt_macro
+participant "score_log_fmt_macro <<module>>" as score_log_fmt_macro
 end box
 
 box #LightPink
@@ -16,55 +16,55 @@ participant "Writer\n<<ScoreWrite implementation>>" as writer
 end box
 
 box #LightYellow
-participant "mw_log_fmt\n<<module>>" as mw_log_fmt
+participant "score_log_fmt\n<<module>>" as score_log_fmt
 participant "ConcreteType\n<<ScoreDebug implementation>>" as score_debug
 end box
 
-actor -> mw_log : log!()
+actor -> score_log : log!()
 
 alt no-user-provided-logger
-    mw_log -> mw_log : global_logger()
+    score_log -> score_log : global_logger()
 end
 
 alt no-user-provided-context
-    mw_log -> mw_log : module_path()
+    score_log -> score_log : module_path()
 end
 
-mw_log -> mw_log : max_level()
+score_log -> score_log : max_level()
 
 alt log-level-check-failed
-    mw_log --> actor
+    score_log --> actor
 
 else log-level-check-passed
-    mw_log -> mw_log_fmt_macro : mw_log_format_args!()
-    mw_log_fmt_macro --> mw_log
+    score_log -> score_log_fmt_macro : score_log_format_args!()
+    score_log_fmt_macro --> score_log
 
-    mw_log -> logger : log()
+    score_log -> logger : log()
 
     logger -> logger : enabled()
 
     alt logger-not-enabled
-        logger --> mw_log
+        logger --> score_log
 
     else logger-enabled
-        logger -> mw_log_fmt : write(writer: ScoreWrite, args: Arguments)
+        logger -> score_log_fmt : write(writer: ScoreWrite, args: Arguments)
         loop process-format-string-fragments
             alt is-literal
-                mw_log_fmt -> writer : write_str()
-                writer --> mw_log_fmt
+                score_log_fmt -> writer : write_str()
+                writer --> score_log_fmt
             else is-placeholder
-                mw_log_fmt -> score_debug : fmt()
-                score_debug --> mw_log_fmt
+                score_log_fmt -> score_debug : fmt()
+                score_debug --> score_log_fmt
 
-                mw_log_fmt -> writer : write_<type>()
-                writer --> mw_log_fmt
+                score_log_fmt -> writer : write_<type>()
+                writer --> score_log_fmt
             end
         end
 
-        mw_log_fmt --> logger
-        logger --> mw_log
+        score_log_fmt --> logger
+        logger --> score_log
     end
-    mw_log --> actor
+    score_log --> actor
 end
 
 @enduml

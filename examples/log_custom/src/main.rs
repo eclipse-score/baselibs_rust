@@ -16,12 +16,12 @@
 mod logger;
 
 use crate::logger::ExampleLogger;
-use mw_log::{debug, error, fatal, info, trace, warn, LevelFilter};
+use score_log::{debug, error, fatal, info, trace, warn, LevelFilter};
 
 fn main() {
     // Initialize logger.
-    mw_log::set_max_level(LevelFilter::Info);
-    if let Err(e) = mw_log::set_global_logger(Box::new(ExampleLogger)) {
+    score_log::set_max_level(LevelFilter::Info);
+    if let Err(e) = score_log::set_global_logger(Box::new(ExampleLogger)) {
         panic!("unable to set logger: {e}");
     }
 

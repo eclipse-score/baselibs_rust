@@ -16,7 +16,7 @@
 /// This macro will generically log with the specified `Level` and `format!` based argument list.
 ///
 /// ```
-/// use mw_log::{log, Level};
+/// use score_log::{log, Level};
 ///
 /// let data = (42, "Forty-two");
 /// let private_data = "private";
@@ -28,7 +28,7 @@
 /// By default, the context is provided by the logger.
 ///
 /// ```
-/// use mw_log::{log, Level};
+/// use score_log::{log, Level};
 ///
 /// let data = (42, "Forty-two");
 /// let private_data = "private";
@@ -46,16 +46,16 @@
 /// ```
 /// # struct MyLogger {}
 /// # impl Log for MyLogger {
-/// #     fn enabled(&self, _metadata: &mw_log::Metadata) -> bool {
+/// #     fn enabled(&self, _metadata: &score_log::Metadata) -> bool {
 /// #         false
 /// #     }
 /// #     fn context(&self) -> &str {
 /// #         "MyLogger"
 /// #     }
-/// #     fn log(&self, _record: &mw_log::Record) {}
+/// #     fn log(&self, _record: &score_log::Record) {}
 /// #     fn flush(&self) {}
 /// # }
-/// use mw_log::{log, Level, Log};
+/// use score_log::{log, Level, Log};
 ///
 /// let data = (42, "Forty-two");
 /// let private_data = "private";
@@ -142,9 +142,9 @@ macro_rules! __log {
 /// # Examples
 ///
 /// ```
-/// use mw_log::fatal;
+/// use score_log::fatal;
 ///
-/// # let my_logger = mw_log::global_logger();
+/// # let my_logger = score_log::global_logger();
 /// let (err_info, port) = ("No connection", 22);
 ///
 /// fatal!("Fatal: {} on port {}", err_info, port);
@@ -178,9 +178,9 @@ macro_rules! fatal {
 /// # Examples
 ///
 /// ```
-/// use mw_log::error;
+/// use score_log::error;
 ///
-/// # let my_logger = mw_log::global_logger();
+/// # let my_logger = score_log::global_logger();
 /// let (err_info, port) = ("No connection", 22);
 ///
 /// error!("Error: {} on port {}", err_info, port);
@@ -214,9 +214,9 @@ macro_rules! error {
 /// # Examples
 ///
 /// ```
-/// use mw_log::warn;
+/// use score_log::warn;
 ///
-/// # let my_logger = mw_log::global_logger();
+/// # let my_logger = score_log::global_logger();
 /// let warn_description = "Invalid Input";
 ///
 /// warn!("Warning! {}!", warn_description);
@@ -250,9 +250,9 @@ macro_rules! warn {
 /// # Examples
 ///
 /// ```
-/// use mw_log::info;
+/// use score_log::info;
 ///
-/// # let my_logger = mw_log::global_logger();
+/// # let my_logger = score_log::global_logger();
 /// # struct Connection { port: u32, speed: f32 }
 /// let conn_info = Connection { port: 40, speed: 3.20 };
 ///
@@ -295,9 +295,9 @@ macro_rules! info {
 /// # Examples
 ///
 /// ```
-/// use mw_log::debug;
+/// use score_log::debug;
 ///
-/// # let my_logger = mw_log::global_logger();
+/// # let my_logger = score_log::global_logger();
 /// # struct Position { x: f32, y: f32 }
 /// let pos = Position { x: 3.234, y: -1.223 };
 ///
@@ -332,9 +332,9 @@ macro_rules! debug {
 /// # Examples
 ///
 /// ```
-/// use mw_log::trace;
+/// use score_log::trace;
 ///
-/// # let my_logger = mw_log::global_logger();
+/// # let my_logger = score_log::global_logger();
 /// # struct Position { x: f32, y: f32 }
 /// let pos = Position { x: 3.234, y: -1.223 };
 ///
@@ -375,11 +375,11 @@ macro_rules! trace {
 /// # Examples
 ///
 /// ```
-/// use mw_log::{debug, log_enabled, Level};
+/// use score_log::{debug, log_enabled, Level};
 ///
 /// # struct Data { x: u32, y: u32 }
 /// # fn expensive_call() -> Data { Data { x: 0, y: 0 } }
-/// # let my_logger = mw_log::global_logger();
+/// # let my_logger = score_log::global_logger();
 /// if log_enabled!(Level::Debug) {
 ///     let data = expensive_call();
 ///     debug!("expensive debug data: {} {}", data.x, data.y);

@@ -13,7 +13,7 @@
 
 //! Example app utilizing built-in backend implementation.
 
-use mw_log::{debug, error, fatal, info, trace, warn, LevelFilter};
+use score_log::{debug, error, fatal, info, trace, warn, LevelFilter};
 use stdout_logger::StdoutLoggerBuilder;
 
 fn main() {

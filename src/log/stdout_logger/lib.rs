@@ -11,13 +11,13 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
-//! String-based Rust backend for `mw_log`.
+//! String-based Rust backend for `score_log`.
 //! Data is written to a fixed-size buffer.
 
 use core::cell::RefCell;
 use core::fmt::Write;
-use mw_log::fmt::{score_write, Error, FormatSpec, Result, ScoreWrite};
-use mw_log::{LevelFilter, Log, Metadata, Record};
+use score_log::fmt::{score_write, Error, FormatSpec, Result, ScoreWrite};
+use score_log::{LevelFilter, Log, Metadata, Record};
 
 /// Fixed size buffer for strings.
 struct FixedBuf<const N: usize> {
@@ -205,8 +205,8 @@ impl StdoutLoggerBuilder {
     /// Build the `StdoutLogger` and set it as the default logger.
     pub fn set_as_default_logger(self) {
         let logger = self.build();
-        mw_log::set_max_level(logger.log_level());
-        if let Err(e) = mw_log::set_global_logger(Box::new(logger)) {
+        score_log::set_max_level(logger.log_level());
+        if let Err(e) = score_log::set_global_logger(Box::new(logger)) {
             panic!("unable to set logger: {e}");
         }
     }

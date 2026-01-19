@@ -1,21 +1,21 @@
 @startuml log_static_view
 
 package "log" <<component>> {
-    component "mw_log" <<interface>>
+    component "score_log" <<interface>>
 
-    component "mw_log_fmt"
+    component "score_log_fmt"
 
-    component "mw_log_fmt_macro"
+    component "score_log_fmt_macro"
 
-    mw_log ..> mw_log_fmt : use
-    mw_log ..> mw_log_fmt_macro : use
+    score_log ..> score_log_fmt : use
+    score_log ..> score_log_fmt_macro : use
 }
 
-component "mw_log_subscriber" <<component>>
+component "score_log_subscriber" <<component>>
 note bottom
     Backend implementation.
 end note
 
-mw_log --> mw_log_subscriber : implements
+score_log --> score_log_subscriber : implements
 
 @enduml

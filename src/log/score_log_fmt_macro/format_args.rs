@@ -11,8 +11,8 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
-use mw_log_fmt::{Alignment, DebugAsHex, DisplayHint, FormatSpec, Sign};
 use quote::{quote, ToTokens};
+use score_log_fmt::{Alignment, DebugAsHex, DisplayHint, FormatSpec, Sign};
 use syn::punctuated::{IntoIter, Punctuated};
 use syn::token::Comma;
 use syn::{parse_macro_input, Error, Expr, ExprLit, Lit};
@@ -219,24 +219,24 @@ fn tokenize_spec(spec: &FormatSpec) -> proc_macro2::TokenStream {
     // Additional helpers are required to properly tokenize enums and options.
     fn tokenize_display_hint(display_hint: DisplayHint) -> proc_macro2::TokenStream {
         match display_hint {
-            DisplayHint::NoHint => quote! { mw_log::fmt::DisplayHint::NoHint },
-            DisplayHint::Debug => quote! { mw_log::fmt::DisplayHint::Debug },
-            DisplayHint::Octal => quote! { mw_log::fmt::DisplayHint::Octal },
-            DisplayHint::LowerHex => quote! { mw_log::fmt::DisplayHint::LowerHex },
-            DisplayHint::UpperHex => quote! { mw_log::fmt::DisplayHint::UpperHex },
-            DisplayHint::Pointer => quote! { mw_log::fmt::DisplayHint::Pointer },
-            DisplayHint::Binary => quote! { mw_log::fmt::DisplayHint::Binary },
-            DisplayHint::LowerExp => quote! { mw_log::fmt::DisplayHint::LowerExp },
-            DisplayHint::UpperExp => quote! { mw_log::fmt::DisplayHint::UpperExp },
+            DisplayHint::NoHint => quote! { score_log::fmt::DisplayHint::NoHint },
+            DisplayHint::Debug => quote! { score_log::fmt::DisplayHint::Debug },
+            DisplayHint::Octal => quote! { score_log::fmt::DisplayHint::Octal },
+            DisplayHint::LowerHex => quote! { score_log::fmt::DisplayHint::LowerHex },
+            DisplayHint::UpperHex => quote! { score_log::fmt::DisplayHint::UpperHex },
+            DisplayHint::Pointer => quote! { score_log::fmt::DisplayHint::Pointer },
+            DisplayHint::Binary => quote! { score_log::fmt::DisplayHint::Binary },
+            DisplayHint::LowerExp => quote! { score_log::fmt::DisplayHint::LowerExp },
+            DisplayHint::UpperExp => quote! { score_log::fmt::DisplayHint::UpperExp },
         }
     }
 
     fn tokenize_alignment(align: Option<Alignment>) -> proc_macro2::TokenStream {
         match align {
             Some(v) => match v {
-                Alignment::Left => quote! { Some(mw_log::fmt::Alignment::Left) },
-                Alignment::Right => quote! { Some(mw_log::fmt::Alignment::Right) },
-                Alignment::Center => quote! { Some(mw_log::fmt::Alignment::Center) },
+                Alignment::Left => quote! { Some(score_log::fmt::Alignment::Left) },
+                Alignment::Right => quote! { Some(score_log::fmt::Alignment::Right) },
+                Alignment::Center => quote! { Some(score_log::fmt::Alignment::Center) },
             },
             None => quote! { None },
         }
@@ -245,8 +245,8 @@ fn tokenize_spec(spec: &FormatSpec) -> proc_macro2::TokenStream {
     fn tokenize_sign(sign: Option<Sign>) -> proc_macro2::TokenStream {
         match sign {
             Some(v) => match v {
-                Sign::Plus => quote! { Some(mw_log::fmt::Sign::Plus) },
-                Sign::Minus => quote! { Some(mw_log::fmt::Sign::Minus) },
+                Sign::Plus => quote! { Some(score_log::fmt::Sign::Plus) },
+                Sign::Minus => quote! { Some(score_log::fmt::Sign::Minus) },
             },
             None => quote! { None },
         }
@@ -255,8 +255,8 @@ fn tokenize_spec(spec: &FormatSpec) -> proc_macro2::TokenStream {
     fn tokenize_debug_as_hex(debug_as_hex: Option<DebugAsHex>) -> proc_macro2::TokenStream {
         match debug_as_hex {
             Some(v) => match v {
-                DebugAsHex::Lower => quote! { Some(mw_log::fmt::DebugAsHex::Lower) },
-                DebugAsHex::Upper => quote! { Some(mw_log::fmt::DebugAsHex::Upper) },
+                DebugAsHex::Lower => quote! { Some(score_log::fmt::DebugAsHex::Lower) },
+                DebugAsHex::Upper => quote! { Some(score_log::fmt::DebugAsHex::Upper) },
             },
             None => quote! { None },
         }
@@ -280,7 +280,7 @@ fn tokenize_spec(spec: &FormatSpec) -> proc_macro2::TokenStream {
     let precision = tokenize_option_u16(spec.get_precision());
 
     quote! {{
-        mw_log::fmt::FormatSpec::from_params(
+        score_log::fmt::FormatSpec::from_params(
             #display_hint,
             #fill,
             #align,
@@ -502,13 +502,13 @@ fn validate_args(args: &[Expr]) -> Result<(), Error> {
 ///
 /// Following cases are supported:
 /// - Name provided by spec and `args` - get argument expression from `args`.
-///   E.g., `mw_log_format_args!("{arg}", arg)`.
+///   E.g., `score_log_format_args!("{arg}", arg)`.
 /// - Name provided by spec, but aliased by `args` - get assigned argument expression from `args`.
-///   E.g., `mw_log_format_args!("{arg}", arg=other_value)`.
+///   E.g., `score_log_format_args!("{arg}", arg=other_value)`.
 ///
 /// Not yet supported:
 /// - Name provided by spec, but not `args` - create argument expression.
-///   E.g., `mw_log_format_args!("{arg}")`.
+///   E.g., `score_log_format_args!("{arg}")`.
 fn select_arg_with_name(args: &[Expr], name: &str) -> Result<Expr, Error> {
     // Find all arguments that match. Either zero or one are allowed.
     let mut found: Vec<Expr> = Vec::new();
@@ -597,7 +597,7 @@ fn parse_fragments(punctuated_it: &mut IntoIter<Expr>) -> Result<Vec<proc_macro2
     for spec in specs.into_iter() {
         match spec {
             Spec::Literal(s) => fragments.push(quote! {{
-                mw_log::fmt::Fragment::Literal(#s)
+                score_log::fmt::Fragment::Literal(#s)
             }}),
             Spec::Placeholder(placeholder) => {
                 // Select argument based on provided argument.
@@ -618,7 +618,7 @@ fn parse_fragments(punctuated_it: &mut IntoIter<Expr>) -> Result<Vec<proc_macro2
                 let spec_ctor = tokenize_spec(&placeholder.spec);
 
                 fragments.push(quote! {{
-                    mw_log::fmt::Fragment::Placeholder(mw_log::fmt::Placeholder::new(&#arg, #spec_ctor))
+                    score_log::fmt::Fragment::Placeholder(score_log::fmt::Placeholder::new(&#arg, #spec_ctor))
                 }});
             },
         }
@@ -639,5 +639,5 @@ pub(crate) fn expand(input: proc_macro::TokenStream) -> proc_macro::TokenStream 
         Err(e) => return e.to_compile_error().into(),
     };
 
-    quote! { mw_log::fmt::Arguments(&[#(#fragments),*]) }.into()
+    quote! { score_log::fmt::Arguments(&[#(#fragments),*]) }.into()
 }

@@ -18,7 +18,7 @@ authors.workspace = true
 edition.workspace = true
 
 [dependencies]
-mw_log.workspace = true
+score_log.workspace = true
 
 [lints]
 workspace = true

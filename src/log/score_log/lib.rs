@@ -20,9 +20,9 @@ extern crate alloc;
 use core::str::FromStr;
 use core::sync::atomic::{AtomicUsize, Ordering};
 use core::{cmp, mem};
-pub use mw_log_fmt as fmt;
-use mw_log_fmt::Arguments;
-pub use mw_log_fmt_macro::{mw_log_format_args as format_args, ScoreDebug};
+pub use score_log_fmt as fmt;
+use score_log_fmt::Arguments;
+pub use score_log_fmt_macro::{score_log_format_args as format_args, ScoreDebug};
 use std::sync::{LazyLock, OnceLock};
 
 #[macro_use]
@@ -717,8 +717,8 @@ mod tests {
     fn test_record_new_and_params() {
         // Local import to avoid name clash.
         use super::format_args;
-        // Fix for self-reference in `mw_log_format_args`.
-        use crate as mw_log;
+        // Fix for self-reference in `score_log_format_args`.
+        use crate as score_log;
 
         let level = Level::Info;
         let context = "context";

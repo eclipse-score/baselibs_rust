@@ -13,8 +13,8 @@
 
 #![allow(dead_code, unused_imports, missing_docs)]
 
-use mw_log::{debug, error, info, trace, warn, Level, LevelFilter, Log, Metadata, Record};
-use mw_log_fmt::Arguments;
+use score_log::{debug, error, info, trace, warn, Level, LevelFilter, Log, Metadata, Record};
+use score_log_fmt::Arguments;
 use std::sync::{Arc, Mutex};
 
 struct State {
@@ -42,7 +42,7 @@ impl Log for Logger {
 
 fn test_filter(logger: &dyn Log, a: &State, filter: LevelFilter) {
     // tests to ensure logs with a level beneath 'max_level' are filtered out
-    mw_log::set_max_level(filter);
+    score_log::set_max_level(filter);
     error!(logger: logger, "");
     last(a, t(Level::Error, filter));
     warn!(logger: logger, "");
@@ -68,7 +68,7 @@ fn test_filter(logger: &dyn Log, a: &State, filter: LevelFilter) {
 }
 
 fn test_line_numbers(logger: &dyn Log, state: &State) {
-    mw_log::set_max_level(LevelFilter::Trace);
+    score_log::set_max_level(LevelFilter::Trace);
 
     info!(logger: logger, ""); // ensure check_line function follows log macro
     check_log_location(state);

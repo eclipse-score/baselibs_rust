@@ -41,7 +41,7 @@ fn generate_for_struct(
 
             // Generate `.fmt` implementation using named struct helper.
             quote! {
-                mw_log::fmt::DebugStruct::new(f, spec, #struct_name)
+                score_log::fmt::DebugStruct::new(f, spec, #struct_name)
                     #(#field_methods)*
                     .finish()
             }
@@ -58,7 +58,7 @@ fn generate_for_struct(
 
             // Generate `.fmt` implementation using named tuple helper.
             quote! {
-                mw_log::fmt::DebugTuple::new(f, spec, #struct_name)
+                score_log::fmt::DebugTuple::new(f, spec, #struct_name)
                     #(#field_methods)*
                     .finish()
             }
@@ -67,7 +67,7 @@ fn generate_for_struct(
         // Unit struct - no fields.
         Fields::Unit => {
             quote! {
-                mw_log::fmt::DebugStruct::new(f, spec, #struct_name).finish()
+                score_log::fmt::DebugStruct::new(f, spec, #struct_name).finish()
             }
         },
     };
@@ -75,8 +75,8 @@ fn generate_for_struct(
     // Generate `ScoreDebug` implementation for provided struct.
     Ok(quote! {
         #[automatically_derived]
-        impl #impl_generics mw_log::fmt::ScoreDebug for #ident #ty_generics {
-            fn fmt(&self, f: mw_log::fmt::Writer, spec: &mw_log::fmt::FormatSpec) -> mw_log::fmt::Result {
+        impl #impl_generics score_log::fmt::ScoreDebug for #ident #ty_generics {
+            fn fmt(&self, f: score_log::fmt::Writer, spec: &score_log::fmt::FormatSpec) -> score_log::fmt::Result {
                 #fmt_impl
             }
         }
@@ -94,8 +94,8 @@ fn generate_for_enum(
     if data_enum.variants.is_empty() {
         return Ok(quote! {
             #[automatically_derived]
-            impl #impl_generics mw_log::fmt::ScoreDebug for #ident #ty_generics {
-                fn fmt(&self, f: mw_log::fmt::Writer, spec: &mw_log::fmt::FormatSpec) -> mw_log::fmt::Result {
+            impl #impl_generics score_log::fmt::ScoreDebug for #ident #ty_generics {
+                fn fmt(&self, f: score_log::fmt::Writer, spec: &score_log::fmt::FormatSpec) -> score_log::fmt::Result {
                     Ok(())
                 }
             }
@@ -126,7 +126,7 @@ fn generate_for_enum(
                 // Generate variant match implementation.
                 quote! {
                     Self::#variant_ident { #(#arg_names),* } => {
-                        mw_log::fmt::DebugStruct::new(f, spec, #variant_name)
+                        score_log::fmt::DebugStruct::new(f, spec, #variant_name)
                             #(#field_methods)*
                             .finish()
                     },
@@ -145,7 +145,7 @@ fn generate_for_enum(
                 // Generate variant match implementation.
                 quote! {
                     Self::#variant_ident (#(#arg_names),*) => {
-                        mw_log::fmt::DebugTuple::new(f, spec, #variant_name)
+                        score_log::fmt::DebugTuple::new(f, spec, #variant_name)
                             #(#field_methods)*
                             .finish()
                     },
@@ -164,8 +164,8 @@ fn generate_for_enum(
     // Generate `ScoreDebug` implementation for provided enum.
     Ok(quote! {
         #[automatically_derived]
-        impl #impl_generics mw_log::fmt::ScoreDebug for #ident #ty_generics {
-            fn fmt(&self, f: mw_log::fmt::Writer, spec: &mw_log::fmt::FormatSpec) -> mw_log::fmt::Result {
+        impl #impl_generics score_log::fmt::ScoreDebug for #ident #ty_generics {
+            fn fmt(&self, f: score_log::fmt::Writer, spec: &score_log::fmt::FormatSpec) -> score_log::fmt::Result {
                 match self {
                     #(#variants)*
                 }

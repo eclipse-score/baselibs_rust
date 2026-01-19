@@ -12,7 +12,7 @@
 //
 
 //! Replacement for macros provided by Rust compiler:
-//! - [`mw_log_format_args!`] - replacement for `format_args!`
+//! - [`score_log_format_args!`] - replacement for `format_args!`
 //! - [`ScoreDebug`] - replacement for `Debug`
 
 // All errors should result in compilation error.
@@ -26,9 +26,9 @@ mod score_debug;
 /// Constructs parameters for the other string-formatting macros.
 ///
 /// This macro takes a formatting string literal containing `{}` for each additional argument.
-/// [`mw_log_format_args!`] prepares the additional parameters to ensure the output can be interpreted as a message.
+/// [`score_log_format_args!`] prepares the additional parameters to ensure the output can be interpreted as a message.
 #[proc_macro]
-pub fn mw_log_format_args(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
+pub fn score_log_format_args(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     format_args::expand(input)
 }
 

@@ -2,7 +2,7 @@
 
 participant "User" as actor
 participant "<<component>> log" as frontend
-participant "<<component>> mw_log_subscriber" as backend
+participant "<<component>> score_log_subscriber" as backend
 participant "no-op logger" as nop_logger
 
 actor -> frontend : Log message

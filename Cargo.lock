@@ -10,7 +10,7 @@ version = "0.1.0"
 name = "log_builtin"
 version = "0.0.1"
 dependencies = [
- "mw_log",
+ "score_log",
  "stdout_logger",
 ]
 
@@ -18,30 +18,7 @@ dependencies = [
 name = "log_custom"
 version = "0.0.1"
 dependencies = [
- "mw_log",
-]
-
-[[package]]
-name = "mw_log"
-version = "0.0.1"
-dependencies = [
- "mw_log_fmt",
- "mw_log_fmt_macro",
-]
-
-[[package]]
-name = "mw_log_fmt"
-version = "0.0.1"
-
-[[package]]
-name = "mw_log_fmt_macro"
-version = "0.0.1"
-dependencies = [
- "mw_log",
- "mw_log_fmt",
- "proc-macro2",
- "quote",
- "syn",
+ "score_log",
 ]
 
 [[package]]
@@ -63,10 +40,33 @@ dependencies = [
 ]
 
 [[package]]
+name = "score_log"
+version = "0.0.1"
+dependencies = [
+ "score_log_fmt",
+ "score_log_fmt_macro",
+]
+
+[[package]]
+name = "score_log_fmt"
+version = "0.0.1"
+
+[[package]]
+name = "score_log_fmt_macro"
+version = "0.0.1"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "score_log",
+ "score_log_fmt",
+ "syn",
+]
+
+[[package]]
 name = "stdout_logger"
 version = "0.0.1"
 dependencies = [
- "mw_log",
+ "score_log",
 ]
 
 [[package]]

@@ -23,7 +23,7 @@ rust_library(
     srcs = glob(["**/*.rs"]),
     visibility = ["//visibility:public"],
     deps = [
-        "//src/log/mw_log",
+        "//src/log/score_log",
     ],
 )
 

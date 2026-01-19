@@ -18,6 +18,6 @@
 #[macro_export]
 macro_rules! score_write {
     ($dst:expr, $($arg:tt)*) => {
-        $crate::write($dst, mw_log::format_args!($($arg)*))
+        $crate::write($dst, score_log::format_args!($($arg)*))
     };
 }

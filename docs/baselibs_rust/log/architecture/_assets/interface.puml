@@ -20,7 +20,7 @@ package log <<component>> {
         Trace
     }
 
-    class mw_log <<module>> {
+    class score_log <<module>> {
         +set_global_logger(logger: Box<dyn Log>) : Result<(), SetLoggerError>
         +set_max_level(level: LevelFilter) : ()
         +max_level() : LevelFilter
@@ -36,26 +36,26 @@ package log <<component>> {
         +trace!(...) : ()
     }
 
-    class mw_log_fmt_macro <<module>> {
-        +mw_log_format_args!(format_string: &str, args...) : Arguments<'_>
+    class score_log_fmt_macro <<module>> {
+        +score_log_format_args!(format_string: &str, args...) : Arguments<'_>
     }
 
-    package mw_log_fmt {
+    package score_log_fmt {
         +interface ScoreDebug <<trait>> {
             +fmt(&self, f: &mut dyn ScoreWrite, spec: &FormatSpec) : Result
         }
 
-        class mw_log_fmt <<module>> {
+        class score_log_fmt <<module>> {
             +write(output: &mut dyn ScoreWrite, args: Arguments<'_>) : Result
 
             +score_write!(format_string: &str, args...) : Result
         }
     }
 
-    mw_log -- Level
-    mw_log -- LevelFilter
-    mw_log -- mw_log_fmt_macro
-    mw_log -right- mw_log_fmt
+    score_log -- Level
+    score_log -- LevelFilter
+    score_log -- score_log_fmt_macro
+    score_log -right- score_log_fmt
 }
 
 @enduml

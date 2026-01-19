@@ -12,21 +12,24 @@
 # *******************************************************************************
 
 [package]
-name = "mw_log"
+name = "score_log_fmt_macro"
 version.workspace = true
 authors.workspace = true
 readme.workspace = true
 edition.workspace = true
 
 [lib]
+proc-macro = true
 path = "lib.rs"
 
 [dependencies]
-mw_log_fmt.workspace = true
-mw_log_fmt_macro.workspace = true
+syn = { version = "2", features = ["full"] }
+quote = "1"
+proc-macro2 = "1"
+score_log_fmt.workspace = true
 
-[features]
-qm = ["mw_log_fmt/qm"]
+[dev-dependencies]
+score_log.workspace = true
 
 [lints]
 workspace = true

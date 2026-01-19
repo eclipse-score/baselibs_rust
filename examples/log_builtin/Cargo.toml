@@ -5,7 +5,7 @@ authors.workspace = true
 edition.workspace = true
 
 [dependencies]
-mw_log.workspace = true
+score_log.workspace = true
 stdout_logger.workspace = true
 
 [lints]

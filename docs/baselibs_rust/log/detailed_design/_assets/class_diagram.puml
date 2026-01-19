@@ -1,7 +1,7 @@
 @startuml class_diagram
 
-package "mw_log crate" {
-    note as mw_log_desc
+package "score_log crate" {
+    note as score_log_desc
         Implementation of logging front-end.
         Based on 'log' library.
     end note
@@ -60,7 +60,7 @@ package "mw_log crate" {
         Trace
     }
 
-    class mw_log <<module>> {
+    class score_log <<module>> {
         {static} -LOGGER: &dyn Log
 
         +set_global_logger(logger: Box<dyn Log>) : Result<(), SetLoggerError>
@@ -96,13 +96,13 @@ package "mw_log crate" {
         </code>
     end note
 
-    mw_log -- Log
-    mw_log -- Level
-    mw_log -- LevelFilter
+    score_log -- Log
+    score_log -- Level
+    score_log -- LevelFilter
 }
 
-package "mw_log_fmt crate" {
-    note as mw_log_fmt_desc
+package "score_log_fmt crate" {
+    note as score_log_fmt_desc
         Formatting interface, similar to 'std::fmt'.
         Expanded with support for non-string variables.
     end note
@@ -190,7 +190,7 @@ package "mw_log_fmt crate" {
     ' Trait implementations rely on "ScoreWrite".
     ScoreDebug --> ScoreWrite
 
-    class mw_log_fmt <<module>> {
+    class score_log_fmt <<module>> {
         +write(output: &mut dyn ScoreWrite, args: Arguments<'_>) : Result
 
         +score_write!(format_string: &str, args...) : Result
@@ -212,12 +212,12 @@ package "mw_log_fmt crate" {
         </code>
     end note
 
-    mw_log_fmt -- Arguments
+    score_log_fmt -- Arguments
 }
 
-package "mw_log_fmt_macro crate" {
-    +class mw_log_fmt_macro <<module>> {
-        +mw_log_format_args!(format_string: &str, args...) : Arguments<'_>
+package "score_log_fmt_macro crate" {
+    +class score_log_fmt_macro <<module>> {
+        +score_log_format_args!(format_string: &str, args...) : Arguments<'_>
     }
 
     note top
@@ -226,8 +226,8 @@ package "mw_log_fmt_macro crate" {
     end note
 }
 
-package "mw_log_subscriber crate" {
-    note as mw_log_subscriber_desc
+package "score_log_subscriber crate" {
+    note as score_log_subscriber_desc
         Example of backend implementation.
     end note
 
@@ -258,10 +258,10 @@ package "mw_log_subscriber crate" {
     ExampleLog *-- ExampleScoreWrite
 }
 
-"mw_log crate" -[hidden]down-> "mw_log_fmt crate"
-"mw_log crate" -[hidden]up-> "mw_log_fmt_macro crate"
+"score_log crate" -[hidden]down-> "score_log_fmt crate"
+"score_log crate" -[hidden]up-> "score_log_fmt_macro crate"
 
-"mw_log crate" -[hidden]down------> "mw_log_subscriber crate"
-"mw_log_fmt crate" -[hidden]down------> "mw_log_subscriber crate"
+"score_log crate" -[hidden]down------> "score_log_subscriber crate"
+"score_log_fmt crate" -[hidden]down------> "score_log_subscriber crate"
 
 @enduml

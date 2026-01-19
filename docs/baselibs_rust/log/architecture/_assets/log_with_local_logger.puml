@@ -2,7 +2,7 @@
 
 participant "User" as actor
 participant "<<component>> log" as frontend
-participant "<<component>> mw_log_subscriber" as backend
+participant "<<component>> score_log_subscriber" as backend
 
 actor -> backend : Create concrete logger instance
 backend --> actor : Logger instance
