@@ -18,6 +18,7 @@ extern "C" void set_default_logger(const char* context_ptr,
                                    const bool* show_module,
                                    const bool* show_file,
                                    const bool* show_line,
+                                   const bool* show_timestamp,
                                    const score::mw::log::rust::LogLevel* log_level);
 
 namespace score::mw::log::rust
@@ -47,6 +48,12 @@ StdoutLoggerBuilder& StdoutLoggerBuilder::ShowLine(bool show_line) noexcept
     return *this;
 }
 
+StdoutLoggerBuilder& StdoutLoggerBuilder::ShowTimestamp(bool show_timestamp) noexcept
+{
+    show_timestamp_ = show_timestamp;
+    return *this;
+}
+
 StdoutLoggerBuilder& StdoutLoggerBuilder::LogLevel(score::mw::log::rust::LogLevel log_level) noexcept
 {
     log_level_ = log_level;
@@ -67,9 +74,10 @@ void StdoutLoggerBuilder::SetAsDefaultLogger() noexcept
     const bool* show_module{show_module_ ? &show_module_.value() : nullptr};
     const bool* show_file{show_file_ ? &show_file_.value() : nullptr};
     const bool* show_line{show_line_ ? &show_line_.value() : nullptr};
+    const bool* show_timestamp{show_timestamp_ ? &show_timestamp_.value() : nullptr};
     const score::mw::log::rust::LogLevel* log_level{log_level_ ? &log_level_.value() : nullptr};
 
-    set_default_logger(context_ptr, context_size, show_module, show_file, show_line, log_level);
+    set_default_logger(context_ptr, context_size, show_module, show_file, show_line, show_timestamp, log_level);
 }
 
 }  // namespace score::mw::log::rust

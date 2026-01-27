@@ -14,10 +14,14 @@
 //! String-based Rust backend for `score_log`.
 //! Data is written to a fixed-size buffer.
 
+mod timestamp;
+
+use crate::timestamp::timestamp;
 use core::cell::RefCell;
 use core::fmt::Write;
 use score_log::fmt::{score_write, Error, FormatSpec, Result, ScoreWrite};
 use score_log::{LevelFilter, Log, Metadata, Record};
+use std::time::{SystemTime, UNIX_EPOCH};
 
 /// Fixed size buffer for strings.
 struct FixedBuf<const N: usize> {
@@ -191,6 +195,18 @@ impl StdoutLoggerBuilder {
         self
     }
 
+    /// Show timestamp.
+    ///
+    /// UTC timestamp in the following format:
+    /// `[year]/[month]/[day] [hour]:[minute]:[second].[subsecond digits:7]`
+    ///
+    /// Example:
+    /// `2026/01/27 11:33:41.1420089`
+    pub fn show_timestamp(mut self, show_timestamp: bool) -> Self {
+        self.0.show_timestamp = show_timestamp;
+        self
+    }
+
     /// Filter logs by level.
     pub fn log_level(mut self, log_level: LevelFilter) -> Self {
         self.0.log_level = log_level;
@@ -226,6 +242,7 @@ impl Default for StdoutLoggerBuilder {
             show_module: false,
             show_file: false,
             show_line: false,
+            show_timestamp: true,
             log_level: LevelFilter::Info,
         })
     }
@@ -241,6 +258,7 @@ pub struct StdoutLogger {
     show_module: bool,
     show_file: bool,
     show_line: bool,
+    show_timestamp: bool,
     log_level: LevelFilter,
 }
 
@@ -269,6 +287,15 @@ impl Log for StdoutLogger {
 
         // Operate in a scope of borrowed writer.
         WRITER.with_borrow_mut(|writer| {
+            // Write timestamp.
+            if self.show_timestamp {
+                if let Ok(now) = SystemTime::now().duration_since(UNIX_EPOCH) {
+                    let timestamp_u8 = timestamp(now);
+                    let timestamp_str = unsafe { str::from_utf8_unchecked(timestamp_u8.as_slice()) };
+                    let _ = score_write!(writer, "[{}]", timestamp_str);
+                }
+            }
+
             // Write module, file and line.
             if self.show_module || self.show_file || self.show_line {
                 let _ = score_write!(writer, "[");

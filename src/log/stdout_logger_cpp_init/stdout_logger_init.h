@@ -61,6 +61,16 @@ class StdoutLoggerBuilder final
     /// @return This builder.
     StdoutLoggerBuilder& ShowLine(bool show_line) noexcept;
 
+    /// @brief Show timestamp.
+    /// UTC timestamp in the following format:
+    /// `[year]/[month]/[day] [hour]:[minute]:[second].[subsecond digits:7]`
+    ///
+    /// Example:
+    /// `2026/01/27 11:33:41.1420089`
+    /// @param show_timestamp Value to set.
+    /// @return This builder.
+    StdoutLoggerBuilder& ShowTimestamp(bool show_timestamp) noexcept;
+
     /// @brief Filter logs by level.
     /// @param log_level Log level.
     /// @return This builder.
@@ -74,6 +84,7 @@ class StdoutLoggerBuilder final
     std::optional<bool> show_module_;
     std::optional<bool> show_file_;
     std::optional<bool> show_line_;
+    std::optional<bool> show_timestamp_;
     std::optional<score::mw::log::rust::LogLevel> log_level_;
 };
 

@@ -50,6 +50,7 @@ extern "C" fn set_default_logger(
     show_module: *const bool,
     show_file: *const bool,
     show_line: *const bool,
+    show_timestamp: *const bool,
     log_level: *const LogLevel,
 ) {
     let mut builder = StdoutLoggerBuilder::new();
@@ -73,6 +74,10 @@ extern "C" fn set_default_logger(
 
     if !show_line.is_null() {
         builder = builder.show_line(unsafe { *show_line });
+    }
+
+    if !show_timestamp.is_null() {
+        builder = builder.show_timestamp(unsafe { *show_timestamp });
     }
 
     if !log_level.is_null() {
