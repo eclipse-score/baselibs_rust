@@ -314,7 +314,8 @@ impl Log for StdoutLogger {
             // Write context, log level, log data.
             let context = record.context();
             let level = metadata.level().as_str();
-            let _ = score_write!(writer, "[{}][{}] {}", context, level, record.args());
+            let pid = std::process::id();
+            let _ = score_write!(writer, "[{}][{}][{}] {}", pid, context, level, record.args());
 
             // Print to stdout.
             println!("{}", writer.get());
