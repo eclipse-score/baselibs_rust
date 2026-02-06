@@ -16,6 +16,7 @@
 //!
 //! Replacement for [`core::fmt`].
 
+#![feature(non_null_from_ref)]
 mod builders;
 mod fmt;
 mod fmt_impl;
