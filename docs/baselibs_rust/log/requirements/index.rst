@@ -31,6 +31,7 @@ Requirements
    :security: NO
    :safety: ASIL_B
    :satisfies: feat_req__baselibs__core_utilities
+   :belongs_to: comp__logging
    :status: invalid
 
    Requirement placeholder for diagram rendering.

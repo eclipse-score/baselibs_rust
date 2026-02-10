@@ -59,8 +59,8 @@ Static Architecture
    :security: NO
    :safety: ASIL_B
    :status: valid
-   :implements:
-   :fulfils:
+   :belongs_to: comp__logging
+   :fulfils: comp_req__log__placeholder
    :includes:
 
    .. uml:: _assets/static_view.puml
@@ -74,7 +74,8 @@ Dynamic Architecture
    :security: NO
    :safety: ASIL_B
    :status: valid
-   :fulfils:
+   :belongs_to: comp__logging
+   :fulfils: comp_req__log__placeholder
 
    .. uml:: _assets/register_global_logger.puml
 
@@ -83,7 +84,8 @@ Dynamic Architecture
    :security: NO
    :safety: ASIL_B
    :status: valid
-   :fulfils:
+   :belongs_to: comp__logging
+   :fulfils: comp_req__log__placeholder
 
    .. uml:: _assets/log_with_global_logger.puml
 
@@ -92,7 +94,8 @@ Dynamic Architecture
    :security: NO
    :safety: ASIL_B
    :status: valid
-   :fulfils:
+   :belongs_to: comp__logging
+   :fulfils: comp_req__log__placeholder
 
    .. uml:: _assets/log_with_local_logger.puml
 
@@ -105,7 +108,7 @@ Interfaces
    :security: NO
    :safety: ASIL_B
    :status: valid
-   :fulfils:
+   :fulfils: comp_req__log__placeholder
    :language: rust
 
    .. uml:: _assets/interface.puml

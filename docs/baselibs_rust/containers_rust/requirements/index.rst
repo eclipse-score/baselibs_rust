@@ -32,6 +32,7 @@ Functional Requirements
    :security: NO
    :safety: ASIL_B
    :satisfies: feat_req__baselibs_rust__containers_rust_lib
+   :belongs_to: comp__baselibs_containers
    :status: valid
 
    The Rust Containers library shall provide a heap-allocated vector container with construction-time capacity specification.
@@ -42,6 +43,7 @@ Functional Requirements
    :security: NO
    :safety: ASIL_B
    :satisfies: feat_req__baselibs_rust__containers_rust_lib, feat_req__baselibs_rust__abi_containers
+   :belongs_to: comp__baselibs_containers
    :status: valid
 
    The Rust Containers library shall provide a vector container with a capacity determined at compile-time,
@@ -54,6 +56,7 @@ Functional Requirements
    :security: NO
    :safety: ASIL_B
    :satisfies: feat_req__baselibs_rust__containers_rust_lib
+   :belongs_to: comp__baselibs_containers
    :status: valid
 
    The Rust Containers library shall provide a heap-allocated, UTF-8 encoded string data type with construction-time capacity specification.
@@ -64,6 +67,7 @@ Functional Requirements
    :security: NO
    :safety: ASIL_B
    :satisfies: feat_req__baselibs_rust__containers_rust_lib, feat_req__baselibs_rust__abi_containers
+   :belongs_to: comp__baselibs_containers
    :status: valid
 
    The Rust Containers library shall provide a UTF-8 encoded string data type with a capacity determined at compile-time,
@@ -76,6 +80,7 @@ Functional Requirements
    :security: NO
    :safety: ASIL_B
    :satisfies: feat_req__baselibs_rust__containers_rust_lib
+   :belongs_to: comp__baselibs_containers
    :status: valid
 
    The Rust Containers library shall provide a heap-allocated double-ended queue container with construction-time capacity specification.
@@ -86,6 +91,7 @@ Functional Requirements
    :security: NO
    :safety: ASIL_B
    :satisfies: feat_req__baselibs_rust__containers_rust_lib, feat_req__baselibs_rust__abi_containers
+   :belongs_to: comp__baselibs_containers
    :status: valid
 
    The Rust Containers library shall provide a queue container with a capacity determined at compile-time,
@@ -98,6 +104,7 @@ Functional Requirements
    :security: NO
    :safety: ASIL_B
    :satisfies: feat_req__baselibs_rust__containers_rust_lib
+   :belongs_to: comp__baselibs_containers
    :status: valid
 
    The Rust Containers library shall provide a heap-allocated hashmap container with construction-time capacity specification.
@@ -108,6 +115,7 @@ Functional Requirements
    :security: NO
    :safety: ASIL_B
    :satisfies: feat_req__baselibs_rust__containers_rust_lib, feat_req__baselibs_rust__abi_containers
+   :belongs_to: comp__baselibs_containers
    :status: valid
 
    The Rust Containers library shall provide a hashmap container with a capacity determined at compile-time,
@@ -120,6 +128,7 @@ Functional Requirements
    :security: NO
    :safety: ASIL_B
    :satisfies: feat_req__baselibs_rust__containers_rust_lib
+   :belongs_to: comp__baselibs_containers
    :status: valid
 
    The Rust Containers library shall provide a heap-allocated hashset container with construction-time capacity specification.
@@ -130,6 +139,7 @@ Functional Requirements
    :security: NO
    :safety: ASIL_B
    :satisfies: feat_req__baselibs_rust__containers_rust_lib, feat_req__baselibs_rust__abi_containers
+   :belongs_to: comp__baselibs_containers
    :status: valid
 
    The Rust Containers library shall provide a hashset container with a capacity determined at compile-time,
@@ -142,6 +152,7 @@ Functional Requirements
    :security: NO
    :safety: ASIL_B
    :satisfies: feat_req__baselibs_rust__containers_rust_lib
+   :belongs_to: comp__baselibs_containers
    :status: valid
 
    The Rust Containers library shall provide a heap-allocated B-tree container with construction-time capacity specification.
@@ -152,6 +163,7 @@ Functional Requirements
    :security: NO
    :safety: ASIL_B
    :satisfies: feat_req__baselibs_rust__containers_rust_lib, feat_req__baselibs_rust__abi_containers
+   :belongs_to: comp__baselibs_containers
    :status: valid
 
    The Rust Containers library shall provide a B-tree container with a capacity determined at compile-time,
@@ -164,6 +176,7 @@ Functional Requirements
    :security: NO
    :safety: ASIL_B
    :satisfies: feat_req__baselibs_rust__consistent_apis, feat_req__baselibs_rust__safety
+   :belongs_to: comp__baselibs_containers
    :status: valid
 
    The Rust Containers library shall enforce compile-time type safety for all container operations.
@@ -177,6 +190,7 @@ Non-Functional Requirements
    :security: NO
    :safety: ASIL_B
    :satisfies: feat_req__baselibs_rust__core_utilities, feat_req__baselibs_rust__safety
+   :belongs_to: comp__baselibs_containers
    :status: valid
 
    The Rust containers library shall provide deterministic behavior.
@@ -187,6 +201,7 @@ Non-Functional Requirements
    :security: NO
    :safety: ASIL_B
    :satisfies: feat_req__baselibs_rust__abi_containers
+   :belongs_to: comp__baselibs_containers
    :status: valid
 
    Inline-storage containers shall never allocate heap memory.
@@ -197,6 +212,7 @@ Non-Functional Requirements
    :security: NO
    :safety: ASIL_B
    :satisfies: feat_req__baselibs_rust__result_library
+   :belongs_to: comp__baselibs_containers
    :status: valid
 
    Fixed-capacity containers shall never allocate or re-allocate memory after their initial construction.
