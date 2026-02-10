@@ -43,7 +43,8 @@ Static Architecture
    :safety: ASIL_B
    :status: valid
    :tags: baselibs_rust_containers_rust
-   :implements: logic_arc_int__b_r__fixvec, logic_arc_int__b_r__inlinevec, logic_arc_int__b_r__fixqueue, logic_arc_int__b_r__inlqueue
+   :fulfils: comp_req__containers_rust__fixed_vector, comp_req__containers_rust__inline_vector, comp_req__containers_rust__fixed_queue, comp_req__containers_rust__inline_queue
+   :belongs_to: comp__baselibs_containers
 
    .. needarch::
       :scale: 50

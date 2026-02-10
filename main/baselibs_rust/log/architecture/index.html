@@ -448,7 +448,7 @@
                   
   <section id="component-architecture">
 <span id="component-architecture-log"></span><h1>Component Architecture<a class="headerlink" href="#component-architecture" title="Link to this heading">#</a></h1>
-<div class="need_container docutils container" id="SNCB-cc7e1818">
+<div class="need_container docutils container" id="SNCB-409c6c4a">
 <div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_document table" id="doc__log_architecture">
 <tbody>
 <tr class="head row-odd"><td class="head_left" colspan="2"><div class="needs_head_left line-block">
@@ -467,7 +467,7 @@
 </td>
 </tr>
 <tr class="meta row-even"><td class="meta" colspan="3"><div class="needs_meta_left line-block">
-<div class="line"><span><span><div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">log</span></span></span></div>
+<div class="line"><span><span><div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">log</span><span class="needs_spacer">, </span><span class="needs_data">log</span></span></span></div>
 </span></span></div>
 <div class="line"><span><div class="line">realizes: <span class="realizes"><span><a class="external_link reference external" href="https://eclipse-score.github.io/process_description//main/process_areas/architecture_design/architecture_workproducts.html#wp__component_arch">wp__component_arch</a></span></span></div>
 </span></div>
@@ -510,7 +510,7 @@ Log component is a monolithic frontend.</p>
 </section>
 <section id="static-architecture">
 <h2>Static Architecture<a class="headerlink" href="#static-architecture" title="Link to this heading">#</a></h2>
-<div class="need_container docutils container" id="SNCB-8affc939">
+<div class="need_container docutils container" id="SNCB-61b8449c">
 <div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_comp_arc_sta table" id="comp_arc_sta__log__static_view">
 <tbody>
 <tr class="head row-odd"><td class="head_left" colspan="2"><div class="needs_head_left line-block">
@@ -532,6 +532,8 @@ Log component is a monolithic frontend.</p>
 <div class="line"><span><span><div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">log</span></span></span></div>
 </span></span></div>
 <div class="line"><span><div class="line">satisfied by: <span class="satisfies"><span><a class="reference internal" href="../detailed_design/index.html#dd_sta__log__class_diagram" title="comp_arc_sta__log__static_view">dd_sta__log__class_diagram</a>, <a class="reference internal" href="../detailed_design/index.html#dd_dyn__log__log_op" title="comp_arc_sta__log__static_view">dd_dyn__log__log_op</a>, <a class="reference internal" href="../detailed_design/index.html#dd_dyn__log__log_to_level" title="comp_arc_sta__log__static_view">dd_dyn__log__log_to_level</a></span></span></div>
+<div class="line">belongs to: <span class="belongs_to"><span><a class="external_link reference external" href="https://eclipse-score.github.io/score/main/modules/logging/logging/docs/architecture/index.html#comp__logging">comp__logging</a></span></span></div>
+<div class="line">fulfils: <span class="fulfils"><span><a class="reference internal" href="../requirements/index.html#comp_req__log__placeholder" title="comp_arc_sta__log__static_view">comp_req__log__placeholder</a></span></span></div>
 </span></div>
 </div>
 </td>
@@ -558,7 +560,7 @@ Log component is a monolithic frontend.</p>
 </section>
 <section id="dynamic-architecture">
 <h2>Dynamic Architecture<a class="headerlink" href="#dynamic-architecture" title="Link to this heading">#</a></h2>
-<div class="need_container docutils container" id="SNCB-fdf73ce5">
+<div class="need_container docutils container" id="SNCB-c1c97650">
 <div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_comp_arc_dyn table" id="comp_arc_dyn__log__register_global_logger">
 <tbody>
 <tr class="head row-odd"><td class="head_left" colspan="2"><div class="needs_head_left line-block">
@@ -579,7 +581,9 @@ Log component is a monolithic frontend.</p>
 <tr class="meta row-even"><td class="meta" colspan="3"><div class="needs_meta_left line-block">
 <div class="line"><span><span><div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">log</span></span></span></div>
 </span></span></div>
-<div class="line"><span></span></div>
+<div class="line"><span><div class="line">belongs to: <span class="belongs_to"><span><a class="external_link reference external" href="https://eclipse-score.github.io/score/main/modules/logging/logging/docs/architecture/index.html#comp__logging">comp__logging</a></span></span></div>
+<div class="line">fulfils: <span class="fulfils"><span><a class="reference internal" href="../requirements/index.html#comp_req__log__placeholder" title="comp_arc_dyn__log__register_global_logger">comp_req__log__placeholder</a></span></span></div>
+</span></div>
 </div>
 </td>
 <td class="meta" colspan="3"></td>
@@ -602,7 +606,7 @@ Log component is a monolithic frontend.</p>
 </table>
 </div>
 </div>
-<div class="need_container docutils container" id="SNCB-d3025e00">
+<div class="need_container docutils container" id="SNCB-85ecc58f">
 <div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_comp_arc_dyn table" id="comp_arc_dyn__log__log_with_global_logger">
 <tbody>
 <tr class="head row-odd"><td class="head_left" colspan="2"><div class="needs_head_left line-block">
@@ -623,7 +627,9 @@ Log component is a monolithic frontend.</p>
 <tr class="meta row-even"><td class="meta" colspan="3"><div class="needs_meta_left line-block">
 <div class="line"><span><span><div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">log</span></span></span></div>
 </span></span></div>
-<div class="line"><span></span></div>
+<div class="line"><span><div class="line">belongs to: <span class="belongs_to"><span><a class="external_link reference external" href="https://eclipse-score.github.io/score/main/modules/logging/logging/docs/architecture/index.html#comp__logging">comp__logging</a></span></span></div>
+<div class="line">fulfils: <span class="fulfils"><span><a class="reference internal" href="../requirements/index.html#comp_req__log__placeholder" title="comp_arc_dyn__log__log_with_global_logger">comp_req__log__placeholder</a></span></span></div>
+</span></div>
 </div>
 </td>
 <td class="meta" colspan="3"></td>
@@ -646,7 +652,7 @@ Log component is a monolithic frontend.</p>
 </table>
 </div>
 </div>
-<div class="need_container docutils container" id="SNCB-1d163bb0">
+<div class="need_container docutils container" id="SNCB-03478598">
 <div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_comp_arc_dyn table" id="comp_arc_dyn__log__log_with_local_logger">
 <tbody>
 <tr class="head row-odd"><td class="head_left" colspan="2"><div class="needs_head_left line-block">
@@ -667,7 +673,9 @@ Log component is a monolithic frontend.</p>
 <tr class="meta row-even"><td class="meta" colspan="3"><div class="needs_meta_left line-block">
 <div class="line"><span><span><div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">log</span></span></span></div>
 </span></span></div>
-<div class="line"><span></span></div>
+<div class="line"><span><div class="line">belongs to: <span class="belongs_to"><span><a class="external_link reference external" href="https://eclipse-score.github.io/score/main/modules/logging/logging/docs/architecture/index.html#comp__logging">comp__logging</a></span></span></div>
+<div class="line">fulfils: <span class="fulfils"><span><a class="reference internal" href="../requirements/index.html#comp_req__log__placeholder" title="comp_arc_dyn__log__log_with_local_logger">comp_req__log__placeholder</a></span></span></div>
+</span></div>
 </div>
 </td>
 <td class="meta" colspan="3"></td>
@@ -693,7 +701,7 @@ Log component is a monolithic frontend.</p>
 </section>
 <section id="interfaces">
 <h2>Interfaces<a class="headerlink" href="#interfaces" title="Link to this heading">#</a></h2>
-<div class="need_container docutils container" id="SNCB-597d4560">
+<div class="need_container docutils container" id="SNCB-d568f209">
 <div class="pst-scrollable-table-container"><table class="need needs_grid_complex needs_layout_score needs_style_none needs_type_real_arc_int table" id="real_arc_int__log__interface">
 <tbody>
 <tr class="head row-odd"><td class="head_left" colspan="2"><div class="needs_head_left line-block">
@@ -715,7 +723,8 @@ Log component is a monolithic frontend.</p>
 <div class="line"><span><span><div class="line"><span class="needs_tags"><span class="needs_label">tags: </span><span class="needs_data_container"><span class="needs_data">log</span></span></span></div>
 <div class="line"><span class="needs_language"><span class="needs_label">language: </span><span class="needs_data">rust</span></span></div>
 </span></span></div>
-<div class="line"><span></span></div>
+<div class="line"><span><div class="line">fulfils: <span class="fulfils"><span><a class="reference internal" href="../requirements/index.html#comp_req__log__placeholder" title="real_arc_int__log__interface">comp_req__log__placeholder</a></span></span></div>
+</span></div>
 </div>
 </td>
 <td class="meta" colspan="3"></td>
@@ -803,7 +812,7 @@ Log component is a monolithic frontend.</p>
 
   
   <div class="tocsection editthispage">
-    <a href="https://github.com/eclipse-score/baselibs_rust/edit/main/'docs'/baselibs_rust/log/architecture/index.rst">
+    <a href="https://github.com/eclipse-score/baselibs_rust/edit/main/docs/baselibs_rust/log/architecture/index.rst">
       <i class="fa-solid fa-pencil"></i>
       
       
