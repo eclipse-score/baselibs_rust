@@ -25,6 +25,7 @@ pub struct FixedCapacityVec<T> {
     inner: GenericVec<T, Heap<T>>,
 }
 
+/// # req-Id: comp_req__containers_rust__fixed_vector
 impl<T> FixedCapacityVec<T> {
     /// Creates an empty vector and allocates memory for up to `capacity` elements, where `capacity <= u32::MAX`.
     ///
