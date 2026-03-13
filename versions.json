@@ -10,5 +10,9 @@
   {
     "version": "pr-71",
     "url": "https://eclipse-score.github.io/baselibs_rust/pr-71/"
+  },
+  {
+    "version": "pr-72",
+    "url": "https://eclipse-score.github.io/baselibs_rust/pr-72/"
   }
 ]
