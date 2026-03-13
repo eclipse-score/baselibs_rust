@@ -19,6 +19,7 @@ default-members = [
     "src/containers",
     "src/sync",
     "src/elementary",
+    "src/thread",
     "src/log/score_log_fmt_macro",
     "src/log/stdout_logger",
     "src/testing_macros",
@@ -28,6 +29,7 @@ members = [
     "src/containers",
     "src/sync",
     "src/elementary",
+    "src/thread",
     "src/log/score_log",
     "src/log/score_log_fmt",
     "src/log/score_log_fmt_macro",
@@ -44,12 +46,15 @@ license-file = "LICENSE.md"
 authors = ["S-CORE Contributors"]
 
 [workspace.dependencies]
+libc = "0.2.177"
+
 score_log = { path = "src/log/score_log" }
 score_log_fmt = { path = "src/log/score_log_fmt" }
 score_log_fmt_macro = { path = "src/log/score_log_fmt_macro" }
 stdout_logger = { path = "src/log/stdout_logger" }
 elementary = { path = "src/elementary" }
 testing_macros = { path = "src/testing_macros" }
+thread = { path = "src/thread" }
 
 [workspace.lints.clippy]
 std_instead_of_core = "warn"
