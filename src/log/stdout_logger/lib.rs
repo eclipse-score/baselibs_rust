@@ -141,6 +141,10 @@ impl<const N: usize> ScoreWrite for FixedBufWriter<N> {
         write!(self.buf, "{}", v).map_err(|_| Error)
     }
 
+    fn write_i128(&mut self, v: &i128, _spec: &FormatSpec) -> Result {
+        write!(self.buf, "{}", v).map_err(|_| Error)
+    }
+
     fn write_u8(&mut self, v: &u8, _spec: &FormatSpec) -> Result {
         write!(self.buf, "{}", v).map_err(|_| Error)
     }
@@ -154,6 +158,10 @@ impl<const N: usize> ScoreWrite for FixedBufWriter<N> {
     }
 
     fn write_u64(&mut self, v: &u64, _spec: &FormatSpec) -> Result {
+        write!(self.buf, "{}", v).map_err(|_| Error)
+    }
+
+    fn write_u128(&mut self, v: &u128, _spec: &FormatSpec) -> Result {
         write!(self.buf, "{}", v).map_err(|_| Error)
     }
 

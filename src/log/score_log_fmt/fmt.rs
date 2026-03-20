@@ -48,6 +48,8 @@ pub trait ScoreWrite {
     fn write_i32(&mut self, v: &i32, spec: &FormatSpec) -> Result;
     /// Write a `i64` into this writer.
     fn write_i64(&mut self, v: &i64, spec: &FormatSpec) -> Result;
+    /// Write a `i128` into this writer.
+    fn write_i128(&mut self, v: &i128, spec: &FormatSpec) -> Result;
     /// Write a `u8` into this writer.
     fn write_u8(&mut self, v: &u8, spec: &FormatSpec) -> Result;
     /// Write a `u16` into this writer.
@@ -56,6 +58,8 @@ pub trait ScoreWrite {
     fn write_u32(&mut self, v: &u32, spec: &FormatSpec) -> Result;
     /// Write a `u64` into this writer.
     fn write_u64(&mut self, v: &u64, spec: &FormatSpec) -> Result;
+    /// Write a `u128` into this writer.
+    fn write_u128(&mut self, v: &u128, spec: &FormatSpec) -> Result;
     /// Write a `&str` into this writer.
     fn write_str(&mut self, v: &str, spec: &FormatSpec) -> Result;
 }
@@ -154,10 +158,18 @@ mod tests {
             Fragment::Placeholder(Placeholder::new(&-1234i16, FormatSpec::new())),
             Fragment::Placeholder(Placeholder::new(&-123456i32, FormatSpec::new())),
             Fragment::Placeholder(Placeholder::new(&-1200000000000000000i64, FormatSpec::new())),
+            Fragment::Placeholder(Placeholder::new(
+                &-128000000000000000000000000000000000000i128,
+                FormatSpec::new(),
+            )),
             Fragment::Placeholder(Placeholder::new(&123u8, FormatSpec::new())),
             Fragment::Placeholder(Placeholder::new(&1234u16, FormatSpec::new())),
             Fragment::Placeholder(Placeholder::new(&123456u32, FormatSpec::new())),
             Fragment::Placeholder(Placeholder::new(&1200000000000000000u64, FormatSpec::new())),
+            Fragment::Placeholder(Placeholder::new(
+                &128000000000000000000000000000000000000u128,
+                FormatSpec::new(),
+            )),
             Fragment::Literal("_string"),
         ];
         let args = Arguments(&fragments);
@@ -165,7 +177,7 @@ mod tests {
         let result = ScoreDebug::fmt(&args, &mut w, &FormatSpec::new());
         assert!(result == Ok(()));
         assert!(
-            w.get() == "test_true123.4432.2-100-1234-123456-120000000000000000012312341234561200000000000000000_string"
+            w.get() == "test_true123.4432.2-100-1234-123456-1200000000000000000-12800000000000000000000000000000000000012312341234561200000000000000000128000000000000000000000000000000000000_string"
         )
     }
 
@@ -195,16 +207,24 @@ mod tests {
             Fragment::Placeholder(Placeholder::new(&-1234i16, FormatSpec::new())),
             Fragment::Placeholder(Placeholder::new(&-123456i32, FormatSpec::new())),
             Fragment::Placeholder(Placeholder::new(&-1200000000000000000i64, FormatSpec::new())),
+            Fragment::Placeholder(Placeholder::new(
+                &-128000000000000000000000000000000000000i128,
+                FormatSpec::new(),
+            )),
             Fragment::Placeholder(Placeholder::new(&123u8, FormatSpec::new())),
             Fragment::Placeholder(Placeholder::new(&1234u16, FormatSpec::new())),
             Fragment::Placeholder(Placeholder::new(&123456u32, FormatSpec::new())),
             Fragment::Placeholder(Placeholder::new(&1200000000000000000u64, FormatSpec::new())),
+            Fragment::Placeholder(Placeholder::new(
+                &128000000000000000000000000000000000000u128,
+                FormatSpec::new(),
+            )),
             Fragment::Placeholder(Placeholder::new(&"test", FormatSpec::new())),
         ];
         let args = Arguments(&fragments);
         assert!(write(&mut w, args) == Ok(()));
 
-        let exp_pattern = "true123.4432.2-100-1234-123456-120000000000000000012312341234561200000000000000000test";
+        let exp_pattern = "true123.4432.2-100-1234-123456-1200000000000000000-12800000000000000000000000000000000000012312341234561200000000000000000128000000000000000000000000000000000000test";
         assert_eq!(w.get(), exp_pattern);
     }
 

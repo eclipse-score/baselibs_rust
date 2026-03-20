@@ -15,6 +15,7 @@
 
 use crate::fmt::{Result, ScoreDebug, Writer};
 use crate::fmt_spec::FormatSpec;
+use core::net::AddrParseError;
 use std::path::{Path, PathBuf};
 
 // TODO: replace with `core::char::MAX_LEN_UTF8` once stable.
@@ -51,6 +52,12 @@ impl ScoreDebug for PathBuf {
     }
 }
 
+impl ScoreDebug for AddrParseError {
+    fn fmt(&self, f: Writer, spec: &FormatSpec) -> Result {
+        f.write_str(&format!("{:?}", self), spec)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use crate::test_utils::common_test_debug;
@@ -64,5 +71,12 @@ mod tests {
     #[test]
     fn test_pathbuf_debug() {
         common_test_debug(PathBuf::from("/tmp/test_path"));
+    }
+
+    #[test]
+    fn test_addr_parse_error_debug() {
+        let a1 = "invalid address";
+        let a2: Result<std::net::IpAddr, std::net::AddrParseError> = a1.parse();
+        common_test_debug(a2.unwrap_err());
     }
 }

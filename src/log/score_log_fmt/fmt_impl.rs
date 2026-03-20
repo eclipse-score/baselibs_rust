@@ -35,10 +35,12 @@ impl_debug_for_t!(i8, write_i8);
 impl_debug_for_t!(i16, write_i16);
 impl_debug_for_t!(i32, write_i32);
 impl_debug_for_t!(i64, write_i64);
+impl_debug_for_t!(i128, write_i128);
 impl_debug_for_t!(u8, write_u8);
 impl_debug_for_t!(u16, write_u16);
 impl_debug_for_t!(u32, write_u32);
 impl_debug_for_t!(u64, write_u64);
+impl_debug_for_t!(u128, write_u128);
 
 impl ScoreDebug for () {
     fn fmt(&self, f: Writer, spec: &FormatSpec) -> Result {
@@ -83,6 +85,13 @@ impl ScoreDebug for std::string::FromUtf8Error {
             .field("bytes", &self.as_bytes())
             .field("error", &self.utf8_error())
             .finish()
+    }
+}
+
+impl ScoreDebug for core::time::Duration {
+    fn fmt(&self, f: Writer, spec: &FormatSpec) -> Result {
+        f.write_f64(&self.as_secs_f64(), spec)?;
+        f.write_str("s", spec)
     }
 }
 
@@ -273,6 +282,11 @@ mod tests {
     }
 
     #[test]
+    fn test_i128_debug() {
+        common_test_debug(-128000000000000000000000000000000000000i128);
+    }
+
+    #[test]
     fn test_u8_debug() {
         common_test_debug(123u8);
     }
@@ -290,6 +304,11 @@ mod tests {
     #[test]
     fn test_u64_debug() {
         common_test_debug(1200000000000000000u64);
+    }
+
+    #[test]
+    fn test_u128_debug() {
+        common_test_debug(128000000000000000000000000000000000000u128);
     }
 
     #[test]
@@ -374,6 +393,11 @@ mod tests {
     #[test]
     fn test_box_debug() {
         common_test_debug(Box::new(432.1));
+    }
+
+    #[test]
+    fn test_duration_debug() {
+        common_test_debug(core::time::Duration::new(123, 456789));
     }
 
     #[test]
