@@ -35,12 +35,10 @@ impl_debug_for_t!(i8, write_i8);
 impl_debug_for_t!(i16, write_i16);
 impl_debug_for_t!(i32, write_i32);
 impl_debug_for_t!(i64, write_i64);
-impl_debug_for_t!(i128, write_i128);
 impl_debug_for_t!(u8, write_u8);
 impl_debug_for_t!(u16, write_u16);
 impl_debug_for_t!(u32, write_u32);
 impl_debug_for_t!(u64, write_u64);
-impl_debug_for_t!(u128, write_u128);
 
 impl ScoreDebug for () {
     fn fmt(&self, f: Writer, spec: &FormatSpec) -> Result {
@@ -282,11 +280,6 @@ mod tests {
     }
 
     #[test]
-    fn test_i128_debug() {
-        common_test_debug(-128000000000000000000000000000000000000i128);
-    }
-
-    #[test]
     fn test_u8_debug() {
         common_test_debug(123u8);
     }
@@ -304,11 +297,6 @@ mod tests {
     #[test]
     fn test_u64_debug() {
         common_test_debug(1200000000000000000u64);
-    }
-
-    #[test]
-    fn test_u128_debug() {
-        common_test_debug(128000000000000000000000000000000000000u128);
     }
 
     #[test]

@@ -65,10 +65,6 @@ impl ScoreWrite for StringWriter {
         Ok(write!(self.buf, "{}", v)?)
     }
 
-    fn write_i128(&mut self, v: &i128, _spec: &FormatSpec) -> Result {
-        Ok(write!(self.buf, "{}", v)?)
-    }
-
     fn write_u8(&mut self, v: &u8, _spec: &FormatSpec) -> Result {
         Ok(write!(self.buf, "{}", v)?)
     }
@@ -82,10 +78,6 @@ impl ScoreWrite for StringWriter {
     }
 
     fn write_u64(&mut self, v: &u64, _spec: &FormatSpec) -> Result {
-        Ok(write!(self.buf, "{}", v)?)
-    }
-
-    fn write_u128(&mut self, v: &u128, _spec: &FormatSpec) -> Result {
         Ok(write!(self.buf, "{}", v)?)
     }
 
