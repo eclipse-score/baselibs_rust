@@ -11,6 +11,12 @@ name = "elementary"
 version = "0.0.1"
 
 [[package]]
+name = "libc"
+version = "0.2.183"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b5b646652bf6661599e1da8901b3b9522896f01e736bad5f723fe7a3a27f899d"
+
+[[package]]
 name = "log_builtin"
 version = "0.0.1"
 dependencies = [
@@ -22,6 +28,15 @@ dependencies = [
 name = "log_custom"
 version = "0.0.1"
 dependencies = [
+ "score_log",
+]
+
+[[package]]
+name = "pal"
+version = "0.0.1"
+dependencies = [
+ "containers",
+ "libc",
  "score_log",
 ]
 
@@ -98,6 +113,14 @@ name = "sync"
 version = "0.0.1"
 dependencies = [
  "elementary",
+]
+
+[[package]]
+name = "thread"
+version = "0.0.1"
+dependencies = [
+ "pal",
+ "score_log",
 ]
 
 [[package]]
