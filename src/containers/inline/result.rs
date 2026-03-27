@@ -14,6 +14,7 @@
 use core::cmp;
 use core::fmt;
 use core::mem::ManuallyDrop;
+use score_log::fmt::{FormatSpec, Result as ScoreLogResult, ScoreDebug, Writer};
 
 /// An result value for error handling, similar to [`Result`] in the Rust standard library.
 ///
@@ -188,13 +189,12 @@ where
     }
 }
 
-#[cfg(feature = "score_log")]
-impl<T: Copy, E: Copy> score_log::fmt::ScoreDebug for InlineResult<T, E>
+impl<T: Copy, E: Copy> ScoreDebug for InlineResult<T, E>
 where
-    for<'a> Result<&'a T, &'a E>: score_log::fmt::ScoreDebug,
+    for<'a> Result<&'a T, &'a E>: ScoreDebug,
 {
-    fn fmt(&self, f: score_log::fmt::Writer, spec: &score_log::fmt::FormatSpec) -> score_log::fmt::Result {
-        score_log::fmt::ScoreDebug::fmt(&self.as_ref(), f, spec)
+    fn fmt(&self, f: Writer, spec: &FormatSpec) -> ScoreLogResult {
+        ScoreDebug::fmt(&self.as_ref(), f, spec)
     }
 }
 

@@ -16,6 +16,7 @@ use crate::storage::Heap;
 use core::fmt;
 use core::ops;
 use elementary::{BasicAllocator, HeapAllocator, GLOBAL_ALLOCATOR};
+use score_log::fmt::{FormatSpec, Result as ScoreLogResult, ScoreDebug, Writer};
 
 /// A fixed-capacity queue, using provided allocator.
 ///
@@ -71,10 +72,9 @@ impl<T: fmt::Debug, A: BasicAllocator> fmt::Debug for FixedCapacityQueueIn<'_, T
     }
 }
 
-#[cfg(feature = "score_log")]
-impl<T: score_log::fmt::ScoreDebug, A: BasicAllocator> score_log::fmt::ScoreDebug for FixedCapacityQueueIn<'_, T, A> {
-    fn fmt(&self, f: score_log::fmt::Writer, spec: &score_log::fmt::FormatSpec) -> score_log::fmt::Result {
-        score_log::fmt::ScoreDebug::fmt(&self.inner, f, spec)
+impl<T: ScoreDebug, A: BasicAllocator> ScoreDebug for FixedCapacityQueueIn<'_, T, A> {
+    fn fmt(&self, f: Writer, spec: &FormatSpec) -> ScoreLogResult {
+        ScoreDebug::fmt(&self.inner, f, spec)
     }
 }
 
@@ -115,10 +115,9 @@ impl<T: fmt::Debug> fmt::Debug for FixedCapacityQueue<T> {
     }
 }
 
-#[cfg(feature = "score_log")]
-impl<T: score_log::fmt::ScoreDebug> score_log::fmt::ScoreDebug for FixedCapacityQueue<T> {
-    fn fmt(&self, f: score_log::fmt::Writer, spec: &score_log::fmt::FormatSpec) -> score_log::fmt::Result {
-        score_log::fmt::ScoreDebug::fmt(&self.0, f, spec)
+impl<T: ScoreDebug> ScoreDebug for FixedCapacityQueue<T> {
+    fn fmt(&self, f: Writer, spec: &FormatSpec) -> ScoreLogResult {
+        ScoreDebug::fmt(&self.0, f, spec)
     }
 }
 

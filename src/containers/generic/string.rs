@@ -14,6 +14,7 @@
 use core::fmt;
 use core::ops;
 use core::str;
+use score_log::fmt::{FormatSpec, Result as ScoreLogResult, ScoreDebug, Writer};
 
 use super::vec::GenericVec;
 use crate::storage::Storage;
@@ -137,10 +138,9 @@ impl<S: Storage<u8>> fmt::Debug for GenericString<S> {
     }
 }
 
-#[cfg(feature = "score_log")]
-impl<S: Storage<u8>> score_log::fmt::ScoreDebug for GenericString<S> {
-    fn fmt(&self, f: score_log::fmt::Writer, spec: &score_log::fmt::FormatSpec) -> score_log::fmt::Result {
-        score_log::fmt::ScoreDebug::fmt(self.as_str(), f, spec)
+impl<S: Storage<u8>> ScoreDebug for GenericString<S> {
+    fn fmt(&self, f: Writer, spec: &FormatSpec) -> ScoreLogResult {
+        ScoreDebug::fmt(self.as_str(), f, spec)
     }
 }
 

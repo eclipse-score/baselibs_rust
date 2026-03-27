@@ -14,6 +14,7 @@
 use core::cmp;
 use core::fmt;
 use core::mem::MaybeUninit;
+use score_log::fmt::{FormatSpec, Result as ScoreLogResult, ScoreDebug, Writer};
 
 /// An optional value, similar to [`Option`] in the Rust standard library.
 ///
@@ -174,13 +175,12 @@ where
     }
 }
 
-#[cfg(feature = "score_log")]
-impl<T: Copy> score_log::fmt::ScoreDebug for InlineOption<T>
+impl<T: Copy> ScoreDebug for InlineOption<T>
 where
-    for<'a> Option<&'a T>: score_log::fmt::ScoreDebug,
+    for<'a> Option<&'a T>: ScoreDebug,
 {
-    fn fmt(&self, f: score_log::fmt::Writer, spec: &score_log::fmt::FormatSpec) -> score_log::fmt::Result {
-        score_log::fmt::ScoreDebug::fmt(&self.as_ref(), f, spec)
+    fn fmt(&self, f: Writer, spec: &FormatSpec) -> ScoreLogResult {
+        ScoreDebug::fmt(&self.as_ref(), f, spec)
     }
 }
 

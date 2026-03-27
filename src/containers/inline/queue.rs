@@ -13,6 +13,7 @@
 
 use core::fmt;
 use core::ops;
+use score_log::fmt::{FormatSpec, Result as ScoreLogResult, ScoreDebug, Writer};
 
 use crate::generic::queue::GenericQueue;
 use crate::storage::Inline;
@@ -80,12 +81,9 @@ impl<T: Copy + fmt::Debug, const CAPACITY: usize> fmt::Debug for InlineQueue<T, 
     }
 }
 
-#[cfg(feature = "score_log")]
-impl<T: Copy + score_log::fmt::ScoreDebug, const CAPACITY: usize> score_log::fmt::ScoreDebug
-    for InlineQueue<T, CAPACITY>
-{
-    fn fmt(&self, f: score_log::fmt::Writer, spec: &score_log::fmt::FormatSpec) -> score_log::fmt::Result {
-        score_log::fmt::ScoreDebug::fmt(&self.inner, f, spec)
+impl<T: Copy + ScoreDebug, const CAPACITY: usize> ScoreDebug for InlineQueue<T, CAPACITY> {
+    fn fmt(&self, f: Writer, spec: &FormatSpec) -> ScoreLogResult {
+        ScoreDebug::fmt(&self.inner, f, spec)
     }
 }
 

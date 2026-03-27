@@ -18,6 +18,7 @@ use core::mem::needs_drop;
 use core::ops::Range;
 use core::ptr;
 use core::slice;
+use score_log::fmt::{DebugList, FormatSpec, Result as ScoreLogResult, ScoreDebug, Writer};
 
 use crate::storage::Storage;
 use crate::InsufficientCapacity;
@@ -285,10 +286,9 @@ impl<T: fmt::Debug, S: Storage<T>> fmt::Debug for GenericQueue<T, S> {
     }
 }
 
-#[cfg(feature = "score_log")]
-impl<T: score_log::fmt::ScoreDebug, S: Storage<T>> score_log::fmt::ScoreDebug for GenericQueue<T, S> {
-    fn fmt(&self, f: score_log::fmt::Writer, spec: &score_log::fmt::FormatSpec) -> score_log::fmt::Result {
-        score_log::fmt::DebugList::new(f, spec).entries(self.iter()).finish()
+impl<T: ScoreDebug, S: Storage<T>> ScoreDebug for GenericQueue<T, S> {
+    fn fmt(&self, f: Writer, spec: &FormatSpec) -> ScoreLogResult {
+        DebugList::new(f, spec).entries(self.iter()).finish()
     }
 }
 

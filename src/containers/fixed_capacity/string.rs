@@ -15,8 +15,8 @@ use crate::generic::string::GenericString;
 use crate::storage::Heap;
 use core::fmt;
 use core::ops;
-use elementary::GLOBAL_ALLOCATOR;
-use elementary::{BasicAllocator, HeapAllocator};
+use elementary::{BasicAllocator, HeapAllocator, GLOBAL_ALLOCATOR};
+use score_log::fmt::{FormatSpec, Result as ScoreLogResult, ScoreDebug, Writer};
 
 /// A fixed-capacity Unicode string, using provided allocator..
 ///
@@ -98,10 +98,9 @@ impl<A: BasicAllocator> fmt::Debug for FixedCapacityStringIn<'_, A> {
     }
 }
 
-#[cfg(feature = "score_log")]
-impl<A: BasicAllocator> score_log::fmt::ScoreDebug for FixedCapacityStringIn<'_, A> {
-    fn fmt(&self, f: score_log::fmt::Writer, spec: &score_log::fmt::FormatSpec) -> score_log::fmt::Result {
-        score_log::fmt::ScoreDebug::fmt(self.as_str(), f, spec)
+impl<A: BasicAllocator> ScoreDebug for FixedCapacityStringIn<'_, A> {
+    fn fmt(&self, f: Writer, spec: &FormatSpec) -> ScoreLogResult {
+        ScoreDebug::fmt(self.as_str(), f, spec)
     }
 }
 
@@ -161,10 +160,9 @@ impl fmt::Debug for FixedCapacityString {
     }
 }
 
-#[cfg(feature = "score_log")]
-impl score_log::fmt::ScoreDebug for FixedCapacityString {
-    fn fmt(&self, f: score_log::fmt::Writer, spec: &score_log::fmt::FormatSpec) -> score_log::fmt::Result {
-        score_log::fmt::ScoreDebug::fmt(&self.0, f, spec)
+impl ScoreDebug for FixedCapacityString {
+    fn fmt(&self, f: Writer, spec: &FormatSpec) -> ScoreLogResult {
+        ScoreDebug::fmt(&self.0, f, spec)
     }
 }
 
