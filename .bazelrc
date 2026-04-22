@@ -31,7 +31,7 @@ test --test_output=errors
 
 
 # Ferrocene must be common compiler for HOST. To ensure metadata compatibility for proc macro crates!
-common --extra_toolchains=@score_gcc_x86_64_toolchain//:x86_64-linux-gcc_12.2.0-posix
+common --extra_toolchains=@score_gcc_x86_64_toolchain//:x86_64-linux-gcc_12.2.0
 common --extra_toolchains=@score_toolchains_rust//toolchains/ferrocene:ferrocene_x86_64_unknown_linux_gnu
 
 # -------------------------------------------------------------------------------
@@ -52,7 +52,7 @@ build:x86_64-qnx --extra_toolchains=@score_toolchains_rust//toolchains/ferrocene
 # Config dedicated to host platform CPU:x86_64 and OS:Linux
 # -------------------------------------------------------------------------------
 build:x86_64-linux --platforms=@score_bazel_platforms//:x86_64-linux-gcc_12.2.0-posix
-build:x86_64-linux --extra_toolchains=@score_gcc_x86_64_toolchain//:x86_64-linux-gcc_12.2.0-posix
+build:x86_64-linux --extra_toolchains=@score_gcc_x86_64_toolchain//:x86_64-linux-gcc_12.2.0
 build:x86_64-linux --extra_toolchains=@score_toolchains_rust//toolchains/ferrocene:ferrocene_x86_64_unknown_linux_gnu
 
 # -------------------------------------------------------------------------------
