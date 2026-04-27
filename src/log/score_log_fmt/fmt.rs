@@ -71,7 +71,8 @@ pub struct Placeholder<'a> {
 impl<'a> Placeholder<'a> {
     /// Create the placeholder to be represented using `ScoreDebug`.
     pub const fn new<T: ScoreDebug>(value: &'a T, spec: FormatSpec) -> Self {
-        let value = NonNull::from_ref(value).cast();
+        // Replaced previous line: let value = NonNull::from_ref(value).cast(); Due to error[E0658]: use of unstable library feature `non_null_from_ref` when building. Usage of NonNull::<T>::from_ref` is not yet stable as a const fn
+        let value = unsafe { NonNull::new_unchecked(value as *const T as *mut T) }.cast();
         let formatter = |v: NonNull<()>, f: Writer, spec: &FormatSpec| {
             // SAFETY: borrow checker will ensure that value won't be mutated for as long as the returned `Self` instance is alive.
             let typed = unsafe { v.cast::<T>().as_ref() };
