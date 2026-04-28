@@ -16,7 +16,7 @@
 For production use `score_logging`.
 """
 
-load("@rules_rust//rust:defs.bzl", "rust_library", "rust_test")
+load("@rules_rust//rust:defs.bzl", "miri_test", "rust_library", "rust_test")
 
 rust_library(
     name = "stdout_logger",
@@ -34,4 +34,11 @@ rust_test(
         "unit_tests",
         "ut",
     ],
+)
+
+miri_test(
+    name = "tests_miri",
+    crate = ":tests",
+    tags = ["manual"],
+    visibility = ["//visibility:public"],
 )
