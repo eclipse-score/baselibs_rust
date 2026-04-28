@@ -96,3 +96,21 @@ docs(
     ],
     source_dir = "docs",
 )
+
+
+# Miri test suite
+test_suite(
+    name = "miri_tests",
+    testonly = True,
+    tests = [
+        "//src/containers:tests_miri",
+        "//src/elementary:tests_miri",
+        "//src/log/score_log:tests_miri",
+        "//src/log/score_log_fmt:tests_miri",
+        "//src/log/score_log_fmt_macro:tests_miri",
+        "//src/log/stdout_logger:tests_miri",
+        "//src/pal:tests_miri",
+        "//src/sync:tests_miri",
+        "//src/thread:tests_miri",
+    ],
+)

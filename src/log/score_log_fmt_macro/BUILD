@@ -10,7 +10,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 # *******************************************************************************
-load("@rules_rust//rust:defs.bzl", "rust_proc_macro", "rust_test")
+load("@rules_rust//rust:defs.bzl", "miri_test", "rust_proc_macro", "rust_test")
 
 rust_proc_macro(
     name = "score_log_fmt_macro",
@@ -38,4 +38,11 @@ rust_test(
         "//src/log/score_log",
         "//src/log/score_log_fmt",
     ],
+)
+
+miri_test(
+    name = "tests_miri",
+    crate = ":tests",
+    tags = ["manual"],
+    visibility = ["//visibility:public"],
 )
