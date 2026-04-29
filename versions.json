@@ -20,11 +20,11 @@
     "url": "https://eclipse-score.github.io/baselibs_rust/pr-90/"
   },
   {
-    "version": "v0.1.2",
-    "url": "https://eclipse-score.github.io/baselibs_rust/v0.1.2/"
-  },
-  {
     "version": "pr-91",
     "url": "https://eclipse-score.github.io/baselibs_rust/pr-91/"
+  },
+  {
+    "version": "v0.1.2",
+    "url": "https://eclipse-score.github.io/baselibs_rust/v0.1.2/"
   }
 ]
