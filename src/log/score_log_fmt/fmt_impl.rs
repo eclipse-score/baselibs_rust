@@ -343,7 +343,7 @@ mod tests {
     #[test]
     fn test_from_utf8_error_debug() {
         let a1 = vec![0xa0, 0xa1];
-        let a2: Result<String, std::string::FromUtf8Error> = a1.try_into();
+        let a2: Result<String, std::string::FromUtf8Error> = String::from_utf8(a1);
         common_test_debug(a2.unwrap_err());
     }
 
