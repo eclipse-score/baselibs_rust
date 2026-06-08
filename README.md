@@ -1,3 +1,8 @@
+> [!WARNING]
+> **This repository is archived.** All content has been moved to [eclipse-score/baselibs](https://github.com/eclipse-score/baselibs).
+>
+> If you are using this repository as a Bazel module dependency via the registry, update your dependency from `score_baselibs_rust` to `score_baselibs`.
+
 # Base Libraries - Rust
 
 Foundational Rust libraries providing common functionality for S-CORE modules.
